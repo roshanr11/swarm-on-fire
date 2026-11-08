@@ -1,1 +1,2 @@
 wrote results/runs/large_memory_s0.jsonl: 1600 posts, 883 aliases, 0 empty, cost $0.1895 over 1600 calls
+wrote results/runs/large_memory_s1.jsonl: 1600 posts, 892 aliases, 0 empty, cost $0.1843 over 1513 calls
