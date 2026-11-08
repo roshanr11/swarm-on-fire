@@ -130,14 +130,19 @@ def tables(metrics, stats):
                      ("auc_model_confound", "Same base model (different operators) — confound"),
                      ("ari_operator", "ARI: clustering into operators"),
                      ("ari_model", "ARI: clustering into base models"),
-                     ("front_pair_rank", "Rank of covert front pair (1 = most similar of 28)")]:
+                     ("front_pair_rank", "Rank of covert front pair (1 = most similar of 28)"),
+                     ("auc_sybil_vs_honest", "Operator pairs: same covert principal vs ordinary honest pairs (AUC)"),
+                     ("auc_sybil_vs_twin", "Operator pairs: same covert principal vs honest twins (AUC)")]:
         lines.append(f"\n### {lab}\n\n| Feature | " + " | ".join(COND_LABEL[c].replace(chr(10), ' ') for c in conds_all) + " |")
         lines.append("|---" * (len(conds_all) + 1) + "|")
         for f in ALL_FEATS:
             cells = []
             for c in conds_all:
-                m, s, vals = agg(metrics, key, f, c)
-                cells.append(", ".join(str(int(v)) for v in vals) if key == "front_pair_rank" else f"{m:.2f} ± {s:.2f}")
+                m, s, vals = agg_key(metrics, key, f, c)
+                if not vals:
+                    cells.append("—")
+                else:
+                    cells.append(", ".join(str(int(v)) for v in vals) if key == "front_pair_rank" else f"{m:.2f} ± {s:.2f}")
             lines.append(f"| {f} | " + " | ".join(cells) + " |")
     lines.append("\n## Identity schemes: pairwise 'same principal' P / R / F1 (mean over seeds)\n")
     schemes = list(next(iter(metrics.values()))["schemes"])
@@ -153,9 +158,12 @@ def tables(metrics, stats):
     for k, s in stats.items():
         lines.append(f"| {k} | {s['posts']} | {metrics[k]['n_aliases']} | {s['empty']} | {s['refusals']} | "
                      f"{s['covert_mentions']}/{s['covert_posts']} | {s['honest_mentions']} |")
-    lines.append("\n## Fingerprint merges proposed (operator pairs with z > 2)\n")
+    lines.append("\n## Fingerprint merges (z above 1-1/#pairs quantile; model-corrected)\n")
+    lines.append("| Run | fronts | twins | edges | true (same principal) | twin edges | sybil pairs |\n|---|---|---|---|---|---|---|")
     for k, v in metrics.items():
-        lines.append(f"- {k}: raw {v['merged_pairs']} · model-corrected {v.get('merged_pairs_corrected')}")
+        e = v.get("merge_edges_corrected", {})
+        lines.append(f"| {k} | {v.get('fronts')} | {v.get('twins')} | {e.get('edges')} | {e.get('true_edges')} | "
+                     f"{e.get('twin_edges')} | {e.get('sybil_pairs')} |")
     (OUT / "tables.md").write_text("\n".join(lines) + "\n")
 
 
@@ -170,6 +178,7 @@ def main():
     confound(metrics, "fig3_confound.png")
     heatmaps(metrics, "fig4_fronts.png")
     robustness(metrics)
+    coordination_vs_agreement(metrics)
     tables(metrics, stats)
     print((OUT / "tables.md").read_text())
 
@@ -210,3 +219,40 @@ def contagion(fname="fig5_contagion.png"):
 
 if __name__ == "__main__":
     print(contagion())
+
+
+SYBIL_CONDS = ["twins", "twins_subtle", "large", "large_subtle", "large_persona", "large_memory"]
+
+
+def agg_key(metrics, key, feat, cond):
+    vals = [v["features"][feat][key] for k, v in metrics.items()
+            if k.rsplit("_s", 1)[0] == cond and key in v["features"][feat]]
+    return (np.mean(vals), np.std(vals), vals) if vals else (np.nan, np.nan, [])
+
+
+def coordination_vs_agreement(metrics, fname="fig7_coord_vs_agree.png"):
+    conds = [c for c in SYBIL_CONDS if any(k.rsplit("_s", 1)[0] == c for k in metrics)]
+    labels = {"twins": "8 ops,\nobvious", "twins_subtle": "8 ops,\nsubtle", "large": "32 ops,\nobvious",
+              "large_subtle": "32 ops,\nsubtle", "large_persona": "32 ops,\npersona", "large_memory": "32 ops,\nmemory"}
+    fig, axes = plt.subplots(1, 2, figsize=(7.2, 2.8), sharey=True)
+    for ax, key, title in [(axes[0], "auc_sybil_vs_honest", "Fronts vs ordinary honest pairs"),
+                           (axes[1], "auc_sybil_vs_twin", "Fronts vs honest twins")]:
+        w = 0.2
+        x = np.arange(len(conds))
+        for i, f in enumerate(["Keyword (word TF-IDF)", "Style profile", "Semantic embedding", "Combined"]):
+            m = [agg_key(metrics, key, f, c)[0] for c in conds]
+            sd = [agg_key(metrics, key, f, c)[1] for c in conds]
+            ax.bar(x + (i - 1.5) * w, m, w * 0.9, yerr=sd, color=COLORS[i], label=f.replace(" (word TF-IDF)", ""),
+                   error_kw=dict(ecolor=MUTED, lw=0.7, capsize=1.5))
+        ax.axhline(0.5, color=MUTED, lw=0.8, ls="--")
+        ax.set_xticks(x, [labels[c] for c in conds], fontsize=6.5)
+        ax.set_ylim(0, 1.05)
+        ax.set_title(title, loc="left", fontsize=9, color=INK)
+    axes[0].set_ylabel("Operator-pair ROC-AUC")
+    axes[0].legend(ncol=4, loc="upper center", bbox_to_anchor=(1.05, -0.28), fontsize=7.5)
+    fig.savefig(FIG / fname)
+    plt.close(fig)
+
+
+if __name__ == "__main__":
+    coordination_vs_agreement(json.loads((OUT / "metrics.json").read_text()))
