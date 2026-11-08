@@ -121,7 +121,7 @@ def robustness(metrics, fname="fig6_robustness.png", feat="Combined"):
 
 def tables(metrics, stats):
     conds_all = present(metrics, COND_ORDER + [c for c in EXTRA_ORDER if c not in COND_ORDER])
-    lines = ["## Pairwise ROC-AUC (mean ± sd over seeds)\n"]
+    lines = ["## Metrics: mean over seeds [95% bootstrap CI over seeds]\n"]
     for key, lab in [("auc_agent", "Re-identify renamed agent"),
                      ("auc_agent_within_op", "Re-identify agent, within one operator account"),
                      ("auc_agent_within_op_early", "Within operator, both aliases in rounds 1-5"),
@@ -142,7 +142,11 @@ def tables(metrics, stats):
                 if not vals:
                     cells.append("—")
                 else:
-                    cells.append(", ".join(str(int(v)) for v in vals) if key == "front_pair_rank" else f"{m:.2f} ± {s:.2f}")
+                    if key == "front_pair_rank":
+                        cells.append(", ".join(str(int(v)) for v in vals))
+                    else:
+                        lo, hi = boot_ci(vals)
+                        cells.append(f"{m:.2f} [{lo:.2f}, {hi:.2f}]" if len(vals) > 1 else f"{m:.2f}")
             lines.append(f"| {f} | " + " | ".join(cells) + " |")
     lines.append("\n## Identity schemes: pairwise 'same principal' P / R / F1 (mean over seeds)\n")
     schemes = list(next(iter(metrics.values()))["schemes"])
@@ -218,6 +222,16 @@ def contagion(fname="fig5_contagion.png"):
 
 
 SYBIL_CONDS = ["twins", "twins_subtle", "large", "large_subtle", "large_persona", "large_memory"]
+
+
+def boot_ci(vals, n=5000, seed=0):
+    """95% percentile bootstrap CI of the mean over seeds (episode = unit)."""
+    v = np.asarray(vals, float)
+    if len(v) < 2:
+        return (float("nan"), float("nan"))
+    rng = np.random.default_rng(seed)
+    means = v[rng.integers(0, len(v), (n, len(v)))].mean(1)
+    return float(np.percentile(means, 2.5)), float(np.percentile(means, 97.5))
 
 
 def agg_key(metrics, key, feat, cond):
