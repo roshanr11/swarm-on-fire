@@ -14,8 +14,8 @@
  {
   "id": "method",
   "kind": "slide",
-  "text": "So we built a testbed. Agents run by hidden operators post on a forum for ten rounds, and rename themselves at random. Some operators are secret fronts for one covert boss, pushing a fake product. As a control, others are honest twins: independent operators who sincerely share the same view. Agents try to hide by changing persona, paraphrasing through another model, or mixing models. In total: sixty-two swarms, forty-four thousand posts, and eight models, including four frontier models.",
-  "dur": 34.86
+  "text": "So I built a testbed. Agents run by hidden operators post on a forum for ten rounds, and rename themselves at random. Some operators are secret fronts for one covert boss, pushing a fake product. As a control, others are honest twins: independent operators who sincerely share the same view. Agents try to hide by changing persona, paraphrasing through another model, or mixing models. In total: sixty-two swarms, forty-four thousand posts, and eight models, including four frontier models.",
+  "dur": 35.76
  },
  {
   "id": "demoA",
@@ -26,14 +26,14 @@
  {
   "id": "demoB",
   "kind": "demo",
-  "text": "Now we reveal the ground truth. Each colour is a hidden operator. Coral rings mark the covert fronts. Mint rings mark the honest twins.",
-  "dur": 9.7
+  "text": "Now I reveal the ground truth. Each colour is a hidden operator. Coral rings mark the covert fronts. Mint rings mark the honest twins.",
+  "dur": 9.58
  },
  {
   "id": "demoC",
   "kind": "demo",
-  "text": "Finally, we place every alias by its behavioural fingerprint. Accounts from the same operator cluster together, even across renames.",
-  "dur": 9.12
+  "text": "Finally, I place every alias by its behavioural fingerprint. Accounts from the same operator cluster together, even across renames.",
+  "dur": 8.81
  },
  {
   "id": "demoD",
@@ -62,8 +62,8 @@
  {
   "id": "agendas",
   "kind": "slide",
-  "text": "Finding four, and our key control. Fingerprints separate covert fronts from ordinary operators almost perfectly. But against honest operators who simply agree, they are barely above chance. Text can detect a shared agenda. It cannot prove coordination.",
-  "dur": 18.35
+  "text": "Finding four, and my key control. Fingerprints separate covert fronts from ordinary operators almost perfectly. But against honest operators who simply agree, they are barely above chance. Text can detect a shared agenda. It cannot prove coordination.",
+  "dur": 18.1
  },
  {
   "id": "merge",
@@ -80,7 +80,7 @@
  {
   "id": "lessons",
   "kind": "slide",
-  "text": "So what should we build? Take identity out of the agent's hands. Issue a credential to every instance, at the gateway. Read for goals, not style. And treat fingerprints as leads for human review, never as verdicts. Everything is open source and reproducible. Thank you.",
-  "dur": 19.92
+  "text": "So what should agent builders do? Take identity out of the agent's hands. Issue a credential to every instance, at the gateway. Read for goals, not style. And treat fingerprints as leads for human review, never as verdicts. Everything is open source and reproducible. Thank you.",
+  "dur": 19.44
  }
 ]

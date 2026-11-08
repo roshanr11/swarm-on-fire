@@ -7,7 +7,7 @@ In the Hugging Face incident, about 1,200 agents used 7,905 names
 ([Swarm Traces, 2026](https://swarmtraces.org/)). This project simulates a forum of
 40 LLM agents, run by 8 hidden operators, that rename themselves while posting. Two of
 the operators are secretly *fronts* for one covert principal, pushing a fictional
-package (`fastjson-utils2`). We then compare identity schemes:
+package (`fastjson-utils2`). I then compare identity schemes:
 
 | Scheme | What it assumes |
 |---|---|
@@ -17,7 +17,7 @@ package (`fastjson-utils2`). We then compare identity schemes:
 | Behavioural fingerprints | Stylometry (char n-grams, function-word/punctuation profile) and topic-centred semantic embeddings |
 | Gateway + fingerprints | Attestation, plus fingerprint similarity to merge operator accounts that are likely the same principal (sybil fronts) |
 
-We test the fingerprints under three evasion strategies: a new persona on every rename,
+I test the fingerprints under three evasion strategies: a new persona on every rename,
 paraphrase laundering through a different model, and operators spreading their agents
 over several base models. Robustness conditions add per-agent memory, no house style, keyword-free (subtle) agendas, frontier models, randomised roles with *honest twins* (independent operators with the same sincere agenda), and a 160-agent scale-up.
 

@@ -11,8 +11,12 @@ import requests
 KEY = os.environ.get("OPENROUTER_API_KEY", "proxy-injected")
 VOICE = os.environ.get("VOICE", "Brian")
 Path("video/audio").mkdir(parents=True, exist_ok=True)
+import sys
 sc = json.load(open("video/script.json"))
+only = set(sys.argv[1:])  # optional: scene ids to (re)generate
 for s in sc:
+    if only and s["id"] not in only:
+        continue
     pcm = Path(f"video/audio/{s['id']}.pcm")
     r = requests.post("https://openrouter.ai/api/v1/audio/speech",
                       headers={"Authorization": f"Bearer {KEY}", "Content-Type": "application/json"},
