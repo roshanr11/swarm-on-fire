@@ -106,14 +106,14 @@ function setPhase(k) {
   phase = k;
   if (k === 1) {
     $('title').textContent = 'Ground truth: who is really behind each account';
-    $('maplabel').textContent = 'colour = hidden operator';
+    $('maplabel').textContent = 'color = hidden operator';
     order.forEach(id => { const a = byId[id], d = el[id]; d.style.background = OPC[a.op];
       if (a.role === 'front') d.classList.add('front'); if (a.role === 'twin') d.classList.add('twin'); });
     document.querySelectorAll('.post').forEach(div => { const a = byId[div.dataset.id]; div.querySelector('.dot').style.background = OPC[a.op]; });
     $('legend').style.opacity = 1;
   }
   if (k === 2) {
-    $('title').textContent = 'Placed by behavioural fingerprint';
+    $('title').textContent = 'Placed by behavioral fingerprint';
     $('maplabel').textContent = 'position = fingerprint similarity';
     order.forEach(id => { const a = byId[id], d = el[id];
       d.style.left = (PAD + a.xy[0] * (W - 2*PAD - 260)) + 'px'; d.style.top = (PAD + 10 + a.xy[1] * (H - 2*PAD - 150)) + 'px'; });

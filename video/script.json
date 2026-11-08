@@ -38,13 +38,13 @@
  {
   "id": "demoB",
   "kind": "demo",
-  "text": "Now I reveal the ground truth. Each colour is a hidden operator. Coral rings mark the covert fronts. Mint rings mark the honest twins.",
+  "text": "Now I reveal the ground truth. Each color is a hidden operator. Coral rings mark the covert fronts. Mint rings mark the honest twins.",
   "dur": 9.58
  },
  {
   "id": "demoC",
   "kind": "demo",
-  "text": "Finally, I place every alias by its behavioural fingerprint. Accounts from the same operator cluster together, even across renames.",
+  "text": "Finally, I place every alias by its behavioral fingerprint. Accounts from the same operator cluster together, even across renames.",
   "dur": 8.81
  },
  {
@@ -86,13 +86,13 @@
  {
   "id": "crowd",
   "kind": "slide",
-  "text": "A side finding: honest agents mostly pushed back. Two thirds of their mentions of the fake product were sceptical, and some called out the campaign without being asked.",
+  "text": "A side finding: honest agents mostly pushed back. Two thirds of their mentions of the fake product were skeptical, and some called out the campaign without being asked.",
   "dur": 10.73
  },
  {
   "id": "lessons",
   "kind": "slide",
-  "text": "So what should agent builders do? Take identity out of the agent's hands. Issue a credential to every instance, at the gateway. Read for goals, not style. And treat fingerprints as leads for human review, never as verdicts. Everything is open source and reproducible. Thank you.",
-  "dur": 19.44
+  "text": "So what should agent builders do? Take identity out of the agent's hands. Give every agent copy its own I.D., issued by the gateway. Read for goals, not style. And treat fingerprints as leads for human review, never as verdicts. Everything is open source and reproducible. Thank you.",
+  "dur": 20.44
  }
 ]

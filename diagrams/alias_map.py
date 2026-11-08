@@ -26,7 +26,7 @@ for ax, mode in zip(axes, ["defender", "truth"]):
     ax.set_xticks([]); ax.set_yticks([])
     for s in ax.spines.values(): s.set_color("#d6d1c4")
     ax.set_title("What the defender has: 226 anonymous aliases" if mode == "defender"
-                 else "Revealed: colour = operator, number = which agent", fontsize=8.5, loc="left", color="#17202B")
+                 else "Revealed: color = operator, number = which agent", fontsize=8.5, loc="left", color="#17202B")
 from matplotlib.lines import Line2D
 h = [Line2D([], [], marker="o", ls="", mfc="#E9B23A", mec="#c8551e", mew=1.6, ms=7, label="covert front (operators %s)" % ", ".join(str(o + 1) for o in fronts)),
      Line2D([], [], marker="o", ls="", mfc="#E87BA4", mec="#138a63", mew=1.6, ms=7, label="honest twin (operators %s)" % ", ".join(str(o + 1) for o in twins))]

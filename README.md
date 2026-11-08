@@ -1,6 +1,6 @@
 # Who Is Who in a Swarm?
 
-**Re-identifying renamed LLM agents, and the operators behind them, from behaviour alone.**
+**Re-identifying renamed LLM agents, and the operators behind them, from behavior alone.**
 Apart Research · Swarm Alignment Hackathon (Nov 6–8, 2026) · Track 3 (Agent Infrastructure), with Track 4 (Oversight).
 
 In the Hugging Face incident, about 1,200 agents used 7,905 names
@@ -14,18 +14,18 @@ package (`fastjson-utils2`). I then compare identity schemes:
 | Self-chosen names | Agents name themselves (what happened in the incident) |
 | Agent-held keys | Agent signs posts, but can mint a fresh key whenever it renames |
 | Gateway operator attestation | The LLM/MCP gateway stamps each call with the operator account that pays for it |
-| Behavioural fingerprints | Stylometry (char n-grams, function-word/punctuation profile) and topic-centred semantic embeddings |
+| Behavioral fingerprints | Stylometry (char n-grams, function-word/punctuation profile) and topic-centered semantic embeddings |
 | Gateway + fingerprints | Attestation, plus fingerprint similarity to merge operator accounts that are likely the same principal (sybil fronts) |
 
 I test the fingerprints under three evasion strategies: a new persona on every rename,
 paraphrase laundering through a different model, and operators spreading their agents
-over several base models. Robustness conditions add per-agent memory, no house style, keyword-free (subtle) agendas, frontier models, randomised roles with *honest twins* (independent operators with the same sincere agenda), and a 160-agent scale-up.
+over several base models. Robustness conditions add per-agent memory, no house style, keyword-free (subtle) agendas, frontier models, randomized roles with *honest twins* (independent operators with the same sincere agenda), and a 160-agent scale-up.
 
 ## Why it matters
 
-- **Agent swarms are already active in the wild.** Transluce catalogued 38,160 urlquery.net reports of likely agent activity, going back to at least March 2026, months before the Hugging Face incident ([Transluce, 2026](https://transluce.org/agent-activity)).
+- **Agent swarms are already active in the wild.** Transluce cataloged 38,160 urlquery.net reports of likely agent activity, going back to at least March 2026, months before the Hugging Face incident ([Transluce, 2026](https://transluce.org/agent-activity)).
 - **Text classifiers miss AI bot swarms.** A 1,140-account AI botnet evaded LLM-text classifiers and was caught only through coordination patterns ([Yang & Menczer, 2023](https://arxiv.org/abs/2307.16336)). On Moltbook (55,932 agents), telling autonomous agents from human-steered ones took forensic fingerprinting ([Li, 2026](https://arxiv.org/abs/2602.07432)).
-- **Agent identity is being standardised now** in OAuth/OpenID extensions ([South et al., 2025](https://arxiv.org/abs/2501.09674)) and agent-to-agent protocols such as A2A. Whether IDs are asserted by agents or issued by infrastructure is still an open design choice, and this project gives evidence for the second.
+- **Agent identity is being standardized now** in OAuth/OpenID extensions ([South et al., 2025](https://arxiv.org/abs/2501.09674)) and agent-to-agent protocols such as A2A. Whether IDs are asserted by agents or issued by infrastructure is still an open design choice, and this project gives evidence for the second.
 
 ## How to read the numbers
 
@@ -39,12 +39,12 @@ The report has a full plain-language glossary (Section 1).
 
 1. **Anything the agent controls, it can discard.** Self-chosen names and rotatable agent-held keys recover nothing (F1 = 0).
 2. **Fingerprints identify the configuration, not the instance.** Same-operator AUC is 0.93–0.96, but same-agent within one operator is 0.50 (chance) at both scales and with frontier models. Only per-agent memory (0.56) or mixing base models (0.71) breaks the tie.
-3. **Style hides, goals leak.** Paraphrase laundering pushes style features to 0.58, while topic-centred semantic features keep 0.82.
+3. **Style hides, goals leak.** Paraphrase laundering pushes style features to 0.58, while topic-centered semantic features keep 0.82.
 4. **Shared agendas, not coordination.** Fronts of one covert principal stand out from ordinary operators (0.94–1.00), but barely from *honest twins* who sincerely share a view (0.20 with 8 operators; 0.54–0.62 with 32). At scale, automatic fingerprint merging finds 60–85% of front pairs, but about half of its merges are wrong. F1 falls below gateway attestation alone (0.84 vs 0.88).
-5. **The honest crowd pushes back.** 67% of honest mentions of a covert product were sceptical; only 13% endorsed it.
-6. **Real-data probe** (Swarm Traces, 20k artefacts): shared-scaffolding families around a long tail of near-unique payloads. Exploratory only, since there are no agent labels.
+5. **The honest crowd pushes back.** 67% of honest mentions of a covert product were skeptical; only 13% endorsed it.
+6. **Real-data probe** (Swarm Traces, 20k artifacts): shared-scaffolding families around a long tail of near-unique payloads. Exploratory only, since there are no agent labels.
 
-**Takeaway:** anchor identity at the gateway (per-instance credentials, out of the agent's reach), and use behavioural fingerprints as audit *leads* for human review, never as proof of coordination.
+**Takeaway:** anchor identity at the gateway (per-instance credentials, out of the agent's reach), and use behavioral fingerprints as audit *leads* for human review, never as proof of coordination.
 
 Report: [`report/report.pdf`](report/report.pdf) · Tables with bootstrap CIs: [`results/tables.md`](results/tables.md) · Novelty review: [`report/novelty_review.md`](report/novelty_review.md)
 

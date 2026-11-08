@@ -127,27 +127,27 @@ a stream of posts from accounts that keep appearing under new names.
 Over ten rounds, forty agents produce more than two hundred aliases.
 
 33
-00:02:16,590 --> 00:02:18,784
+00:02:16,590 --> 00:02:18,801
 Now I reveal the ground truth.
 
 34
-00:02:18,784 --> 00:02:21,197
-Each colour is a hidden operator.
+00:02:18,801 --> 00:02:21,159
+Each color is a hidden operator.
 
 35
-00:02:21,197 --> 00:02:23,757
+00:02:21,159 --> 00:02:23,738
 Coral rings mark the covert fronts.
 
 36
-00:02:23,757 --> 00:02:26,170
+00:02:23,738 --> 00:02:26,170
 Mint rings mark the honest twins.
 
 37
-00:02:26,670 --> 00:02:30,736
-Finally, I place every alias by its behavioural fingerprint.
+00:02:26,670 --> 00:02:30,699
+Finally, I place every alias by its behavioral fingerprint.
 
 38
-00:02:30,736 --> 00:02:35,480
+00:02:30,699 --> 00:02:35,480
 Accounts from the same operator cluster together, even across renames.
 
 39
@@ -260,32 +260,32 @@ honest agents mostly pushed back.
 
 66
 00:04:22,523 --> 00:04:30,150
-Two thirds of their mentions of the fake product were sceptical, and some called out the campaign without being asked.
+Two thirds of their mentions of the fake product were skeptical, and some called out the campaign without being asked.
 
 67
-00:04:30,650 --> 00:04:33,009
+00:04:30,650 --> 00:04:33,085
 So what should agent builders do?
 
 68
-00:04:33,009 --> 00:04:35,796
+00:04:33,085 --> 00:04:35,963
 Take identity out of the agent's hands.
 
 69
-00:04:35,796 --> 00:04:39,584
-Issue a credential to every instance, at the gateway.
+00:04:35,963 --> 00:04:40,243
+Give every agent copy its own I.D., issued by the gateway.
 
 70
-00:04:39,584 --> 00:04:41,442
+00:04:40,243 --> 00:04:42,161
 Read for goals, not style.
 
 71
-00:04:41,442 --> 00:04:46,302
+00:04:42,161 --> 00:04:47,179
 And treat fingerprints as leads for human review, never as verdicts.
 
 72
-00:04:46,302 --> 00:04:49,375
+00:04:47,179 --> 00:04:50,352
 Everything is open source and reproducible.
 
 73
-00:04:49,375 --> 00:04:50,090
+00:04:50,352 --> 00:04:51,090
 Thank you.
