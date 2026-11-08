@@ -27,6 +27,14 @@ over several base models. Robustness conditions add per-agent memory, no house s
 - **Text classifiers miss AI bot swarms.** A 1,140-account AI botnet evaded LLM-text classifiers and was caught only through coordination patterns ([Yang & Menczer, 2023](https://arxiv.org/abs/2307.16336)). On Moltbook (55,932 agents), telling autonomous agents from human-steered ones took forensic fingerprinting ([Li, 2026](https://arxiv.org/abs/2602.07432)).
 - **Agent identity is being standardised now** in OAuth/OpenID extensions ([South et al., 2025](https://arxiv.org/abs/2501.09674)) and agent-to-agent protocols such as A2A. Whether IDs are asserted by agents or issued by infrastructure is still an open design choice, and this project gives evidence for the second.
 
+## How to read the numbers
+
+- **AUC** (0.5 to 1.0): how well a method tells true matches from non-matches. **0.5 = coin flip, 1.0 = perfect.**
+- **F1** (0 to 1): how accurately posts are traced back to the real boss. **0 = not at all, 1 = perfect.**
+- **Operator** = the company that deploys agents · **front** = a fake "independent" account run by a hidden boss · **honest twins** = independent operators who sincerely agree · **gateway** = the server every AI call passes through · **fingerprint** = a profile built only from what an account writes.
+
+The report has a full plain-language glossary (Section 1).
+
 ## Key results (62 swarms · 4,400 agents · 44,000 posts · 8 models · up to 160 agents per swarm · ~$12.60 of API spend)
 
 1. **Anything the agent controls, it can discard.** Self-chosen names and rotatable agent-held keys recover nothing (F1 = 0).

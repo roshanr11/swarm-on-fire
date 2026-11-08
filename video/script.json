@@ -14,14 +14,20 @@
  {
   "id": "why",
   "kind": "slide",
-  "text": "Why does this matter? Because it is not a one-off. Transluce found more than thirty-eight thousand traces of agent activity on a single web service, starting months before the Hugging Face hack. An AI botnet of over a thousand accounts fooled text detectors, and was caught only by how its accounts coordinated. And right now, the identity standards for AI agents are being written. Whether agents name themselves, or the infrastructure names them, is still an open choice.",
-  "dur": 30.88
+  "text": "Why does this matter? It is not a one-off. Transluce found over thirty-eight thousand traces of agent activity on one web service, starting months before the Hugging Face hack. An AI botnet of over a thousand accounts fooled text detectors. And the identity rules for AI agents are being written right now.",
+  "dur": 20.34
  },
  {
   "id": "method",
   "kind": "slide",
-  "text": "So I built a testbed. Agents run by hidden operators post on a forum for ten rounds, and rename themselves at random. Some operators are secret fronts for one covert boss, pushing a fake product. As a control, others are honest twins: independent operators who sincerely share the same view. Agents try to hide by changing persona, paraphrasing through another model, or mixing models. In total: sixty-two swarms, forty-four thousand posts, and eight models, including four frontier models.",
-  "dur": 35.76
+  "text": "So I built a testbed. AI agents, deployed by hidden companies called operators, post on a forum for ten rounds, and keep changing their usernames. Some operators are secret fronts for one hidden boss, pushing a fake product. As a control, others are honest twins: independent companies that sincerely share the same view. Agents try to hide by changing persona, rewording their posts through another AI, or mixing AI models. In total: sixty-two swarms, forty-four thousand posts, and eight AI models, including four of the most advanced.",
+  "dur": 37.96
+ },
+ {
+  "id": "terms",
+  "kind": "slide",
+  "text": "A few words you will hear. An operator is the company that deploys the agents. A front is a fake independent account run by a hidden boss. An alias is just a username. The gateway is the server every AI request passes through, so it can stamp an I.D. the agent cannot change. A fingerprint is a profile built only from what an account writes. And for scores: point five is a coin flip, and one is perfect.",
+  "dur": 28.54
  },
  {
   "id": "demoA",
@@ -50,32 +56,32 @@
  {
   "id": "names",
   "kind": "slide",
-  "text": "Finding one. Anything the agent controls, it can discard. Self-chosen names and agent-held keys recovered nothing. Identity stamped by the gateway, out of the agent's reach, was never wrong.",
-  "dur": 13.03
+  "text": "Finding one. Anything the agent controls, it can throw away. Self-chosen names and keys that agents make themselves recovered nothing. An I.D. stamped by the gateway, out of the agent's reach, was never wrong.",
+  "dur": 14.46
  },
  {
   "id": "operator",
   "kind": "slide",
-  "text": "Finding two. Writing reveals the operator, not which agent wrote it. Fingerprints link accounts to their operator with an accuracy score of zero point nine four. But telling an operator's agents apart is a coin flip, at forty and at a hundred and sixty agents, with small and frontier models alike. Only giving each agent its own memory starts to break the tie.",
-  "dur": 24.76
+  "text": "Finding two. Writing reveals the operator, but not which agent wrote it. Fingerprints spot that two accounts share an operator with a score of zero point nine four, close to perfect. But telling apart that operator's agents is a coin flip, with forty or a hundred and sixty agents, and with small or frontier models alike. Only giving each agent its own memory starts to tell them apart.",
+  "dur": 26.77
  },
  {
   "id": "goals",
   "kind": "slide",
-  "text": "Finding three. Style hides, goals leak. Paraphrasing every post through another model pushes style features to near chance. But the meaning, what an agent keeps pushing, still gives it away.",
-  "dur": 13.36
+  "text": "Finding three. Style hides, goals leak. Rewording every post through another AI makes writing style almost useless for spotting the operator. But the meaning, what an agent keeps pushing, still gives it away.",
+  "dur": 14.9
  },
  {
   "id": "agendas",
   "kind": "slide",
-  "text": "Finding four, and my key control. Fingerprints separate covert fronts from ordinary operators almost perfectly. But against honest operators who simply agree, they are barely above chance. Text can detect a shared agenda. It cannot prove coordination.",
-  "dur": 18.1
+  "text": "Finding four, and my key control. Fingerprints can tell a hidden boss's fronts apart from ordinary companies almost perfectly. But compared with honest companies that simply agree, they do little better than a coin flip. Text can show a shared agenda. It cannot prove a conspiracy.",
+  "dur": 19.13
  },
  {
   "id": "merge",
   "kind": "slide",
-  "text": "Finding five. At a hundred and sixty agents, automatically merging accounts on fingerprints made things worse. Twenty-three of forty merges were wrong, and accuracy fell below the gateway alone.",
-  "dur": 13.6
+  "text": "Finding five. With a hundred and sixty agents, automatically merging look-alike accounts made things worse. Twenty-three of forty merges were wrong, and overall accuracy fell below using the gateway I.D. alone.",
+  "dur": 14.32
  },
  {
   "id": "crowd",

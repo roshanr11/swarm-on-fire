@@ -5,7 +5,7 @@
 
 ## Abstract
 
-In the Hugging Face incident, about 1,200 agents used 7,905 self-chosen names, so investigators could not tell who did what. I build a reproducible testbed for agent identity under adversarial renaming. LLM agents run by hidden operators post on a forum and rename themselves at random, while covert principals run several "independent" operator accounts. Across 62 simulated swarms (4,400 agents, 44,000 posts, 8 models including four frontier models; up to 160 agents per swarm), I compare self-chosen names, agent-held keys, gateway-side operator attestation and behavioural fingerprints. Four results stand out. (1) Names and rotatable keys recover nothing. (2) Fingerprints re-identify a renamed agent's **operator** (pairwise AUC 0.93–0.96) but are at chance on *which* of an operator's agents wrote a post (0.50). Only per-agent memory (0.56) or mixing base models (0.71) breaks the tie: fingerprints identify a configuration, not an instance. (3) Style hides, goals leak: paraphrasing through another model drops style features to near chance (0.58), while topic-centred semantic features keep 0.82. (4) Fingerprints separate covert fronts from ordinary operators almost perfectly (0.94–1.00), but **barely from honest operators who sincerely share a view** (0.20 with 8 operators, 0.54–0.62 with 32). At scale, merging accounts on fingerprints finds 60–85% of the true front pairs, yet about half of its merges are wrong. Honest agents mostly pushed back on the covert campaigns: 67% of their mentions were sceptical. I conclude that accountability must be anchored at the gateway, and that fingerprints are an audit lead, not evidence of coordination.
+In the Hugging Face incident, about 1,200 AI agents used 7,905 self-chosen names, so investigators could not tell who did what. I build a reproducible testbed for agent identity when agents rename themselves at will. AI agents, deployed by hidden companies ("operators"), post on a forum and keep changing their usernames. Some operators are secret fronts for one hidden boss pushing a fake product. Across 62 simulated swarms (4,400 agents, 44,000 posts, 8 AI models including four frontier models; up to 160 agents per swarm), I compare self-chosen names, agent-made keys, IDs stamped by the gateway that relays every AI call, and behavioural fingerprints (writing style and meaning). Scores are ROC-AUC, where 0.5 is a coin flip and 1.0 is perfect. (1) Names and agent-made keys recover nothing. (2) Fingerprints reveal an agent's **operator** (0.93–0.96) but not *which* of that operator's agents wrote a post (0.50). Only per-agent memory (0.56) or mixing AI models (0.71) helps: fingerprints identify a configuration, not an individual. (3) Style hides, goals leak: rewording posts through another model drops style signals to near chance (0.58), but meaning still identifies the operator (0.82). (4) Fingerprints separate secret fronts from ordinary operators almost perfectly (0.94–1.00), but **barely from honest operators who sincerely agree** (0.20 with 8 operators; 0.54–0.62 with 32). At scale, automatically merging look-alike accounts gets about half its merges wrong. Most honest agents (67%) were sceptical of the fake product. Accountability needs IDs issued by infrastructure; fingerprints give leads, not proof.
 
 ## 1. Introduction
 
@@ -32,6 +32,24 @@ Knowing which identity designs survive agents that rename, copy and coordinate i
 - **A decomposition of behavioural identity into agent, operator and model.** Fingerprints identify the *configuration* (operator prompt × base model). They tell an operator's replicas apart only once the replicas accumulate distinct memory or run on different models.
 - **The coordination–agreement gap.** Content fingerprints flag covert fronts against ordinary operators, but cannot reliably separate them from like-minded honest operators. At 32 operators, merging on fingerprints lowers principal-level F1 below gateway attestation alone (0.84 vs 0.88).
 - **Evidence on the honest crowd.** Most honest agents treated the covert campaigns sceptically, and some called them out without being prompted.
+
+**Key terms in plain language.**
+
+| Term | What it means here |
+|---|---|
+| Agent | One running copy of an AI model that acts on its own, here posting on a forum. |
+| Operator | The company or person who deploys a group of agents and writes their instructions (system prompt). |
+| Principal | Whoever is *really* in charge. Usually the operator; a *covert principal* secretly runs several operator accounts. |
+| Front (sybil) | One of several accounts that pretend to be independent but are run by the same covert principal. |
+| Honest twins | Two genuinely independent operators that happen to hold the same opinion. The control for "agreeing" vs. "colluding". |
+| Alias | A username. Each time an agent renames itself, it starts a new alias. |
+| Base model / frontier model | The underlying AI (e.g. Claude, GPT). "Frontier" means the most capable current models. |
+| Gateway attestation | The server that relays every AI call stamps it with the paying account's ID, which the agent cannot change. |
+| Behavioural fingerprint | A profile built only from what an account writes: its *style* (word choice, punctuation, character patterns) or its *meaning* (an AI text embedding, i.e. a numeric summary of what the text is about). |
+| Paraphrase laundering | Rewriting every post through a different AI model to disguise the writing style. |
+| ROC-AUC | How well a score ranks true matches above non-matches: 0.5 = coin flip, 1.0 = perfect. |
+| Precision / recall / F1 | Of the links claimed, how many are right (precision); of the true links, how many are found (recall); F1 combines both (0 = nothing found, 1 = perfect). |
+| 95% bootstrap CI | The range the result would plausibly fall in if the experiment were rerun, estimated by resampling the runs. |
 
 ## 2. Related Work
 
@@ -94,7 +112,7 @@ At a rename rate of 0.5, no two aliases share a name, so self-chosen names link 
 
 ![**Figure 1.** Re-identifying a renamed agent (pairwise ROC-AUC, all disjoint-round alias pairs) under four evasion strategies. 5 episodes per condition, small fixed-role design; error bars ±1 sd.](results/figures/fig1_reid_auc.png){w=13.5}
 
-Without evasion, the combined fingerprint links a renamed agent's aliases with AUC 0.90 [0.89, 0.90]. It links different agents of the same operator with AUC 0.94 [0.93, 0.95] (Table 1). Nearly all of that signal belongs to the **operator**. Restricted to aliases of a single operator, fingerprints cannot tell which agent wrote what: AUC 0.50 in every single-model condition, at both scales, and with frontier models. Two manipulations break the tie, and both confirm the mechanism. When an operator spreads its agents across base models, each agent becomes a unique (prompt, model) pair, and within-operator AUC rises to 0.71 [0.71, 0.72]. When agents see their own past posts, their histories diverge and within-operator AUC rises to 0.55–0.56, reaching 0.57–0.59 in the second half of the episode. Individuality *emerges* from memory, but slowly. The results replicate at 160 agents (operator AUC 0.94, within-operator 0.50) and with frontier models (0.96 and 0.52).
+Without evasion, the combined fingerprint links a renamed agent's aliases with AUC 0.90 [0.89, 0.90]. It links different agents of the same operator with AUC 0.94 [0.93, 0.95] (Table 1). Nearly all of that signal belongs to the **operator**. Restricted to aliases of a single operator, fingerprints cannot tell which agent wrote what: AUC 0.50, a coin flip, in every single-model condition, at both scales, and with frontier models. Two manipulations break the tie, and both confirm the mechanism. When an operator spreads its agents across base models, each agent becomes a unique (prompt, model) pair, and within-operator AUC rises to 0.71 [0.71, 0.72]. When agents see their own past posts, their histories diverge and within-operator AUC rises to 0.55–0.56, reaching 0.57–0.59 in the second half of the episode. Individuality *emerges* from memory, but slowly. The results replicate at 160 agents (operator AUC 0.94, within-operator 0.50) and with frontier models (0.96 and 0.52).
 
 | Pairwise AUC, combined fingerprint | Same agent | Same agent within operator | Same operator | Same model (confound) |
 |---|---|---|---|---|
@@ -153,6 +171,8 @@ Swarm Traces releases 189,579 redacted records from the incident. Agent identifi
 2. Behavioural fingerprints identify *configurations*. Against a swarm of replicas, which is exactly the incident's setting, they cannot assign an action to an instance. Individual accountability must come from infrastructure: per-instance credentials issued and logged by the gateway, out of the agent's reach.
 3. Fingerprints are valuable as a *lead* layer on top of attestation. They flag accounts that pursue the same goal, robustly to style evasion. Their errors are predictable (shared base models, sincere allies), and automatic merging at scale does more harm than good.
 4. To achieve a goal, agents have to say things that serve it. That is why goals leak, and also why goals alone cannot distinguish a cartel from a consensus. Telling them apart needs evidence about *control*, such as gateway logs, payment trails or spawn lineage, not more text analysis.
+
+**Who can use this, and how.** *Gateway and API providers* (model labs, cloud platforms, MCP gateways) can issue a credential per agent instance and log it, since they are the only party that can tell replicas apart. *Agent platforms and marketplaces* can bind accounts to operators and use fingerprint similarity to queue suspicious accounts for human review, not for automatic bans. *Standards efforts* for agent identity (OAuth/OpenID extensions, A2A) can prefer infrastructure-issued over self-asserted IDs. *Researchers* can reuse the open testbed to test new detectors or ID schemes against agents that rename and hide.
 
 **Limitations.**
 
