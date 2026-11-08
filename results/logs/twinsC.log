@@ -1,1 +1,5 @@
 wrote results/runs/twins_subtle_s0.jsonl: 400 posts, 226 aliases, 0 empty, cost $0.0366 over 397 calls
+wrote results/runs/twins_subtle_s1.jsonl: 400 posts, 219 aliases, 0 empty, cost $0.0358 over 380 calls
+wrote results/runs/twins_subtle_s2.jsonl: 400 posts, 223 aliases, 0 empty, cost $0.0357 over 380 calls
+wrote results/runs/twins_subtle_s3.jsonl: 400 posts, 222 aliases, 0 empty, cost $0.0353 over 380 calls
+GROUP DONE twinsC

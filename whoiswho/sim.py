@@ -127,7 +127,7 @@ NAME_B = ["fox", "otter", "heron", "lynx", "wren", "falcon", "panda", "koi", "mo
           "badger", "finch", "gecko", "ibis", "marten", "newt", "quail", "stoat", "tern", "yak"]
 
 DEFAULTS = dict(evasion="none", assign="per_operator", memory=False, agenda="blunt", style=True, pool="small",
-                randomize=False)
+                randomize=False, scale="small")
 CONDITIONS = {
     "baseline": {},
     "persona": dict(evasion="persona"),        # new persona on each rename
@@ -143,6 +143,11 @@ CONDITIONS = {
     # randomised operator design per seed (which orgs are fronts / honest twins, model pairing)
     "twins": dict(randomize=True),
     "twins_subtle": dict(randomize=True, agenda="subtle"),
+    # scaled-up population (160 agents, 32 operators; see large.py)
+    "large": dict(scale="large"),
+    "large_subtle": dict(scale="large", agenda="subtle"),
+    "large_persona": dict(scale="large", evasion="persona"),
+    "large_memory": dict(scale="large", memory=True),
 }
 
 
@@ -151,7 +156,9 @@ def cfg(cond):
 
 
 def system_prompt(op, persona=None, agenda_kind="blunt", style=True):
-    if op["agenda"] == "COVERT":
+    if op.get("agenda_text"):
+        agenda = op["agenda_text"]
+    elif op["agenda"] == "COVERT":
         agenda = COVERT_AGENDA if agenda_kind == "blunt" else SUBTLE_AGENDA
     elif op["agenda"] == "TWIN":
         agenda = TWIN_AGENDA[agenda_kind]
@@ -177,6 +184,13 @@ def design(cond, seed):
     """Operator specs, principals, per-operator model, and front/twin roles for one episode."""
     c = cfg(cond)
     pool = FRONTIER_MODELS if c["pool"] == "frontier" else MODELS
+    if c["scale"] == "large":
+        from . import large
+        ops, principal, op_models = large.design(seed, pool, c["agenda"])
+        for op in ops:
+            op["agenda_text"] = op.pop("agenda")
+            op["agenda"] = "LARGE"
+        return ops, principal, op_models
     if not c["randomize"]:
         ops = [dict(op, role="front" if op["agenda"] == "COVERT" else "honest") for op in OPERATORS]
         return ops, list(PRINCIPAL), [pool[o % len(pool)] for o in range(len(ops))]
@@ -210,7 +224,7 @@ def build_population(cond, rng, agents_per_op, ops, principal, op_models):
         for k in range(agents_per_op):
             model = op_models[o] if c["assign"] == "per_operator" else pool[(o + k) % len(pool)]
             agents.append(dict(agent=len(agents), operator=o, principal=principal[o], model=model,
-                               role=op["role"]))
+                               role=op["role"], group=op.get("group")))
     return agents
 
 
@@ -272,6 +286,7 @@ def run(cond, seed, agents_per_op=5, rounds=8, rename_p=0.5, out_dir="results/ru
             return dict(cond=cond, seed=seed, round=r, topic=topic, alias=a["name"],
                         alias_id=f"{a['agent']}:{a['alias_idx']}", agent=a["agent"], operator=a["operator"],
                         principal=a["principal"], model=a["model"], persona=a["persona"], role=a["role"],
+                        group=a.get("group"),
                         text=text, raw_text=raw, refusal=refusal)
 
         with ThreadPoolExecutor(16) as ex:
