@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Swarm Replay</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  :root { --paper:#F5F2EA; --paper2:#EAE5D8; --card:#FFFDF8; --ink:#17202B; --soft:#4A5260; --blue:#2A63C9; --orange:#C8551E; }
+  html, body { margin:0; width:1920px; height:1080px; overflow:hidden; background:var(--paper); color:var(--ink);
+    font-family:'IBM Plex Sans', Arial, sans-serif; }
+  header { position:absolute; left:64px; top:40px; right:64px; display:flex; justify-content:space-between; align-items:baseline; }
+  .eyebrow { font-family:'JetBrains Mono', monospace; font-size:24px; letter-spacing:2px; text-transform:uppercase; color:var(--blue); }
+  h1 { margin:8px 0 0; font-size:52px; font-weight:700; transition:opacity .4s; }
+  .stats { display:flex; gap:40px; font-family:'JetBrains Mono', monospace; font-size:26px; color:var(--soft); }
+  .stats b { color:var(--ink); font-size:40px; display:block; }
+  #feed { position:absolute; left:64px; top:210px; width:700px; height:810px; overflow:hidden;
+    background:var(--card); border:2px solid var(--ink); border-radius:16px; }
+  #feedInner { position:absolute; left:0; right:0; bottom:0; padding:20px 24px; display:flex; flex-direction:column; gap:14px; }
+  .post { display:flex; flex-direction:column; gap:4px; padding-bottom:12px; border-bottom:1px solid #e2ddd0; animation:in .35s ease-out; }
+  .post .who { font-family:'JetBrains Mono', monospace; font-size:22px; font-weight:600; display:flex; align-items:center; gap:10px; }
+  .post .dot { width:16px; height:16px; border-radius:50%; background:#9AA0A8; flex:none; transition:background .6s; }
+  .post .txt { font-size:21px; line-height:1.35; color:var(--soft); }
+  .tag { font-size:16px; padding:2px 8px; border-radius:20px; color:#fff; }
+  @keyframes in { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+  #map { position:absolute; left:800px; top:210px; width:1056px; height:810px; background:var(--card);
+    border:2px solid var(--ink); border-radius:16px; overflow:hidden; }
+  .a { position:absolute; width:26px; height:26px; margin:-13px 0 0 -13px; border-radius:50%; background:#B9BDC3;
+    box-sizing:border-box; transition: left 2.2s cubic-bezier(.6,0,.2,1), top 2.2s cubic-bezier(.6,0,.2,1), background .8s, box-shadow .8s, opacity .5s, transform .5s;
+    display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono', monospace; font-size:14px; font-weight:600; color:transparent; }
+  .a.show { transform:scale(1); } .a.hide { transform:scale(0); opacity:0; }
+  .a.front { box-shadow:0 0 0 4px var(--orange); } .a.twin { box-shadow:0 0 0 4px var(--blue); }
+  .a.num { color:#fff; } .a.dim { opacity:.15; }
+  #legend { position:absolute; right:24px; top:20px; display:flex; flex-direction:column; gap:8px; font-size:20px;
+    background:rgba(255,253,248,.92); padding:14px 18px; border-radius:12px; border:1px solid #d9d4c6; opacity:0; transition:opacity .8s; }
+  #legend .row { display:flex; align-items:center; gap:10px; }
+  #legend .sw { width:18px; height:18px; border-radius:50%; }
+  #maplabel { position:absolute; left:24px; top:18px; font-family:'JetBrains Mono', monospace; font-size:22px; color:var(--soft); }
+  #callout { position:absolute; left:20px; bottom:20px; right:20px; font-size:28px; font-weight:600; line-height:1.3; opacity:0; transition:opacity .6s; background:rgba(255,253,248,.95); border:1px solid #d9d4c6; border-radius:12px; padding:14px 18px; }
+  svg#lines { position:absolute; left:0; top:0; width:1056px; height:810px; pointer-events:none; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="eyebrow">Replay · real logged swarm · 8 hidden operators × 5 agents · 10 rounds</div>
+    <h1 id="title">What the defender sees</h1>
+  </div>
+  <div class="stats">
+    <div>round<b id="round">0</b></div>
+    <div>posts<b id="nposts">0</b></div>
+    <div>aliases<b id="naliases">0</b></div>
+  </div>
+</header>
+<div id="feed"><div id="feedInner"></div></div>
+<div id="map">
+  <div id="maplabel">accounts seen (one dot per alias)</div>
+  <svg id="lines"></svg>
+  <div id="legend"></div>
+  <div id="callout"></div>
+</div>
+<script src="replay_data.js"></script>
+<script>
+const R = window.REPLAY;
+const P = (new URLSearchParams(location.search).get('phases') || '12.6,9.6,8.4,10.3').split(',').map(Number);
+const T = [0, P[0], P[0]+P[1], P[0]+P[1]+P[2], P[0]+P[1]+P[2]+P[3]];
+const OPC = ['#1baf7a','#7a5c3e','#e87ba4','#eda100','#6250d6','#008300','#e34948','#2b8a9a'];
+const map = document.getElementById('map'), feed = document.getElementById('feedInner');
+const W = 1056, H = 810, PAD = 70;
+const fronts = [...new Set(R.aliases.filter(a=>a.role==='front').map(a=>a.op))];
+const twins = [...new Set(R.aliases.filter(a=>a.role==='twin').map(a=>a.op))];
+// grid positions in order of first appearance
+const order = []; const seen = new Set();
+R.posts.forEach(p => { if (!seen.has(p.alias_id)) { seen.add(p.alias_id); order.push(p.alias_id); } });
+const byId = Object.fromEntries(R.aliases.map(a => [a.id, a]));
+const cols = 16, gx = (W - 2*PAD - 260) / (cols - 1), gy = 44;
+const el = {};
+order.forEach((id, i) => {
+  const d = document.createElement('div'); d.className = 'a hide';
+  d.style.left = (PAD + (i % cols) * gx) + 'px'; d.style.top = (100 + Math.floor(i / cols) * gy) + 'px';
+  d.textContent = (byId[id].agent % 5) + 1;
+  map.appendChild(d); el[id] = d;
+});
+// legend
+const lg = document.getElementById('legend');
+for (let o = 0; o < 8; o++) {
+  const role = fronts.includes(o) ? ' · covert front' : twins.includes(o) ? ' · honest twin' : '';
+  lg.insertAdjacentHTML('beforeend', `<div class="row"><span class="sw" style="background:${OPC[o]};${fronts.includes(o)?'box-shadow:0 0 0 3px #C8551E':''}${twins.includes(o)?'box-shadow:0 0 0 3px #2A63C9':''}"></span>Operator ${o+1}${role}</div>`);
+}
+// phase A: stream posts across rounds
+const nR = 10, perRound = T[1] * 0.92 / nR;
+let shownPosts = 0, shownAliases = new Set(), feedCount = 0;
+function addFeed(p) {
+  const div = document.createElement('div'); div.className = 'post'; div.dataset.id = p.alias_id;
+  div.innerHTML = `<div class="who"><span class="dot"></span>@${p.alias}</div><div class="txt">${p.text.replace(/@[A-Za-z]+_[A-Za-z]+\d+:?/g,'').slice(0,150)}…</div>`;
+  feed.appendChild(div); feedCount++;
+  while (feed.children.length > 9) feed.removeChild(feed.firstChild);
+}
+const timeline = [];
+for (let r = 0; r < nR; r++) {
+  const ps = R.posts.filter(p => p.r === r);
+  ps.forEach((p, k) => timeline.push({ t: r * perRound + (k / ps.length) * perRound, p }));
+}
+let ti = 0, phase = -1;
+const $ = id => document.getElementById(id);
+function setPhase(k) {
+  phase = k;
+  if (k === 1) {
+    $('title').textContent = 'Ground truth: who is really behind each account';
+    $('maplabel').textContent = 'colour = hidden operator';
+    order.forEach(id => { const a = byId[id], d = el[id]; d.style.background = OPC[a.op];
+      if (a.role === 'front') d.classList.add('front'); if (a.role === 'twin') d.classList.add('twin'); });
+    document.querySelectorAll('.post').forEach(div => { const a = byId[div.dataset.id]; div.querySelector('.dot').style.background = OPC[a.op]; });
+    $('legend').style.opacity = 1;
+  }
+  if (k === 2) {
+    $('title').textContent = 'Placed by behavioural fingerprint';
+    $('maplabel').textContent = 'position = fingerprint similarity';
+    order.forEach(id => { const a = byId[id], d = el[id];
+      d.style.left = (PAD + a.xy[0] * (W - 2*PAD - 260)) + 'px'; d.style.top = (PAD + 10 + a.xy[1] * (H - 2*PAD - 150)) + 'px'; });
+  }
+  if (k === 3) {
+    $('title').textContent = 'Operators cluster; agents and allies do not separate';
+    order.forEach(id => el[id].classList.add('num'));
+    const cen = o => { const xs = R.aliases.filter(a => a.op === o); return [
+      PAD + xs.reduce((s,a)=>s+a.xy[0],0)/xs.length * (W - 2*PAD - 260),
+      PAD + 10 + xs.reduce((s,a)=>s+a.xy[1],0)/xs.length * (H - 2*PAD - 150)]; };
+    const line = (o1, o2, c) => { const [x1,y1] = cen(o1), [x2,y2] = cen(o2);
+      return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="6" stroke-dasharray="14 10" stroke-linecap="round"/>`; };
+    $('lines').innerHTML = line(fronts[0], fronts[1], '#C8551E') + line(twins[0], twins[1], '#2A63C9');
+    $('callout').innerHTML = 'Numbers = which of the operator’s 5 agents wrote it: mixed, not separable.<br><span style="color:#C8551E">Fronts</span> vs <span style="color:#2A63C9">honest twins</span>: just as linked.';
+    $('callout').style.opacity = 1;
+  }
+}
+let t0 = null;
+function frame(now) {
+  if (t0 === null) { t0 = now; window.__started = Date.now(); }
+  const t = (now - t0) / 1000;
+  if (phase < 0) setPhase(0);
+  while (ti < timeline.length && timeline[ti].t <= t && t < T[1]) {
+    const { p } = timeline[ti++]; shownPosts++;
+    if (!shownAliases.has(p.alias_id)) { shownAliases.add(p.alias_id); el[p.alias_id].classList.remove('hide'); }
+    if (ti % 3 === 0) addFeed(p);
+    $('round').textContent = p.r + 1; $('nposts').textContent = shownPosts; $('naliases').textContent = shownAliases.size;
+  }
+  if (t >= T[1] && ti < timeline.length) { // flush remaining
+    while (ti < timeline.length) { const { p } = timeline[ti++]; shownPosts++; shownAliases.add(p.alias_id); el[p.alias_id].classList.remove('hide'); }
+    $('round').textContent = 10; $('nposts').textContent = shownPosts; $('naliases').textContent = shownAliases.size;
+  }
+  for (let k = 1; k <= 3; k++) if (t >= T[k] && phase < k) setPhase(k);
+  if (t < T[4] + 1) requestAnimationFrame(frame); else window.__done = true;
+}
+document.fonts.ready.then(() => requestAnimationFrame(frame));
+</script>
+</body>
+</html>

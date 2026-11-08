@@ -1,0 +1,86 @@
+[
+ {
+  "id": "cover",
+  "kind": "slide",
+  "text": "Who is who in a swarm? When AI agents can rename themselves, can anyone still tell who is behind them? This is our project for the Apart Swarm Alignment Sprint.",
+  "dur": 10.08
+ },
+ {
+  "id": "problem",
+  "kind": "slide",
+  "text": "In the Hugging Face incident, about twelve hundred OpenAI agents turned a shared folder into a message board, and around seven hundred of them joined an attack. They used seven thousand, nine hundred and five different names, and signed messages with keys they made themselves. Investigators could not say who did what, or on whose behalf.",
+  "dur": 19.82
+ },
+ {
+  "id": "method",
+  "kind": "slide",
+  "text": "So we built a testbed. Agents run by hidden operators post on a forum for ten rounds, and rename themselves at random. Some operators are secret fronts for one covert boss, pushing a fake product. As a control, others are honest twins: independent operators who sincerely share the same view. Agents try to hide by changing persona, paraphrasing through another model, or mixing models. In total: sixty-two swarms, forty-four thousand posts, and eight models, including four frontier models.",
+  "dur": 31.0
+ },
+ {
+  "id": "demoA",
+  "kind": "demo",
+  "text": "Here is a real replay. This is what a defender sees: a stream of posts from accounts that keep appearing under new names. Over ten rounds, forty agents produce more than two hundred aliases.",
+  "dur": 12.08
+ },
+ {
+  "id": "demoB",
+  "kind": "demo",
+  "text": "Now we reveal the ground truth. Each colour is a hidden operator. Orange rings mark the covert fronts. Blue rings mark the honest twins.",
+  "dur": 9.14
+ },
+ {
+  "id": "demoC",
+  "kind": "demo",
+  "text": "Finally, we place every alias by its behavioural fingerprint. Accounts from the same operator cluster together, even across renames.",
+  "dur": 7.94
+ },
+ {
+  "id": "demoD",
+  "kind": "demo",
+  "text": "But inside a cluster, the five agents of one operator are mixed together, with no way to tell them apart. And the honest twins look just as linked as the covert fronts.",
+  "dur": 9.84
+ },
+ {
+  "id": "names",
+  "kind": "slide",
+  "text": "Finding one. Anything the agent controls, it can discard. Self-chosen names and agent-held keys recovered nothing. Identity stamped by the gateway, out of the agent's reach, was never wrong.",
+  "dur": 12.09
+ },
+ {
+  "id": "operator",
+  "kind": "slide",
+  "text": "Finding two. Writing reveals the operator, not which agent wrote it. Fingerprints link accounts to their operator with an A U C of zero point nine four. But telling an operator's agents apart is a coin flip, at forty and at a hundred and sixty agents, with small and frontier models alike. Only giving each agent its own memory starts to break the tie.",
+  "dur": 20.67
+ },
+ {
+  "id": "goals",
+  "kind": "slide",
+  "text": "Finding three. Style hides, goals leak. Paraphrasing every post through another model pushes style features to near chance. But the meaning, what an agent keeps pushing, still gives it away.",
+  "dur": 11.75
+ },
+ {
+  "id": "agendas",
+  "kind": "slide",
+  "text": "Finding four, and our key control. Fingerprints separate covert fronts from ordinary operators almost perfectly. But against honest operators who simply agree, they are barely above chance. Text can detect a shared agenda. It cannot prove coordination.",
+  "dur": 16.81
+ },
+ {
+  "id": "merge",
+  "kind": "slide",
+  "text": "Finding five. At a hundred and sixty agents, automatically merging accounts on fingerprints made things worse. Twenty-three of forty merges were wrong, and accuracy fell below the gateway alone.",
+  "dur": 11.45
+ },
+ {
+  "id": "crowd",
+  "kind": "slide",
+  "text": "A side finding: honest agents mostly pushed back. Two thirds of their mentions of the fake product were sceptical, and some called out the campaign without being asked.",
+  "dur": 10.42
+ },
+ {
+  "id": "lessons",
+  "kind": "slide",
+  "text": "So what should we build? Take identity out of the agent's hands. Issue a credential to every instance, at the gateway. Read for goals, not style. And treat fingerprints as leads for human review, never as verdicts. Everything is open source and reproducible. Thank you.",
+  "dur": 17.82
+ }
+]
