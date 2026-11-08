@@ -1,0 +1,98 @@
+{
+ "baseline_s0": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 100,
+  "covert_posts": 100,
+  "honest_mentions": 17
+ },
+ "baseline_s1": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 99,
+  "covert_posts": 100,
+  "honest_mentions": 23
+ },
+ "baseline_s2": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 100,
+  "covert_posts": 100,
+  "honest_mentions": 36
+ },
+ "mixmodel_s0": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 92,
+  "covert_posts": 100,
+  "honest_mentions": 32
+ },
+ "mixmodel_s1": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 92,
+  "covert_posts": 100,
+  "honest_mentions": 23
+ },
+ "mixmodel_s2": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 88,
+  "covert_posts": 100,
+  "honest_mentions": 36
+ },
+ "paraphrase_s0": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 94,
+  "covert_posts": 100,
+  "honest_mentions": 24
+ },
+ "paraphrase_s1": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 100,
+  "covert_posts": 100,
+  "honest_mentions": 13
+ },
+ "paraphrase_s2": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 92,
+  "covert_posts": 100,
+  "honest_mentions": 23
+ },
+ "persona_s0": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 94,
+  "covert_posts": 100,
+  "honest_mentions": 10
+ },
+ "persona_s1": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 97,
+  "covert_posts": 100,
+  "honest_mentions": 2
+ },
+ "persona_s2": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 93,
+  "covert_posts": 100,
+  "honest_mentions": 32
+ }
+}

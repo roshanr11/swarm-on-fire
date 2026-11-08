@@ -1,0 +1,68 @@
+{
+ "n_records": 189579,
+ "n_text_artifacts": 108063,
+ "n_unique_normalised": 55790,
+ "n_sampled": 20000,
+ "thresholds": {
+  "0.6": {
+   "families": 5217,
+   "singletons": 3834,
+   "families_ge10": 74,
+   "top10_coverage": 0.5632,
+   "top50_coverage": 0.5996,
+   "largest": [
+    10325,
+    204,
+    177,
+    104,
+    100,
+    90,
+    88,
+    65,
+    60,
+    51
+   ],
+   "families_for_80pct": 1300
+  },
+  "0.8": {
+   "families": 11900,
+   "singletons": 9544,
+   "families_ge10": 106,
+   "top10_coverage": 0.10915,
+   "top50_coverage": 0.1839,
+   "largest": [
+    589,
+    378,
+    257,
+    179,
+    177,
+    146,
+    117,
+    117,
+    117,
+    106
+   ],
+   "families_for_80pct": 7900
+  },
+  "0.9": {
+   "families": 15384,
+   "singletons": 13339,
+   "families_ge10": 69,
+   "top10_coverage": 0.03305,
+   "top50_coverage": 0.07145,
+   "largest": [
+    96,
+    78,
+    72,
+    67,
+    66,
+    64,
+    59,
+    59,
+    55,
+    45
+   ],
+   "families_for_80pct": 11384
+  }
+ }
+}

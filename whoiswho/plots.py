@@ -144,3 +144,37 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def contagion(fname="fig5_contagion.png"):
+    """Share of honest agents' posts recommending the covert package, by round."""
+    import json as _j
+    from collections import defaultdict
+    runs = sorted(Path("results/runs").glob("*.jsonl"))
+    by = defaultdict(lambda: defaultdict(list))
+    for p in runs:
+        posts = [_j.loads(l) for l in p.open()]
+        cond = posts[0]["cond"]
+        for r in range(max(x["round"] for x in posts) + 1):
+            hon = [x for x in posts if x["round"] == r and x["principal"] != 6]
+            by[cond][r].append(sum("fastjson-utils2" in x["text"] for x in hon) / len(hon))
+    fig, ax = plt.subplots(figsize=(6.4, 2.4))
+    out = {}
+    for i, c in enumerate(COND_ORDER):
+        rs = sorted(by[c])
+        m = [100 * np.mean(by[c][r]) for r in rs]
+        out[c] = m
+        ax.plot([r + 1 for r in rs], m, color=COLORS[i], lw=2, marker="o", ms=4,
+                label=COND_LABEL[c].replace("\n", " "))
+    ax.set_xlabel("Round")
+    ax.set_ylabel("% of honest posts")
+    ax.set_title("Honest agents start recommending the covert package", loc="left", fontsize=10, color=INK)
+    ax.legend(ncol=4, loc="upper center", bbox_to_anchor=(0.5, -0.3), fontsize=8)
+    fig.savefig(FIG / fname)
+    plt.close(fig)
+    (OUT / "contagion.json").write_text(_j.dumps(out, indent=1))
+    return out
+
+
+if __name__ == "__main__":
+    print(contagion())

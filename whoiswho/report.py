@@ -28,9 +28,9 @@ TITLE = ParagraphStyle("title", parent=BODY, fontName="Helvetica-Bold", fontSize
                        alignment=TA_CENTER, spaceAfter=6)
 SUB = ParagraphStyle("sub", parent=BODY, alignment=TA_CENTER, textColor=MUTED, fontSize=10)
 H1 = ParagraphStyle("h1", parent=BODY, fontName="Helvetica-Bold", fontSize=12.5, leading=16,
-                    spaceBefore=10, spaceAfter=4, textColor=INK)
+                    spaceBefore=10, spaceAfter=4, textColor=INK, keepWithNext=1)
 H2 = ParagraphStyle("h2", parent=BODY, fontName="Helvetica-Bold", fontSize=10.5, leading=13,
-                    spaceBefore=6, spaceAfter=3)
+                    spaceBefore=6, spaceAfter=3, keepWithNext=1)
 
 
 def inline(t):

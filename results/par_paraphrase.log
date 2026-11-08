@@ -1,1 +1,3 @@
 wrote results/runs/paraphrase_s0.jsonl: 400 posts, 226 aliases, 0 empty, cost $0.1168 over 760 calls
+wrote results/runs/paraphrase_s1.jsonl: 400 posts, 219 aliases, 0 empty, cost $0.1156 over 760 calls
+wrote results/runs/paraphrase_s2.jsonl: 400 posts, 223 aliases, 0 empty, cost $0.1211 over 760 calls
