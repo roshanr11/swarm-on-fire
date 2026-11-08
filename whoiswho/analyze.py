@@ -20,8 +20,12 @@ from . import llm
 RUNS = Path("results/runs")
 OUT = Path("results")
 COND_ORDER = ["baseline", "persona", "paraphrase", "mixmodel"]
+EXTRA_ORDER = ["baseline", "nostyle", "subtle", "memory", "hard", "frontier", "frontier_persona"]
 COND_LABEL = {"baseline": "No evasion", "persona": "Persona shift\non rename",
-              "paraphrase": "Paraphrase\nlaundering", "mixmodel": "Operator mixes\nmodels"}
+              "paraphrase": "Paraphrase\nlaundering", "mixmodel": "Operator mixes\nmodels",
+              "nostyle": "No house\nstyle", "subtle": "Subtle\nagenda", "memory": "Per-agent\nmemory",
+              "hard": "No style +\nsubtle + memory", "frontier": "Frontier\nmodels",
+              "frontier_persona": "Frontier +\npersona shift"}
 
 FUNCTION_WORDS = """a about above after again against all am an and any are as at be because been before
 being below between both but by can could did do does doing down during each few for from further had has
@@ -91,6 +95,10 @@ def feature_sims(texts, post_lists):
     char = TfidfVectorizer(analyzer="char_wb", ngram_range=(2, 4), sublinear_tf=True, min_df=2).fit_transform(clean)
     sims["Char n-grams"] = (char @ char.T).toarray()
     sims["Style profile"] = cos_sim(zscore(np.stack([style_profile(t) for t in texts])))
+    # Keyword baseline: word unigram/bigram TF-IDF (what a grep-style analyst would use)
+    words = TfidfVectorizer(analyzer="word", ngram_range=(1, 2), sublinear_tf=True, min_df=2,
+                            stop_words="english", token_pattern=r"[A-Za-z][A-Za-z0-9_\-]+").fit_transform(clean)
+    sims["Keyword (word TF-IDF)"] = (words @ words.T).toarray()
     # Semantic: mean embedding of each alias's posts, topic-centred by subtracting
     # the mean embedding of all posts in the same round (= same thread topic).
     flat = [strip_mentions(t)[:4000] for pl in post_lists for t, _ in pl]
@@ -109,6 +117,7 @@ def feature_sims(texts, post_lists):
         return (S - S[iu].mean()) / (S[iu].std() + 1e-9)
 
     sims["Combined"] = (zs(sims["Char n-grams"]) + zs(sims["Style profile"]) + zs(sims["Semantic embedding"])) / 3
+    sims = {k: sims[k] for k in ["Keyword (word TF-IDF)", "Char n-grams", "Style profile", "Semantic embedding", "Combined"]}
     return sims
 
 
@@ -162,6 +171,13 @@ def analyze_run(posts):
         r["auc_agent"] = pair_auc(S, same(agent), allv)
         # (1b) gateway narrows the search: same agent among aliases of the same operator account
         r["auc_agent_within_op"] = pair_auc(S, same(agent), allv & same(op))
+        # memory: do individuals become separable as their histories diverge?
+        lo = np.array([min(m["rounds"]) for m in meta])
+        hi = np.array([max(m["rounds"]) for m in meta])
+        late = (lo[:, None] >= 5) & (lo[None, :] >= 5)
+        early = (hi[:, None] < 5) & (hi[None, :] < 5)
+        r["auc_agent_within_op_early"] = pair_auc(S, same(agent), allv & same(op) & early)
+        r["auc_agent_within_op_late"] = pair_auc(S, same(agent), allv & same(op) & late)
         # (2) attribute to operator, across different agents only
         r["auc_operator"] = pair_auc(S, same(op), allv & ~same(agent))
         # (3) model confound: among different-operator pairs, does similarity track the base model?
@@ -209,8 +225,38 @@ def analyze_run(posts):
                 merge[b] = merge[a]
     merged = np.array([merge[o] for o in op])
     schemes["Gateway + fingerprint merge"] = pr(same(merged))
-    res["schemes"] = schemes
     res["merged_pairs"] = [(a, b) for a in range(n_ops) for b in range(a + 1, n_ops) if Z[a, b] > 2.0]
+
+    # Model-corrected merge: the gateway also knows which base models served each operator account.
+    # Subtract the average similarity bonus of sharing a base model, then z-score as before.
+    op_models = [frozenset(model[op == o]) for o in range(n_ops)]
+    iu2 = np.triu_indices(n_ops, 1)
+    share = np.array([[bool(op_models[a] & op_models[b]) for b in range(n_ops)] for a in range(n_ops)])
+    sv, dv = C[iu2][share[iu2]], C[iu2][~share[iu2]]
+    bonus = (np.median(sv) - np.median(dv)) if len(sv) and len(dv) else 0.0
+    Cc = C - bonus * share
+    offc = Cc[iu2]
+    Zc = (Cc - offc.mean()) / (offc.std() + 1e-9)
+    merge = {o: o for o in range(n_ops)}
+    for a in range(n_ops):
+        for b in range(a + 1, n_ops):
+            if Zc[a, b] > 2.0:
+                merge[b] = merge[a]
+    merged = np.array([merge[o] for o in op])
+    schemes["Gateway + model-corrected merge"] = pr(same(merged))
+    res["merged_pairs_corrected"] = [(a, b) for a in range(n_ops) for b in range(a + 1, n_ops) if Zc[a, b] > 2.0]
+
+    # Keyword baseline for the fronts: merge operator accounts that both mention the covert
+    # package name in >= 25% of their posts.
+    texts_by_op = defaultdict(list)
+    for m_, pl in zip(meta, post_lists):
+        texts_by_op[m_["operator"]].extend(t for t, _ in pl)
+    rate = np.array([np.mean(["fastjson-utils2" in t for t in texts_by_op[o]]) for o in range(n_ops)])
+    hit = [o for o in range(n_ops) if rate[o] >= 0.25]
+    merge = {o: (hit[0] if o in hit else o) for o in range(n_ops)}
+    schemes["Gateway + package-name grep"] = pr(same(np.array([merge[o] for o in op])))
+    res["package_rate_by_operator"] = rate.tolist()
+    res["schemes"] = schemes
     return res
 
 

@@ -8,11 +8,12 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .analyze import COND_LABEL, COND_ORDER
+from .analyze import COND_LABEL, COND_ORDER, EXTRA_ORDER
 
 OUT = Path("results")
 FIG = OUT / "figures"
 FEATS = ["Char n-grams", "Style profile", "Semantic embedding", "Combined"]
+ALL_FEATS = ["Keyword (word TF-IDF)"] + FEATS
 # Reference categorical palette (light), slots 1-4, fixed order.
 COLORS = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100"]
 INK, MUTED, GRID = "#0b0b0b", "#52514e", "#e4e3df"
@@ -91,30 +92,60 @@ def heatmaps(metrics, fname, feat="Semantic embedding", seed=0):
     plt.close(fig)
 
 
+def present(metrics, order):
+    have = {k.rsplit("_s", 1)[0] for k in metrics}
+    return [c for c in order if c in have]
+
+
+def robustness(metrics, fname="fig6_robustness.png", feat="Combined"):
+    conds = present(metrics, EXTRA_ORDER)
+    keys = [("auc_operator", "Same operator (diff. agent)"), ("auc_agent_within_op", "Same agent, within operator"),
+            ("auc_agent_within_op_late", "Same agent, within operator (rounds 6-10)")]
+    fig, ax = plt.subplots(figsize=(7.2, 2.8))
+    w = 0.25
+    x = np.arange(len(conds))
+    for i, (k, lab) in enumerate(keys):
+        m = [agg(metrics, k, feat, c)[0] for c in conds]
+        sd = [agg(metrics, k, feat, c)[1] for c in conds]
+        ax.bar(x + (i - 1) * w, m, w * 0.9, yerr=sd, color=COLORS[i], label=lab,
+               error_kw=dict(ecolor=MUTED, lw=0.8, capsize=2))
+    ax.axhline(0.5, color=MUTED, lw=0.8, ls="--")
+    ax.set_xticks(x, [COND_LABEL[c] for c in conds], fontsize=7.5)
+    ax.set_ylim(0.3, 1.0)
+    ax.set_ylabel("Pairwise ROC-AUC")
+    ax.set_title("Robustness checks (combined fingerprint)", loc="left", fontsize=10, color=INK)
+    ax.legend(ncol=3, loc="upper center", bbox_to_anchor=(0.5, -0.25), fontsize=7.5)
+    fig.savefig(FIG / fname)
+    plt.close(fig)
+
+
 def tables(metrics, stats):
+    conds_all = present(metrics, COND_ORDER + [c for c in EXTRA_ORDER if c not in COND_ORDER])
     lines = ["## Pairwise ROC-AUC (mean ± sd over seeds)\n"]
     for key, lab in [("auc_agent", "Re-identify renamed agent"),
                      ("auc_agent_within_op", "Re-identify agent, within one operator account"),
+                     ("auc_agent_within_op_early", "Within operator, both aliases in rounds 1-5"),
+                     ("auc_agent_within_op_late", "Within operator, both aliases in rounds 6-10"),
                      ("auc_operator", "Same operator (different agents)"),
                      ("auc_model_confound", "Same base model (different operators) — confound"),
                      ("ari_operator", "ARI: clustering into operators"),
                      ("ari_model", "ARI: clustering into base models"),
                      ("front_pair_rank", "Rank of covert front pair (1 = most similar of 28)")]:
-        lines.append(f"\n### {lab}\n\n| Feature | " + " | ".join(COND_LABEL[c].replace(chr(10), ' ') for c in COND_ORDER) + " |")
-        lines.append("|---" * (len(COND_ORDER) + 1) + "|")
-        for f in FEATS:
+        lines.append(f"\n### {lab}\n\n| Feature | " + " | ".join(COND_LABEL[c].replace(chr(10), ' ') for c in conds_all) + " |")
+        lines.append("|---" * (len(conds_all) + 1) + "|")
+        for f in ALL_FEATS:
             cells = []
-            for c in COND_ORDER:
+            for c in conds_all:
                 m, s, vals = agg(metrics, key, f, c)
                 cells.append(", ".join(str(int(v)) for v in vals) if key == "front_pair_rank" else f"{m:.2f} ± {s:.2f}")
             lines.append(f"| {f} | " + " | ".join(cells) + " |")
     lines.append("\n## Identity schemes: pairwise 'same principal' P / R / F1 (mean over seeds)\n")
     schemes = list(next(iter(metrics.values()))["schemes"])
-    lines.append("| Scheme | " + " | ".join(COND_LABEL[c].replace(chr(10), ' ') for c in COND_ORDER) + " |")
-    lines.append("|---" * (len(COND_ORDER) + 1) + "|")
+    lines.append("| Scheme | " + " | ".join(COND_LABEL[c].replace(chr(10), ' ') for c in conds_all) + " |")
+    lines.append("|---" * (len(conds_all) + 1) + "|")
     for sc in schemes:
         cells = []
-        for c in COND_ORDER:
+        for c in conds_all:
             rs = [v["schemes"][sc] for k, v in metrics.items() if k.rsplit("_s", 1)[0] == c]
             cells.append("/".join(f"{np.mean([r[x] for r in rs]):.2f}" for x in ("precision", "recall", "f1")))
         lines.append(f"| {sc} | " + " | ".join(cells) + " |")
@@ -124,7 +155,7 @@ def tables(metrics, stats):
                      f"{s['covert_mentions']}/{s['covert_posts']} | {s['honest_mentions']} |")
     lines.append("\n## Fingerprint merges proposed (operator pairs with z > 2)\n")
     for k, v in metrics.items():
-        lines.append(f"- {k}: {v['merged_pairs']}")
+        lines.append(f"- {k}: raw {v['merged_pairs']} · model-corrected {v.get('merged_pairs_corrected')}")
     (OUT / "tables.md").write_text("\n".join(lines) + "\n")
 
 
@@ -138,6 +169,7 @@ def main():
             "fig2_operator_auc.png")
     confound(metrics, "fig3_confound.png")
     heatmaps(metrics, "fig4_fronts.png")
+    robustness(metrics)
     tables(metrics, stats)
     print((OUT / "tables.md").read_text())
 
