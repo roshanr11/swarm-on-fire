@@ -187,6 +187,10 @@ Swarm Traces releases 189,579 redacted records from the incident. Agent identifi
 
 **Future work.** Gateway-issued per-instance credentials with spawn lineage and revocation; adaptive evasion; distinguishing coordination from agreement using control signals (timing, shared infrastructure); validation on AI Village transcripts, which carry agent labels.
 
+## 6. Conclusion
+
+When agents can rename themselves, the question "who did what, on whose behalf?" needs an answer that does not depend on the agents. Across 62 simulated swarms, identifiers that agents control (names, self-made keys) recovered nothing. Behavioural fingerprints recovered the *operator* robustly, even when agents disguised their style, because goals leak through meaning. But they could not single out an individual copy, and could not tell a covert cartel from honest operators who simply agree. The practical lesson is a division of labour: **anchor identity in infrastructure**, with per-instance credentials issued and logged by the gateway, and **use fingerprints as leads** that send suspicious accounts to human review, never as proof. The open testbed lets others test new detectors and identity schemes against agents that rename and hide.
+
 ## References
 
 Bara, M. (2026). *Epistemic Sybil Resistance: Multiplying AI Agents Without Multiplying Evidence.* arXiv:2609.01873.
