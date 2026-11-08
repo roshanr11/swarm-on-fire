@@ -5,3 +5,5 @@ wrote results/runs/baseline_s4.jsonl: 400 posts, 216 aliases, 0 empty, cost $0.0
 wrote results/runs/persona_s4.jsonl: 400 posts, 227 aliases, 0 empty, cost $0.0362 over 400 calls
 wrote results/runs/mixmodel_s4.jsonl: 400 posts, 216 aliases, 0 empty, cost $0.0358 over 384 calls
 wrote results/runs/paraphrase_s3.jsonl: 400 posts, 222 aliases, 0 empty, cost $0.1189 over 760 calls
+wrote results/runs/paraphrase_s4.jsonl: 400 posts, 216 aliases, 0 empty, cost $0.1176 over 760 calls
+GROUP DONE seeds
