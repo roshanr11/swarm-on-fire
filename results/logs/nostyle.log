@@ -1,2 +1,4 @@
 wrote results/runs/nostyle_s0.jsonl: 400 posts, 226 aliases, 0 empty, cost $0.0349 over 400 calls
 wrote results/runs/nostyle_s1.jsonl: 400 posts, 219 aliases, 0 empty, cost $0.0347 over 400 calls
+wrote results/runs/nostyle_s2.jsonl: 400 posts, 223 aliases, 0 empty, cost $0.0350 over 400 calls
+GROUP DONE nostyle
