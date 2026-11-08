@@ -1,2 +1,4 @@
 wrote results/runs/large_persona_s0.jsonl: 1600 posts, 859 aliases, 0 empty, cost $0.1431 over 1600 calls
 wrote results/runs/large_persona_s1.jsonl: 1600 posts, 882 aliases, 0 empty, cost $0.1472 over 1600 calls
+wrote results/runs/large_persona_s2.jsonl: 1600 posts, 891 aliases, 0 empty, cost $0.1529 over 1600 calls
+GROUP DONE largeC
