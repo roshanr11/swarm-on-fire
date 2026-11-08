@@ -183,8 +183,6 @@ def main():
     print((OUT / "tables.md").read_text())
 
 
-if __name__ == "__main__":
-    main()
 
 
 def contagion(fname="fig5_contagion.png"):
@@ -217,8 +215,6 @@ def contagion(fname="fig5_contagion.png"):
     return out
 
 
-if __name__ == "__main__":
-    print(contagion())
 
 
 SYBIL_CONDS = ["twins", "twins_subtle", "large", "large_subtle", "large_persona", "large_memory"]
@@ -255,4 +251,5 @@ def coordination_vs_agreement(metrics, fname="fig7_coord_vs_agree.png"):
 
 
 if __name__ == "__main__":
-    coordination_vs_agreement(json.loads((OUT / "metrics.json").read_text()))
+    main()
+    contagion()
