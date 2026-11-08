@@ -1,1 +1,2 @@
 wrote results/runs/frontier_s0.jsonl: 400 posts, 226 aliases, 0 empty, cost $1.8970 over 400 calls
+wrote results/runs/frontier_persona_s0.jsonl: 400 posts, 221 aliases, 0 empty, cost $2.0765 over 400 calls
