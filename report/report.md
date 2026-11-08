@@ -17,6 +17,15 @@ Proposals for agent identity differ on one key point: is identity something the 
 - **Coordination vs. agreement.** Can a defender tell a covert principal running several "independent" accounts from honest operators who simply agree?
 - **Infrastructure.** How do names, keys, gateway attestation and fingerprints compare at attributing posts to the true principal?
 
+**Why it matters.** The incident was not a one-off, and the identity layer for agents is being designed now.
+
+- **Agent swarms are already active in the wild.** Transluce catalogued 38,160 urlquery.net reports of likely agent activity, going back to at least March 2026: at least two months before the Hugging Face, RubyGems and collusion.wiki incidents ([Transluce, 2026](https://transluce.org/agent-activity)).
+- **Text classifiers miss AI bot swarms.** An AI-powered botnet of 1,140 accounts evaded state-of-the-art LLM-text classifiers and was detectable only through coordination patterns ([Yang & Menczer, 2023](https://arxiv.org/abs/2307.16336)). On Moltbook, a platform of 55,932 agents, observers could not tell autonomous agents from human-steered ones without forensic fingerprinting ([Li, 2026](https://arxiv.org/abs/2602.07432)).
+- **The identity rails are being standardised.** Agent identity is being built into OAuth/OpenID extensions ([South et al., 2025](https://arxiv.org/abs/2501.09674)) and agent-to-agent protocols ([Google, 2025](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/)). Whether those identities are asserted by agents or issued by infrastructure is being decided now.
+- **More agents do not mean more independent evidence.** Reports from agents that share an origin can look independent while carrying no new information ([Bara, 2026](https://arxiv.org/abs/2609.01873)).
+
+Knowing which identity designs survive agents that rename, copy and coordinate is therefore a present engineering question, not a hypothetical one.
+
 **Contributions.**
 
 - **An open testbed for swarm identity.** Agents run by hidden operators rename themselves while posting. Covert principals, honest twins (independent operators with the same sincere agenda), shared base models and four evasion strategies are all controlled. Every post is logged with ground truth, and runs replay exactly from cache.
@@ -30,7 +39,7 @@ Proposals for agent identity differ on one key point: is identity something the 
 
 **Behavioural attribution.** The source LLM of a text can be identified with high accuracy, even after rewriting by another LLM ([Sun et al., 2025](https://arxiv.org/abs/2502.12150)). Attribution errors fall quickly with text length ([Radvand et al., 2025](https://arxiv.org/abs/2501.02406)). Models can be fingerprinted actively ([Pasquini et al., 2024](https://arxiv.org/abs/2407.15847)), and agents from UI traces ([Lugoloobi et al., 2026](https://arxiv.org/abs/2605.14786)) or network behaviour ([Kang et al., 2026](https://arxiv.org/abs/2606.20910)). Closest to this work, [Park et al. (2026)](https://arxiv.org/abs/2607.18826) link one adversarial campaign's sessions across agents from proxy-side residue (AUC 0.82). Paraphrasing evades text detectors ([Krishna et al., 2023](https://arxiv.org/abs/2303.13408)). These works attribute text to a *model*, *framework* or *campaign*. I instead separate agent, operator and model in one controlled population, and test the line between coordination and agreement with an explicit control. This is consistent with LLM agents without personas showing little identity-linked differentiation ([Riedl, 2025](https://arxiv.org/abs/2510.05174)).
 
-**Coordination, sybils and oversight.** Coordinated inauthentic behaviour is usually detected from shared traces among accounts ([Pacheco et al., 2021](https://arxiv.org/abs/2001.05658)). LLM-driven botnets form such clusters ([Yang & Menczer, 2023](https://arxiv.org/abs/2307.16336)), and on the agent forum Moltbook a few operator-run accounts produced a third of all comments ([Li, 2026](https://arxiv.org/abs/2602.07432)). Multiplying agents does not multiply evidence when they share an origin ([Bara, 2026](https://arxiv.org/abs/2609.01873)). Covert sybil fronts are an identity-layer counterpart of collusion ([Hammond et al., 2025](https://arxiv.org/abs/2502.14143); [Motwani et al., 2024](https://proceedings.neurips.cc/paper_files/paper/2024/hash/861f7dad098aec1c3560fb7add468d41-Abstract-Conference.html)). Whether several accounts form one agent is a question about collective agency ([Jørgensen et al., 2026](https://arxiv.org/abs/2605.00248)). My honest-twin control shows that shared *output* alone cannot answer it.
+**Coordination, sybils and oversight.** Coordinated inauthentic behaviour is usually detected from shared traces among accounts ([Pacheco et al., 2021](https://arxiv.org/abs/2001.05658)). LLM-driven botnets form such clusters ([Yang & Menczer, 2023](https://arxiv.org/abs/2307.16336)), and on the agent forum Moltbook, temporal fingerprints traced most viral "emergent" narratives to human-influenced accounts ([Li, 2026](https://arxiv.org/abs/2602.07432)). Multiplying agents does not multiply evidence when they share an origin ([Bara, 2026](https://arxiv.org/abs/2609.01873)). Covert sybil fronts are an identity-layer counterpart of collusion ([Hammond et al., 2025](https://arxiv.org/abs/2502.14143); [Motwani et al., 2024](https://proceedings.neurips.cc/paper_files/paper/2024/hash/861f7dad098aec1c3560fb7add468d41-Abstract-Conference.html)). Whether several accounts form one agent is a question about collective agency ([Jørgensen et al., 2026](https://arxiv.org/abs/2605.00248)). My honest-twin control shows that shared *output* alone cannot answer it.
 
 ## 3. Method
 
@@ -197,6 +206,8 @@ Radvand, T., et al. (2025). *A Training-free Method for LLM Text Attribution.* a
 Riedl, C. (2025). *Emergent Coordination in Multi-Agent Language Models.* arXiv:2510.05174.
 
 South, T., et al. (2025). *Authenticated Delegation and Authorized AI Agents.* arXiv:2501.09674.
+
+Transluce (2026). *Early rogue AI agent activity and attempts to hack found on urlquery.net.* transluce.org/agent-activity.
 
 Sun, M., et al. (2025). *Idiosyncrasies in Large Language Models.* arXiv:2502.12150.
 

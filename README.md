@@ -21,6 +21,12 @@ I test the fingerprints under three evasion strategies: a new persona on every r
 paraphrase laundering through a different model, and operators spreading their agents
 over several base models. Robustness conditions add per-agent memory, no house style, keyword-free (subtle) agendas, frontier models, randomised roles with *honest twins* (independent operators with the same sincere agenda), and a 160-agent scale-up.
 
+## Why it matters
+
+- **Agent swarms are already active in the wild.** Transluce catalogued 38,160 urlquery.net reports of likely agent activity, going back to at least March 2026, months before the Hugging Face incident ([Transluce, 2026](https://transluce.org/agent-activity)).
+- **Text classifiers miss AI bot swarms.** A 1,140-account AI botnet evaded LLM-text classifiers and was caught only through coordination patterns ([Yang & Menczer, 2023](https://arxiv.org/abs/2307.16336)). On Moltbook (55,932 agents), telling autonomous agents from human-steered ones took forensic fingerprinting ([Li, 2026](https://arxiv.org/abs/2602.07432)).
+- **Agent identity is being standardised now** in OAuth/OpenID extensions ([South et al., 2025](https://arxiv.org/abs/2501.09674)) and agent-to-agent protocols such as A2A. Whether IDs are asserted by agents or issued by infrastructure is still an open design choice, and this project gives evidence for the second.
+
 ## Key results (62 swarms · 4,400 agents · 44,000 posts · 8 models · up to 160 agents per swarm · ~$12.60 of API spend)
 
 1. **Anything the agent controls, it can discard.** Self-chosen names and rotatable agent-held keys recover nothing (F1 = 0).

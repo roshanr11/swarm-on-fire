@@ -12,6 +12,12 @@
   "dur": 21.94
  },
  {
+  "id": "why",
+  "kind": "slide",
+  "text": "Why does this matter? Because it is not a one-off. Transluce found more than thirty-eight thousand traces of agent activity on a single web service, starting months before the Hugging Face hack. An AI botnet of over a thousand accounts fooled text detectors, and was caught only by how its accounts coordinated. And right now, the identity standards for AI agents are being written. Whether agents name themselves, or the infrastructure names them, is still an open choice.",
+  "dur": 30.88
+ },
+ {
   "id": "method",
   "kind": "slide",
   "text": "So I built a testbed. Agents run by hidden operators post on a forum for ten rounds, and rename themselves at random. Some operators are secret fronts for one covert boss, pushing a fake product. As a control, others are honest twins: independent operators who sincerely share the same view. Agents try to hide by changing persona, paraphrasing through another model, or mixing models. In total: sixty-two swarms, forty-four thousand posts, and eight models, including four frontier models.",
