@@ -1,19 +1,35 @@
 {
  "total": {
-  "SCEPTICAL": 391,
-  "ENDORSE": 73,
-  "NEUTRAL": 126
+  "SCEPTICAL": 569,
+  "ENDORSE": 109,
+  "NEUTRAL": 175
  },
- "n_mentions": 590,
+ "n_mentions": 853,
  "by_cond": {
   "baseline": {
    "SCEPTICAL": 72,
    "ENDORSE": 19,
    "NEUTRAL": 23
   },
+  "frontier_persona": {
+   "NEUTRAL": 1
+  },
   "frontier": {
-   "SCEPTICAL": 5,
+   "SCEPTICAL": 11,
    "NEUTRAL": 4
+  },
+  "large_memory": {
+   "SCEPTICAL": 37,
+   "NEUTRAL": 6,
+   "ENDORSE": 8
+  },
+  "large_persona": {
+   "SCEPTICAL": 1
+  },
+  "large": {
+   "SCEPTICAL": 95,
+   "NEUTRAL": 22,
+   "ENDORSE": 15
   },
   "memory": {
    "ENDORSE": 18,
@@ -31,9 +47,9 @@
    "SCEPTICAL": 55
   },
   "paraphrase": {
-   "NEUTRAL": 21,
-   "SCEPTICAL": 37,
-   "ENDORSE": 2
+   "NEUTRAL": 30,
+   "SCEPTICAL": 55,
+   "ENDORSE": 7
   },
   "persona": {
    "NEUTRAL": 12,
@@ -41,23 +57,28 @@
    "ENDORSE": 11
   },
   "twins": {
-   "SCEPTICAL": 31,
-   "NEUTRAL": 4,
-   "ENDORSE": 5
+   "SCEPTICAL": 52,
+   "NEUTRAL": 15,
+   "ENDORSE": 13
   }
  },
  "honest_posts_by_cond": {
   "baseline": 1500,
-  "frontier": 300,
+  "frontier_persona": 600,
+  "frontier": 600,
   "hard": 900,
+  "large_memory": 4050,
+  "large_persona": 4050,
+  "large": 6750,
+  "large_subtle": 6750,
   "memory": 900,
   "mixmodel": 1500,
   "nostyle": 900,
-  "paraphrase": 900,
+  "paraphrase": 1500,
   "persona": 1500,
   "subtle": 900,
-  "twins": 600,
-  "twins_subtle": 300
+  "twins": 1500,
+  "twins_subtle": 1500
  },
  "examples": {
   "SCEPTICAL": [

@@ -1,11 +1,1 @@
-analysis cost $0.0207
-Traceback (most recent call last):
-  File "<frozen runpy>", line 203, in _run_module_as_main
-  File "<frozen runpy>", line 88, in _run_code
-  File "/home/user/swarm-rram/whoiswho/plots.py", line 187, in <module>
-    main()
-    ~~~~^^
-  File "/home/user/swarm-rram/whoiswho/plots.py", line 181, in main
-    coordination_vs_agreement(metrics)
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-NameError: name 'coordination_vs_agreement' is not defined
+analysis cost $0.0470
