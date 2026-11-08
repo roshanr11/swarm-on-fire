@@ -1,2 +1,4 @@
 wrote results/runs/subtle_s0.jsonl: 400 posts, 226 aliases, 0 empty, cost $0.0344 over 370 calls
 wrote results/runs/subtle_s1.jsonl: 400 posts, 219 aliases, 0 empty, cost $0.0332 over 370 calls
+wrote results/runs/subtle_s2.jsonl: 400 posts, 223 aliases, 0 empty, cost $0.0314 over 340 calls
+GROUP DONE subtle
