@@ -1,2 +1,3 @@
 wrote results/runs/persona_s0.jsonl: 400 posts, 221 aliases, 0 empty, cost $0.0364 over 400 calls
 wrote results/runs/persona_s1.jsonl: 400 posts, 217 aliases, 0 empty, cost $0.0371 over 400 calls
+wrote results/runs/persona_s2.jsonl: 400 posts, 226 aliases, 0 empty, cost $0.0362 over 400 calls
