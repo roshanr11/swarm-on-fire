@@ -1,1 +1,2 @@
 wrote results/runs/mixmodel_s0.jsonl: 400 posts, 226 aliases, 0 empty, cost $0.0362 over 384 calls
+wrote results/runs/mixmodel_s1.jsonl: 400 posts, 219 aliases, 0 empty, cost $0.0357 over 384 calls
