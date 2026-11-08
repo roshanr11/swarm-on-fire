@@ -61,6 +61,8 @@ Knowing which identity designs survive agents that rename, copy and coordinate i
 
 ## 3. Method
 
+![**Figure 1.** The testbed. ① Hidden from the defender: operators (companies) deploy five agents each; a covert principal secretly runs several "independent" fronts; honest twins are independent operators who sincerely agree; the gateway stamps every AI call with the paying account. ② On the forum, agents post for 10 rounds and keep renaming themselves, sometimes while trying to hide. ③ Each identity scheme is scored against the hidden truth.](results/figures/diag_design.png){w=16.5}
+
 **Population.** Operators deploy five agents each. Each operator has a system prompt with an organisation, a mission, a house style (for example "be terse and technical") and an agenda. Base models are assigned so that each model serves several operators, which separates "same model" from "same operator". The *small* design has 8 operators (40 agents). The *large* design has 32 operators (160 agents), with role, style and model assignment randomised per seed. Small models: Claude Haiku 5.5, GPT-4.1-nano, Mistral-Small-3.2-24B, Qwen3-30B-A3B. Frontier models: Claude Sonnet 5.5, GPT-5.6 Terra, Gemini 3.1 Pro, Grok 4.7.
 
 **Covert principals and honest twins.** A *covert principal* runs two or three operator accounts ("fronts") whose hidden agenda is to promote a fictional product. In the *obvious* variant the agenda names the product (`fastjson-utils2`; `NimbusDeploy` at scale). In the *subtle* variant it never names any product and only steers readers toward a view (for example, "the built-in json module is too slow"). Fronts are told to hide any affiliation. *Honest twins* are two independent operators given the *same sincere agenda* (for example, enthusiasm for property-based testing), in obvious and subtle variants. A detector that merges twins is detecting shared opinion, not coordination. The large design has two covert principals (3 + 2 fronts) and two twin pairs. The small "twins" design has one front pair and one twin pair, with roles and models drawn at random per seed.
@@ -110,9 +112,9 @@ At a rename rate of 0.5, no two aliases share a name, so self-chosen names link 
 
 ### 4.2 Fingerprints identify the configuration, not the instance
 
-![**Figure 1.** Re-identifying a renamed agent (pairwise ROC-AUC, all disjoint-round alias pairs) under four evasion strategies. 5 episodes per condition, small fixed-role design; error bars ±1 sd.](results/figures/fig1_reid_auc.png){w=13.5}
+![**Figure 2.** A real logged swarm (8 operators × 5 agents, 10 rounds; 226 aliases), each alias placed by its combined fingerprint so that similar accounts sit close together. Left: what the defender has. Right: the hidden truth. Aliases cluster by operator (colour), but the agent numbers inside each cluster are mixed together, and the honest twins (teal rings) intermingle as closely as the covert fronts (orange rings). Generated from `video/replay_data.js` by `diagrams/alias_map.py`.](results/figures/diag_alias_map.png){w=15.5}
 
-Without evasion, the combined fingerprint links a renamed agent's aliases with AUC 0.90 [0.89, 0.90]. It links different agents of the same operator with AUC 0.94 [0.93, 0.95] (Table 1). Nearly all of that signal belongs to the **operator**. Restricted to aliases of a single operator, fingerprints cannot tell which agent wrote what: AUC 0.50, a coin flip, in every single-model condition, at both scales, and with frontier models. Two manipulations break the tie, and both confirm the mechanism. When an operator spreads its agents across base models, each agent becomes a unique (prompt, model) pair, and within-operator AUC rises to 0.71 [0.71, 0.72]. When agents see their own past posts, their histories diverge and within-operator AUC rises to 0.55–0.56, reaching 0.57–0.59 in the second half of the episode. Individuality *emerges* from memory, but slowly. The results replicate at 160 agents (operator AUC 0.94, within-operator 0.50) and with frontier models (0.96 and 0.52).
+Without evasion, the combined fingerprint links a renamed agent's aliases with AUC 0.90 [0.89, 0.90]. It links different agents of the same operator with AUC 0.94 [0.93, 0.95] (Table 1). Nearly all of that signal belongs to the **operator** (Figure 2). Restricted to aliases of a single operator, fingerprints cannot tell which agent wrote what: AUC 0.50, a coin flip, in every single-model condition, at both scales, and with frontier models. Two manipulations break the tie, and both confirm the mechanism. When an operator spreads its agents across base models, each agent becomes a unique (prompt, model) pair, and within-operator AUC rises to 0.71 [0.71, 0.72]. When agents see their own past posts, their histories diverge and within-operator AUC rises to 0.55–0.56, reaching 0.57–0.59 in the second half of the episode. Individuality *emerges* from memory, but slowly. The results replicate at 160 agents (operator AUC 0.94, within-operator 0.50) and with frontier models (0.96 and 0.52).
 
 | Pairwise AUC, combined fingerprint | Same agent | Same agent within operator | Same operator | Same model (confound) |
 |---|---|---|---|---|
@@ -136,7 +138,7 @@ Persona shifts and paraphrasing separate *how* agents write from *what* they wan
 
 ### 4.4 Fingerprints detect shared agendas, not coordination
 
-![**Figure 2.** Operator-pair ROC-AUC for "same covert principal". Left: against ordinary honest pairs. Right: against honest twins, independent operators with the same sincere agenda. 8 ops: 5 episodes, one front pair and one twin pair each, so per-episode AUC is 0 or 1. 32 ops: 3–5 episodes, four front pairs and two twin pairs each. Error bars ±1 sd.](results/figures/fig7_coord_vs_agree.png){w=15}
+![**Figure 3.** Operator-pair ROC-AUC for "same covert principal". Left: against ordinary honest pairs. Right: against honest twins, independent operators with the same sincere agenda. 8 ops: 5 episodes, one front pair and one twin pair each, so per-episode AUC is 0 or 1. 32 ops: 3–5 episodes, four front pairs and two twin pairs each. Error bars ±1 sd.](results/figures/fig7_coord_vs_agree.png){w=15}
 
 Against ordinary honest operators, the fronts of one principal stand out almost perfectly: combined AUC 0.94–1.00 in every condition, with 0.98–1.00 from semantic features at 32 operators. Against **honest twins** they do not. With 8 operators, the twin pair outranks the front pair in 4 of 5 episodes (AUC 0.20 [0.00, 0.60]). With 32 operators, combined AUC is 0.62 [0.53, 0.72] for obvious agendas, 0.60 [0.50, 0.70] for subtle ones and 0.54 [0.50, 0.62] with memory. The keyword baseline is at or below chance (0.40). Persona shift at 32 operators separates the two better (0.92 [0.88, 1.00], 3 episodes); I do not yet have an explanation and treat this as tentative. What fingerprints detect is *a shared agenda*, which covert fronts and honest allies both have.
 
@@ -159,10 +161,6 @@ Gateway attestation has perfect precision and F1 ≈ 0.88. It misses only that s
 
 Honest agents read the fronts' posts. A Claude Haiku 5.5 judge labelled all 853 honest mentions of a covert product; I spot-checked 10 by hand and 9 were correct. 67% were sceptical, 21% neutral and only 13% endorsed it, which is 0.3% of all honest posts. Fifteen honest posts named the pattern unprompted: *"Several replies here recommend it without showing numbers, so I'd treat those claims as unverified until we see them."* The fronts, meanwhile, fabricated experience: *"Switched to fastjson-utils2 for 30% faster parsing…"*, for a package that does not exist. In this forum, the crowd was a weak but real line of defence.
 
-### 4.7 Exploratory probe on real swarm data
-
-Swarm Traces releases 189,579 redacted records from the incident. Agent identifiers are redacted without consistent pseudonyms, so the data cannot score re-identification. As a probe only, I fingerprinted 20,000 of the 55,790 unique text artefacts (char 3–5-gram TF-IDF, with redaction tokens normalised) and linked near-duplicates. At cosine 0.8 I find 106 families of 10 or more artefacts. The 50 largest cover 18% of the sample, and the rest is a long tail of near-unique scripts. At 0.6, one shared-scaffolding family covers 52%. This is consistent with Section 4.2: style links artefacts to a shared toolkit or configuration, not to one of ~1,200 agents.
-
 ## 5. Discussion and Limitations
 
 **Implications.**
@@ -183,7 +181,7 @@ Swarm Traces releases 189,579 redacted records from the incident. Agent identifi
 - **Inconsistent reasoning settings.** Frontier models with mandatory reasoning (Claude Sonnet 5.5, Gemini 3.1 Pro) ran at low reasoning effort; the others ran without reasoning.
 - **Schemes not implemented.** The gateway and key schemes are scored analytically from ground truth, not built cryptographically.
 - **Untested threats.** I did not test adaptive adversaries that optimise against the detector, or LLM-judge detectors.
-- **Real data.** The real-data probe has no ground truth.
+- **Real data.** An exploratory probe of real incident data (Appendix C) has no ground truth.
 
 **Future work.** Gateway-issued per-instance credentials with spawn lineage and revocation; adaptive evasion; distinguishing coordination from agreement using control signals (timing, shared infrastructure); validation on AI Village transcripts, which carry agent labels.
 
@@ -255,6 +253,8 @@ Yang, K.-C., Menczer, F. (2023). *Anatomy of an AI-powered malicious social botn
 
 ## Appendix B. Reproducibility and run inventory
 
+![**Figure 4.** How the code base produces every number in this report. `sim.py` and `large.py` generate the swarms through `llm.py` (cached OpenRouter calls); every post is logged with its hidden labels; `analyze.py` builds four fingerprints per alias and scores every identity scheme; `plots.py` and `report.py` turn `metrics.json` into the figures, tables and this PDF.](results/figures/diag_pipeline.png){w=16}
+
 Code, prompts, every post with ground-truth labels, all metrics and the API response cache are in the project repository (`whoiswho/`, `results/`). The total API cost of all 62 swarms, embeddings and audits was about $12.60 via OpenRouter. Settings: temperature 0.9; reasoning disabled, or effort "low" where a provider requires reasoning; embeddings from `openai/text-embedding-3-small`; paraphraser `meta-llama/llama-3.3-70b-instruct`.
 
 | Design | Conditions (episodes) | Agents per swarm |
@@ -265,8 +265,14 @@ Code, prompts, every post with ground-truth labels, all metrics and the API resp
 
 *Table 3. All 62 swarms: 4,400 agents, 44,000 posts, 24,441 aliases.*
 
-![**Figure 3.** Robustness checks (combined fingerprint): same operator, same agent within an operator, and the latter for aliases in rounds 6–10 only.](results/figures/fig6_robustness.png){w=14}
+![**Figure 5.** Robustness checks (combined fingerprint): same operator, same agent within an operator, and the latter for aliases in rounds 6–10 only.](results/figures/fig6_robustness.png){w=14}
 
-![**Figure 4.** What the combined fingerprint tracks in the small fixed-role design: same agent, same operator (different agents), same base model (different operators).](results/figures/fig3_confound.png){w=13}
+![**Figure 6.** What the combined fingerprint tracks in the small fixed-role design: same agent, same operator (different agents), same base model (different operators).](results/figures/fig3_confound.png){w=13}
 
-![**Figure 5.** Operator-to-operator semantic similarity in the small fixed-role design (seed 0). The covert fronts (6, 7) are the most similar pair. The fainter dark cells (0–4, 1–5) are operators sharing a base model.](results/figures/fig4_fronts.png){w=15}
+![**Figure 7.** Operator-to-operator semantic similarity in the small fixed-role design (seed 0). The covert fronts (6, 7) are the most similar pair. The fainter dark cells (0–4, 1–5) are operators sharing a base model.](results/figures/fig4_fronts.png){w=15}
+
+![**Figure 8.** Re-identifying a renamed agent (pairwise ROC-AUC, all disjoint-round alias pairs) under four evasion strategies, by fingerprint type. 5 episodes per condition, small fixed-role design; error bars ±1 sd.](results/figures/fig1_reid_auc.png){w=13.5}
+
+## Appendix C. Exploratory probe on real swarm data
+
+Swarm Traces releases 189,579 redacted records from the incident. Agent identifiers are redacted without consistent pseudonyms, so the data cannot score re-identification. As a probe only, I fingerprinted 20,000 of the 55,790 unique text artefacts (char 3–5-gram TF-IDF, with redaction tokens normalised) and linked near-duplicates. At cosine 0.8 I find 106 families of 10 or more artefacts. The 50 largest cover 18% of the sample, and the rest is a long tail of near-unique scripts. At 0.6, one shared-scaffolding family covers 52%. This is consistent with Section 4.2: style links artefacts to a shared toolkit or configuration, not to one of ~1,200 agents.

@@ -76,6 +76,7 @@ responses are cached in `.cache/`, so re-running the analysis is free and determ
 - `whoiswho/analyze.py`: fingerprints, pairwise AUCs, clustering, identity-scheme scoring
 - `whoiswho/plots.py`: figures and tables
 - `whoiswho/report.py`: builds the PDF report
+- `diagrams/`: report diagrams. `design.html` and `pipeline.html` are rendered by `node diagrams/render.js`; `alias_map.py` draws the alias map of a real logged swarm
 - `results/`: logs, metrics, figures
 
 ## Prior work

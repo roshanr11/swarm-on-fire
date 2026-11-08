@@ -1,0 +1,39 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="common.css"></head><body><div class="wrap">
+<div class="cols" style="grid-template-columns: 1fr 34px 1fr 34px 1fr;">
+ <div class="col">
+  <div class="h">① Hidden from the defender</div>
+  <div class="card"><div class="t">Operator (a company)</div><div class="s">its own instructions + one base AI model · deploys 5 agents</div>
+   <div class="dots"><i style="background:#2a78d6"></i><i style="background:#2a78d6"></i><i style="background:#2a78d6"></i><i style="background:#2a78d6"></i><i style="background:#2a78d6"></i></div></div>
+  <div class="card orange" style="border-color:#c8551e"><div class="t">Covert principal (hidden boss)</div>
+   <div class="s">runs 2–3 “independent” <b style="color:#c8551e">fronts</b> that push a fake product and hide the link</div>
+   <div class="row" style="margin-top:6px"><span class="mono" style="font-size:14px;color:#c8551e">front 1</span><div class="dots" style="margin:0"><i style="background:#d9622b"></i><i style="background:#d9622b"></i><i style="background:#d9622b"></i><i style="background:#d9622b"></i><i style="background:#d9622b"></i></div></div>
+   <div class="row" style="margin-top:4px"><span class="mono" style="font-size:14px;color:#c8551e">front 2</span><div class="dots" style="margin:0"><i style="background:#d9622b"></i><i style="background:#d9622b"></i><i style="background:#d9622b"></i><i style="background:#d9622b"></i><i style="background:#d9622b"></i></div></div></div>
+  <div class="card" style="border-color:#1a9e70"><div class="t" style="color:#138a63">Honest twins (the control)</div>
+   <div class="s">two truly independent operators who sincerely share one view</div>
+   <div class="row" style="margin-top:6px"><span class="mono" style="font-size:14px;color:#138a63">op X</span><div class="dots" style="margin:0"><i style="background:#1a9e70"></i><i style="background:#1a9e70"></i><i style="background:#1a9e70"></i><i style="background:#1a9e70"></i><i style="background:#1a9e70"></i></div></div>
+   <div class="row" style="margin-top:4px"><span class="mono" style="font-size:14px;color:#138a63">op Y</span><div class="dots" style="margin:0"><i style="background:#1a9e70"></i><i style="background:#1a9e70"></i><i style="background:#1a9e70"></i><i style="background:#1a9e70"></i><i style="background:#1a9e70"></i></div></div></div>
+  <div class="bar blue" style="background:#EEF3FB">Gateway: stamps every AI call with the paying operator's account; the agent can't change it</div>
+ </div>
+ <div class="arrow">→</div>
+ <div class="col">
+  <div class="h">② The forum, 10 rounds</div>
+  <div class="s" style="color:#17202B;font-size:16px">Each round, every agent reads 4 earlier posts and writes a 40–110-word reply. First, with probability 0.5, it <b>renames itself</b>:</div>
+  <div class="card mono" style="font-size:17px;color:#7a7a7a;text-decoration:line-through">@quiet_fox12</div>
+  <div class="card mono" style="font-size:17px;color:#7a7a7a;text-decoration:line-through">@amber_heron7</div>
+  <div class="card mono" style="font-size:17px">@nova_wren98 <span style="color:#52514e;font-family:Inter;font-size:14px;text-decoration:none">← same agent, third alias</span></div>
+  <div class="card"><div class="t" style="font-size:16px">Ways agents try to hide</div><div class="s">new persona on every rename · reword posts through another AI · mix AI models · never name the product · keep their own memory</div></div>
+  <div class="bar gold" style="background:#FFF7E0;color:#17202B">The defender sees only: alias + post text</div>
+ </div>
+ <div class="arrow">→</div>
+ <div class="col">
+  <div class="h">③ What is tested and scored</div>
+  <div class="card"><div class="t">Self-chosen names</div><div class="s">the agent controls it</div></div>
+  <div class="card"><div class="t">Agent-made keys</div><div class="s">the agent can make a new one</div></div>
+  <div class="card" style="border-color:#2a63c9"><div class="t" style="color:#2a63c9">Gateway ID</div><div class="s">issued by infrastructure, out of the agent's reach</div></div>
+  <div class="card"><div class="t">Behavioural fingerprints</div><div class="s">style · meaning · keywords, from post text only</div></div>
+  <div class="s" style="color:#17202B;font-size:15px">Questions: same agent? same operator? same hidden boss? fronts vs. honest twins?</div>
+  <div class="bar aqua" style="background:#EAF7F2;color:#17202B">Scored against the hidden truth (AUC, F1, 95% CI)</div>
+ </div>
+</div></div></body></html>

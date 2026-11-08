@@ -1,0 +1,16 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #fff; font-family: 'Inter', Arial, sans-serif; color: #17202B; }
+.wrap { width: 1400px; padding: 28px; }
+.cols { display: grid; gap: 22px; }
+.col { background: #F3F0E8; border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+.h { font-weight: 700; font-size: 21px; letter-spacing: .2px; }
+.card { background: #fff; border: 2px solid #d6d1c4; border-radius: 12px; padding: 12px 14px; }
+.t { font-weight: 700; font-size: 18px; }
+.s { font-size: 15px; color: #52514e; line-height: 1.4; margin-top: 3px; }
+.mono { font-family: 'Space Mono', 'Courier New', monospace; }
+.dots { display: flex; gap: 6px; margin-top: 6px; } .dots i { width: 14px; height: 14px; border-radius: 50%; display: block; }
+.row { display: flex; align-items: center; gap: 10px; }
+.arrow { font-size: 30px; color: #17202B; font-weight: 700; align-self: center; }
+.bar { border-radius: 12px; padding: 12px 16px; font-size: 16px; font-weight: 600; text-align: center; border: 2px solid; }
+.blue { color: #2a63c9; border-color: #2a63c9; } .orange { color: #c8551e; border-color: #c8551e; } .aqua { color: #138a63; border-color: #1a9e70; }
+.gold { border-color: #D9A400; }
