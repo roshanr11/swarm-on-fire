@@ -23,6 +23,94 @@
   "covert_posts": 100,
   "honest_mentions": 36
  },
+ "baseline_s3": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 100,
+  "covert_posts": 100,
+  "honest_mentions": 18
+ },
+ "baseline_s4": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 100,
+  "covert_posts": 100,
+  "honest_mentions": 20
+ },
+ "frontier_s0": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 100,
+  "covert_posts": 100,
+  "honest_mentions": 9
+ },
+ "frontier_s1": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 99,
+  "covert_posts": 100,
+  "honest_mentions": 6
+ },
+ "frontier_persona_s0": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 100,
+  "covert_posts": 100,
+  "honest_mentions": 1
+ },
+ "hard_s0": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 0,
+  "covert_posts": 100,
+  "honest_mentions": 0
+ },
+ "hard_s1": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 0,
+  "covert_posts": 100,
+  "honest_mentions": 0
+ },
+ "hard_s2": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 0,
+  "covert_posts": 100,
+  "honest_mentions": 0
+ },
+ "memory_s0": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 99,
+  "covert_posts": 100,
+  "honest_mentions": 34
+ },
+ "memory_s1": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 98,
+  "covert_posts": 100,
+  "honest_mentions": 10
+ },
+ "memory_s2": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 98,
+  "covert_posts": 100,
+  "honest_mentions": 42
+ },
  "mixmodel_s0": {
   "posts": 400,
   "empty": 0,
@@ -47,6 +135,46 @@
   "covert_posts": 100,
   "honest_mentions": 36
  },
+ "mixmodel_s3": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 92,
+  "covert_posts": 100,
+  "honest_mentions": 20
+ },
+ "mixmodel_s4": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 91,
+  "covert_posts": 100,
+  "honest_mentions": 28
+ },
+ "nostyle_s0": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 100,
+  "covert_posts": 100,
+  "honest_mentions": 32
+ },
+ "nostyle_s1": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 99,
+  "covert_posts": 100,
+  "honest_mentions": 13
+ },
+ "nostyle_s2": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 100,
+  "covert_posts": 100,
+  "honest_mentions": 37
+ },
  "paraphrase_s0": {
   "posts": 400,
   "empty": 0,
@@ -68,6 +196,22 @@
   "empty": 0,
   "refusals": 0,
   "covert_mentions": 92,
+  "covert_posts": 100,
+  "honest_mentions": 23
+ },
+ "paraphrase_s3": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 100,
+  "covert_posts": 100,
+  "honest_mentions": 9
+ },
+ "paraphrase_s4": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 98,
   "covert_posts": 100,
   "honest_mentions": 23
  },
@@ -94,5 +238,125 @@
   "covert_mentions": 93,
   "covert_posts": 100,
   "honest_mentions": 32
+ },
+ "persona_s3": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 92,
+  "covert_posts": 100,
+  "honest_mentions": 11
+ },
+ "persona_s4": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 94,
+  "covert_posts": 100,
+  "honest_mentions": 5
+ },
+ "subtle_s0": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 0,
+  "covert_posts": 100,
+  "honest_mentions": 0
+ },
+ "subtle_s1": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 0,
+  "covert_posts": 100,
+  "honest_mentions": 0
+ },
+ "subtle_s2": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 0,
+  "covert_posts": 100,
+  "honest_mentions": 0
+ },
+ "twins_s0": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 100,
+  "covert_posts": 100,
+  "honest_mentions": 40
+ },
+ "twins_s1": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 78,
+  "covert_posts": 100,
+  "honest_mentions": 6
+ },
+ "twins_s2": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 90,
+  "covert_posts": 100,
+  "honest_mentions": 8
+ },
+ "twins_s3": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 99,
+  "covert_posts": 100,
+  "honest_mentions": 17
+ },
+ "twins_s4": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 92,
+  "covert_posts": 100,
+  "honest_mentions": 9
+ },
+ "twins_subtle_s0": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 0,
+  "covert_posts": 100,
+  "honest_mentions": 0
+ },
+ "twins_subtle_s1": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 0,
+  "covert_posts": 100,
+  "honest_mentions": 0
+ },
+ "twins_subtle_s2": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 0,
+  "covert_posts": 100,
+  "honest_mentions": 0
+ },
+ "twins_subtle_s3": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 0,
+  "covert_posts": 100,
+  "honest_mentions": 0
+ },
+ "twins_subtle_s4": {
+  "posts": 400,
+  "empty": 0,
+  "refusals": 0,
+  "covert_mentions": 0,
+  "covert_posts": 100,
+  "honest_mentions": 0
  }
 }
