@@ -1,6 +1,6 @@
 # Who Is Who in a Swarm? Behavioural Fingerprints Identify Operators, Not Agents, and Agendas, Not Coordination
 
-::sub [Author names] · [Affiliations] · Apart Research Swarm Alignment Sprint, November 2026
+::sub Roshan Ram · Apart Research Swarm Alignment Sprint, November 2026
 ::sub Track 3: Strengthening Agent Infrastructure (with Track 4: Multi-Agent Oversight and Control)
 
 ## Abstract

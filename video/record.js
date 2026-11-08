@@ -19,9 +19,9 @@ const BLOBS = {
     for (const [k, v] of Object.entries(BLOBS)) html = html.split(k).join('file://' + path.join(ROOT, v));
     html = html.replace(/<aside>[\s\S]*?<\/aside>/, '');
     const doc = `<!doctype html><html><head><meta charset="utf-8">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Inter:wght@400;600&family=Space+Mono:wght@400;700&display=swap">
 <style>html,body{margin:0;width:1920px;height:1080px;overflow:hidden}section{position:relative;box-sizing:border-box;width:1920px;height:1080px}
-h1,h2,h3,p,ul,table{margin:0} table{border-collapse:collapse} th,td{padding:14px 18px;border-bottom:2px solid #d9d4c6;text-align:left}</style>
+h1,h2,h3,p,ul,table{margin:0} table{border-collapse:collapse} th,td{padding:14px 18px;border-bottom:2px solid #2A4157;text-align:left}</style>
 </head><body>${html}</body></html>`;
     const f = path.join(OUT, `slide_${s.id}.html`); fs.writeFileSync(f, doc);
     await page.goto('file://' + f); await page.evaluate(() => document.fonts.ready); await page.waitForTimeout(300);

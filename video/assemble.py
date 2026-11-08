@@ -71,7 +71,8 @@ while i < len(sc):
 
 lst = B / "segments.txt"
 lst.write_text("".join(f"file '{p.resolve()}'\n" for p in segs))
-run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(lst), "-c", "copy", "-movflags", "+faststart",
-     "video/WhoIsWho-demo.mp4"])
+# Re-encode in one pass (not stream copy) so every player gets clean, continuous audio.
+run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(lst), "-af", "aresample=async=1,loudnorm=I=-16:TP=-1.5:LRA=11",
+     *enc, "-movflags", "+faststart", "video/WhoIsWho-demo.mp4"])
 Path("video/WhoIsWho-demo.srt").write_text("\n".join(srt))
 print(f"video/WhoIsWho-demo.mp4  {t:.1f}s  {len(segs)} segments  {n-1} subtitle cues")

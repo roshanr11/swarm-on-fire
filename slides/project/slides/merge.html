@@ -1,27 +1,27 @@
-<section id="merge" data-transition="fade" style="background:#F5F2EA;color:#17202B;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:space-between;gap:48px">
-<div style="display:flex;flex-direction:column;gap:24px">
-<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#2A63C9">Finding 5 · At 160 agents</p>
-<h2 style="font-size:64px;font-weight:700;line-height:1.12">Merging accounts on fingerprints does more harm than good at scale</h2>
+<section id="merge" data-transition="fade" style="background:#0E1A24;color:#EAF0F2;font-family:'Inter', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:space-between;gap:44px">
+<p style="position:absolute;right:128px;top:80px;width:700px;font-family:'Space Grotesk', Arial, sans-serif;font-size:360px;font-weight:700;line-height:1;text-align:right;color:transparent;-webkit-text-stroke:3px #2A4157">05</p>
+<div style="display:flex;flex-direction:column;gap:20px">
+<p style="font-family:'Space Mono', 'Courier New', monospace;font-size:26px;color:#FF8A5B">FINDING 05 · AT 160 AGENTS</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.08;letter-spacing:-1px;width:1250px">Auto-merging accounts on fingerprints backfires at scale</h2>
 </div>
-<div style="display:flex;gap:32px">
-<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFDF8;border:2px solid #17202B;border-radius:16px;padding:32px 40px">
-<p style="font-size:96px;font-weight:700;line-height:1;color:#17202B">40</p>
-<p style="font-size:28px;color:#4A5260">accounts merged as “same principal” across five 32-operator swarms</p>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFDF8;border:2px solid #17202B;border-radius:16px;padding:32px 40px">
-<p style="font-size:96px;font-weight:700;line-height:1;color:#2A63C9">17</p>
-<p style="font-size:28px;color:#4A5260">true front pairs (of 20)</p>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFDF8;border:2px solid #17202B;border-radius:16px;padding:32px 40px">
-<p style="font-size:96px;font-weight:700;line-height:1;color:#C8551E">23</p>
-<p style="font-size:28px;color:#4A5260">wrong: 6 honest twins, 17 other honest operators</p>
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#A3B3C2">40 MERGES PROPOSED ACROSS FIVE 32-OPERATOR SWARMS</p>
+<div style="display:flex;height:96px;border-radius:16px;overflow:hidden">
+<div style="flex:17;display:flex;align-items:center;padding:0 0 0 28px;background:#6FDDBE;color:#0E1A24"><p style="font-size:32px;font-weight:600">17 true fronts</p></div>
+<div style="flex:6;display:flex;align-items:center;padding:0 0 0 20px;background:#E9C46A;color:#0E1A24"><p style="font-size:28px;font-weight:600">6 twins</p></div>
+<div style="flex:17;display:flex;align-items:center;padding:0 0 0 28px;background:#FF8A5B;color:#0E1A24"><p style="font-size:32px;font-weight:600">17 other honest operators</p></div>
 </div>
 </div>
-<table style="font-size:30px;color:#17202B;width:1664px">
-<tr><th style="width:55%">Principal-level F1, 32 operators</th><th style="width:22%;text-align:right">Obvious agenda</th><th style="width:23%;text-align:right">Subtle agenda</th></tr>
-<tr><td>Gateway attestation alone</td><td style="text-align:right">0.88</td><td style="text-align:right">0.88</td></tr>
-<tr><td>+ fingerprint merge (model-corrected)</td><td style="text-align:right;color:#C8551E">0.84, worse</td><td style="text-align:right;color:#C8551E">0.85, worse</td></tr>
-</table>
-<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#4A5260">Threshold fixed in advance: ~1 false merge expected by chance · 8 / 10</p>
-<aside>With a single front pair in a small swarm, fingerprint merging helps once corrected for shared base models: every one of 41 uncorrected false merges joined operators sharing a model. At scale, sincere allies and look-alike missions produce too many false matches. Fingerprints should rank accounts for human review, not merge them automatically.</aside>
+<div style="display:flex;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#182B3B;border-radius:20px;padding:32px 36px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:80px;font-weight:700;line-height:1">0.88</p>
+<p style="font-size:28px;color:#A3B3C2">gateway attestation alone</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#182B3B;border-radius:20px;padding:32px 36px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:80px;font-weight:700;line-height:1;color:#FF8A5B">0.84</p>
+<p style="font-size:28px;color:#A3B3C2">+ fingerprint merge: worse (subtle agenda: 0.85)</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#6B7F92">PRINCIPAL-LEVEL F1 · MODEL-CORRECTED MERGE · THRESHOLD FIXED IN ADVANCE · 08/10</p>
+<aside>With a single front pair in a small swarm, fingerprint merging helps once corrected for shared base models. At scale, sincere allies and look-alike missions produce too many false matches. Fingerprints should rank accounts for human review, not merge them automatically.</aside>
 </section>
