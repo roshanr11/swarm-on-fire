@@ -2,3 +2,5 @@ wrote results/runs/large_subtle_s0.jsonl: 1600 posts, 883 aliases, 0 empty, cost
 wrote results/runs/large_subtle_s1.jsonl: 1600 posts, 892 aliases, 0 empty, cost $0.1445 over 1600 calls
 wrote results/runs/large_subtle_s2.jsonl: 1600 posts, 894 aliases, 0 empty, cost $0.1474 over 1600 calls
 wrote results/runs/large_subtle_s3.jsonl: 1600 posts, 909 aliases, 0 empty, cost $0.1342 over 1486 calls
+wrote results/runs/large_subtle_s4.jsonl: 1600 posts, 885 aliases, 0 empty, cost $0.1482 over 1588 calls
+GROUP DONE largeB

@@ -2,3 +2,5 @@ wrote results/runs/large_s0.jsonl: 1600 posts, 883 aliases, 0 empty, cost $0.142
 wrote results/runs/large_s1.jsonl: 1600 posts, 892 aliases, 0 empty, cost $0.1433 over 1583 calls
 wrote results/runs/large_s2.jsonl: 1600 posts, 894 aliases, 0 empty, cost $0.1395 over 1502 calls
 wrote results/runs/large_s3.jsonl: 1600 posts, 909 aliases, 0 empty, cost $0.1431 over 1600 calls
+wrote results/runs/large_s4.jsonl: 1600 posts, 885 aliases, 0 empty, cost $0.1492 over 1600 calls
+GROUP DONE largeA
