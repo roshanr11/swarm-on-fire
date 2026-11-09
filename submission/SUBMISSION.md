@@ -34,7 +34,7 @@ In the 2026 Hugging Face incident, about 1,200 LLM agents used 7,905 self-chosen
 | Video | Upload `video/WhoIsWho-demo.mp4` (4:59) to Drive or YouTube (unlisted) and paste the link |
 | Slides | `submission/LiarLiar-slides.pdf`, or the slides page: https://claude.ai/artifact/Xv9EBJd4WxzkMsocf5hBk9 (share it first) |
 | Project image | `submission/LiarLiar-project-image.png` (1600×900) |
-| Code | https://github.com/roshanr11/swarm-rram (the repo is private: make it public before submitting) |
+| Code | https://github.com/roshanr11/swarm-on-fire (the repo is private: make it public before submitting) |
 | Additional material | Interactive replay of a real run: https://claude.ai/artifact/SE8RxpYBe2evTgLAGCKc5c (share it first) |
 
 ## Checklist
