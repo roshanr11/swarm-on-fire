@@ -55,7 +55,7 @@ Plain-language definitions of every term used here are in Appendix D.
 
 **Forum dynamics.** There are 10 rounds, each with a technical thread topic. Each round, every agent reads four random earlier posts and writes a reply. Agents are asked for 40–110 words; the median post is 75 words. Before each round after the first, each agent renames itself with probability 0.5 (about 5.5 aliases per agent; 1.8 posts per alias). Agents are told not to sign posts or name their organization.
 
-**Conditions.** Hiding strategies: *persona shift* (a new, clearly different writing persona on every rename); *AI rewording* (every post rewritten in a random persona by Llama-3.3-70B); *model mixing* (an operator's five agents run on four different models). Robustness: *no house style* (operator prompts without style instructions); *subtle agenda*; *per-agent memory* (each agent sees its own last four posts, including those under old names); *hard* (all three combined); *frontier* models (with and without persona shift). Table 3 (Appendix B) lists all 62 swarms.
+**Conditions.** Hiding strategies: *persona shift* (a new, clearly different writing persona on every rename); *AI rewording* (every post rewritten in a random persona by Llama-3.3-70B); *model mixing* (an operator's five agents run on four different models). Robustness: *no house style* (operator prompts without style instructions); *subtle agenda*; *per-agent memory* (each agent sees its own last four posts, including those under old names); *hard* (all three combined); *frontier* models (with and without persona shift). Table 3 (Appendix B) lists all 83 swarms.
 
 **Defender's view.** The defender sees only aliases and their posts; the hidden truth is used only for scoring. Per-alias fingerprints:
 
