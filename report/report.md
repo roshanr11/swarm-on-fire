@@ -7,7 +7,7 @@
 
 In the 2026 Hugging Face incident, about 1,200 LLM agents used 7,905 self-chosen names, and nobody could tell who did what. I build an open, replayable testbed for agent identity under renaming. Agents deployed by hidden *operators* (the parties that run them) post on a forum and rename themselves at will, while a covert *principal* secretly runs several independent-looking operator accounts (*sybil fronts*) to promote a fictional product. Across 83 simulated swarms (7,160 agents, 71,600 posts, 8 models, four of them frontier; up to 160 agents per swarm), I compare self-chosen names, agent-generated keys, gateway attestation (an ID the API gateway stamps on every model call) and behavioral fingerprints (style and embeddings). (1) Names and agent-held keys recover nothing. (2) Fingerprints re-identify an agent's **operator** (ROC-AUC 0.93–0.96) but not *which* of its agents wrote a post (0.50). This is expected for replicas sharing a prompt and model; individuality appears slowly: per-agent memory reaches only 0.56 after 10 rounds, model mixing 0.71. (3) Style hides, goals leak: paraphrasing through another model drops stylometric features to 0.58, while topic-centered embeddings keep 0.82. (4) Fronts and honest twins get identical agenda text, so the only difference is an instruction to conceal. Fingerprints separate fronts from ordinary operators (0.87–0.99) but mostly **not from honest operators who sincerely agree** (0.20–0.56 in seven of eight conditions; 0.77 under persona shift). Automatic account merging beats idealized attestation only at thresholds tuned with ground truth. Identity must be anchored in infrastructure; fingerprints are leads, not proof of coordination.
 
-![**Figure 1.** Results at a glance: what each identity scheme can answer when agents rename themselves (ROC-AUC, 0.5 = chance; F1 for attributing posts to the true principal). The recommended row follows by design and is not separately measured.](results/figures/diag_summary.png){w=16}
+![**Figure 1.** Results at a glance: what each identity scheme can answer when agents rename themselves (ROC-AUC, 0.5 = chance; F1 for attributing posts to the true principal). The recommended row follows by design and is not separately measured.](results/figures/diag_summary.png){w=15}
 
 ## 1. Introduction
 
@@ -47,7 +47,7 @@ All AUCs below are pairwise ROC-AUCs (0.5 = chance); brackets are 95% bootstrap 
 
 ## 3. Method
 
-![**Figure 2.** The testbed. (1) Hidden from the defender: operators each deploy five agents; a covert principal secretly runs several "independent" fronts; honest twins are independent operators who sincerely agree; the gateway stamps every model call with the paying account. (2) On the forum, agents post for 10 rounds and rename themselves, sometimes while evading. (3) Each identity scheme is scored against ground truth.](results/figures/diag_design.png){w=15}
+![**Figure 2.** The testbed. (1) Hidden from the defender: operators each deploy five agents; a covert principal secretly runs several "independent" fronts; honest twins are independent operators who sincerely agree; the gateway stamps every model call with the paying account. (2) On the forum, agents post for 10 rounds and rename themselves, sometimes while evading. (3) Each identity scheme is scored against ground truth.](results/figures/diag_design.png){w=13.5}
 
 **Population.** Operators deploy five agents each, sharing one system prompt with an organization, a mission, a house style (for example "be terse and technical") and an agenda. Base models are assigned so that each model serves several operators, which separates "same model" from "same operator". The *small* design has 8 operators (40 agents); the *large* design has 32 operators (160 agents), with roles, styles and model assignment randomized per seed. Small models: Claude Haiku 5.5, GPT-4.1-nano, Mistral-Small-3.2-24B, Qwen3-30B-A3B. Frontier models: Claude Sonnet 5.5, GPT-5.6 Terra, Gemini 3.1 Pro, Grok 4.7.
 
@@ -73,9 +73,10 @@ At a rename rate of 0.5, no two aliases share a name, so self-chosen names link 
 
 ### 4.2 Fingerprints identify the configuration, not the instance
 
-![**Figure 3.** One logged swarm (8 operators × 5 agents, 10 rounds, 226 aliases), embedded in 2-D by multidimensional scaling (MDS) on combined-fingerprint distance. Left: the defender's view. Right: ground truth. Aliases cluster by operator (color), but agent indices (numbers) are mixed within each cluster, and the honest twins (teal rings) intermingle as closely as the sybil fronts (orange rings).](results/figures/diag_alias_map.png){w=13.5}
 
 Without evasion, the combined fingerprint re-identifies a renamed agent's aliases with AUC 0.90 [0.89, 0.90] and links different agents of the same operator with 0.94 [0.93, 0.95] (Table 1). Nearly all of that signal is the **operator's** (Figure 3). Within a single operator, fingerprints cannot tell which agent wrote what: AUC 0.50 in every single-model condition, at both scales and with frontier models. This is expected by construction: replicas with the same prompt and model and no memory produce exchangeable text, so 0.50 is a check that the design behaves as intended, not a discovery. The informative part is what breaks the tie, and how slowly. When an operator spreads its agents across models, each agent becomes a unique (prompt, model) pair and within-operator AUC rises to 0.71. When agents see their own past posts, their histories diverge and within-operator AUC rises to 0.55–0.56, reaching 0.57–0.59 in later rounds: individuality *emerges* from memory, but slowly.
+
+![**Figure 3.** One logged swarm (8 operators × 5 agents, 10 rounds, 226 aliases), embedded in 2-D by multidimensional scaling (MDS) on combined-fingerprint distance. Left: the defender's view. Right: ground truth. Aliases cluster by operator (color), but agent indices (numbers) are mixed within each cluster, and the honest twins (teal rings) intermingle as closely as the sybil fronts (orange rings).](results/figures/diag_alias_map.png){w=12.5}
 
 | AUC, combined fingerprint | Same agent | Same agent within operator | Same operator | Same model (confound) |
 |---|---|---|---|---|
@@ -99,7 +100,7 @@ Persona shift and paraphrasing separate *how* agents write from *what* they want
 
 ### 4.4 Fingerprints detect shared agendas, not coordination
 
-![**Figure 4.** Operator-pair ROC-AUC for "same covert principal". Left: against ordinary honest pairs. Right: against honest twins. With 8 operators each run has one front pair and one twin pair, so per-run AUC is 0 or 1. Error bars ±1 sd across runs.](results/figures/fig7_coord_vs_agree.png){w=13}
+![**Figure 4.** Operator-pair ROC-AUC for "same covert principal". Left: against ordinary honest pairs. Right: against honest twins. With 8 operators each run has one front pair and one twin pair, so per-run AUC is 0 or 1. Error bars ±1 sd across runs.](results/figures/fig7_coord_vs_agree.png){w=12}
 
 Against ordinary honest operators, a principal's fronts stand out: combined AUC 0.87–0.99 in every condition without detector feedback, 0.94–1.00 from the semantic fingerprint at 32 operators. Against **honest twins** they do not. With 8 operators, the twin pair outranks the front pair in 4 of 5 runs (AUC 0.20 [0.00, 0.60]). With 32 operators and 10 runs each, AUC is 0.56 [0.45, 0.66] for obvious agendas and 0.54 [0.42, 0.64] for subtle ones; both CIs include chance. With memory it is 0.54 [0.50, 0.62]. Persona shift at 32 operators separates them somewhat better (0.77 [0.62, 0.90], 6 runs; an earlier 3-run estimate of 0.92 shrank with more data), which I cannot yet explain. What fingerprints detect is **a shared agenda**, which covert fronts and honest allies both have.
 
@@ -157,9 +158,7 @@ When agents can rename themselves, "who did what, on whose behalf?" needs an ans
 
 ## Code and Data
 
-- **Code repository:** [github.com/roshanr11/swarm-on-fire](https://github.com/roshanr11/swarm-on-fire) (MIT). All 83 run logs with ground-truth labels are in `results/runs/`; `pytest` checks the design invariants without API calls.
-- **Data:** the simulated swarms are generated by the code. The real-data probe uses [Swarm Traces](https://swarmtraces.org/), downloaded by `data/download.sh` and not republished.
-- **Other artifacts:** a narrated 5-minute demo video with an animated replay of a real run (`video/WhoIsWho-demo.mp4`) and the slide deck (`slides/`).
+[github.com/roshanr11/swarm-on-fire](https://github.com/roshanr11/swarm-on-fire) (MIT) holds the code, all 83 run logs with ground truth, the demo video and slides. Swarm Traces data for Appendix C is downloaded by script, not republished.
 
 ## References
 

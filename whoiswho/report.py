@@ -31,7 +31,7 @@ RULE = colors.HexColor("#d9d8d3")
 ACCENT = colors.HexColor("#2a78d6")
 
 ss = getSampleStyleSheet()
-BODY = ParagraphStyle("body", parent=ss["BodyText"], fontName="OST", fontSize=10.5, leading=14,
+BODY = ParagraphStyle("body", parent=ss["BodyText"], fontName="OST", fontSize=10.5, leading=13.5,
                       textColor=INK, spaceAfter=6)
 SMALL = ParagraphStyle("small", parent=BODY, fontSize=8.5, leading=10.5)
 CAP = ParagraphStyle("cap", parent=BODY, fontSize=9, leading=11.5, textColor=MUTED, spaceAfter=10)
@@ -75,17 +75,22 @@ def table(rows):
 def build():
     lines = SRC.read_text().splitlines()
     story, para, bullets, trows = [], [], [], []
+    numbered = False
 
     def flush():
-        nonlocal para, bullets, trows
+        nonlocal para, bullets, trows, numbered
         if para:
             story.append(Paragraph(inline(" ".join(para)), BODY))
         if bullets:
-            story.append(ListFlowable([ListItem(Paragraph(inline(b), BODY), leftIndent=12) for b in bullets],
-                                      bulletType="bullet", start="•", leftIndent=12, bulletFontSize=8))
+            if numbered:
+                story.append(ListFlowable([ListItem(Paragraph(inline(b), BODY), leftIndent=14) for b in bullets],
+                                          bulletType="1", leftIndent=14, bulletFontName="OST", bulletFontSize=10))
+            else:
+                story.append(ListFlowable([ListItem(Paragraph(inline(b), BODY), leftIndent=12) for b in bullets],
+                                          bulletType="bullet", start="•", leftIndent=12, bulletFontSize=8))
         if trows:
             story.extend([table(trows), Spacer(1, 6)])
-        para, bullets, trows = [], [], []
+        para, bullets, trows, numbered = [], [], [], False
 
     for ln in lines:
         s = ln.rstrip()
@@ -121,6 +126,11 @@ def build():
             img.drawHeight = img.drawHeight * w / img.drawWidth
             img.drawWidth = w
             story.append(KeepTogether([img, Paragraph(inline(m.group(1)), CAP)]))
+        elif re.match(r"\d+\. ", s):
+            if para:
+                story.append(Paragraph(inline(" ".join(para)), BODY)); para = []
+            numbered = True
+            bullets.append(re.sub(r"^\d+\. ", "", s))
         elif s.startswith("- "):
             if para:
                 story.append(Paragraph(inline(" ".join(para)), BODY)); para = []
