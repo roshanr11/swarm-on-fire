@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="common.css">
+<style>
+ table { border-collapse: separate; border-spacing: 8px; width: 100%; }
+ th { font-size: 17px; font-weight: 700; text-align: center; padding: 6px 8px; color:#17202B; line-height:1.3 }
+ th.l { text-align: left; }
+ td { border-radius: 12px; padding: 12px 10px; text-align: center; font-size: 16px; line-height: 1.3; }
+ td.l { text-align: left; background: #F3F0E8; font-weight: 700; font-size: 17px; }
+ td.l span { display:block; font-weight: 400; font-size: 14px; color:#52514e; margin-top:2px }
+ .yes { background: #E3F4EC; color: #0f6e4d; } .no { background: #FBE7DF; color: #a3401a; } .part { background: #FFF4D6; color: #7a5a00; }
+ .na { background: #f4f4f2; color: #8a8a8a; }
+ td b { font-size: 22px; display: block; } .rec td.l { background: #E6EEFB; }
+ .note { font-size: 14px; color:#52514e; margin-top: 6px }
+</style></head><body><div class="wrap" style="width:1400px">
+<div class="h" style="margin:0 8px 6px">Who-is-who scorecard: what each identity scheme can tell you when agents rename themselves</div>
+<table>
+<tr><th class="l" style="width:24%">Identity scheme</th><th>Which <u>individual copy</u> did it?</th><th>Which <u>operator</u> deployed it?</th><th>Is a <u>hidden boss</u> running several accounts?</th><th>…or are they just <u>honest allies</u>?</th></tr>
+<tr><td class="l">Self-chosen names<span>the agent controls them</span></td><td class="no"><b>✗</b>F1 0.00</td><td class="no"><b>✗</b>F1 0.00</td><td class="no"><b>✗</b>F1 0.00</td><td class="na"><b>–</b>finds no links</td></tr>
+<tr><td class="l">Agent-made keys<span>the agent can make a new one</span></td><td class="no"><b>✗</b>F1 0.00</td><td class="no"><b>✗</b>F1 0.00</td><td class="no"><b>✗</b>F1 0.00</td><td class="na"><b>–</b>finds no links</td></tr>
+<tr><td class="l">Behavioral fingerprints<span>style + meaning of posts</span></td><td class="no"><b>✗</b>AUC 0.50 (coin flip)</td><td class="yes"><b>✓</b>AUC 0.93–0.96</td><td class="yes"><b>✓</b>AUC 0.94–1.00</td><td class="no" id="twin"><b>✗</b>AUC ~0.6</td></tr>
+<tr><td class="l">Gateway ID per account<span>stamped on every AI call</span></td><td class="no"><b>✗</b>copies share one account</td><td class="yes"><b>✓</b>exact</td><td class="part"><b>◐</b>F1 0.88: misses multi-account bosses</td><td class="yes"><b>✓</b>never merges allies</td></tr>
+<tr class="rec"><td class="l">Recommended: gateway ID per copy + fingerprints as leads<span>infrastructure decides; text only flags</span></td><td class="yes"><b>✓</b>by design</td><td class="yes"><b>✓</b>exact</td><td class="part"><b>◐</b>flagged for human review</td><td class="yes"><b>✓</b>humans decide, not text</td></tr>
+</table>
+<div class="note" style="margin:4px 8px 0">AUC: 0.5 = coin flip, 1 = perfect · F1: 0 = nothing recovered, 1 = perfect · measured over 62+ simulated swarms; the recommended row follows by design and is not separately measured.</div>
+</div></body></html>

@@ -25,6 +25,9 @@ COND_LABEL = {"baseline": "No evasion", "persona": "Persona shift\non rename",
               "paraphrase": "Paraphrase\nlaundering", "mixmodel": "Operator mixes\nmodels",
               "nostyle": "No house\nstyle", "subtle": "Subtle\nagenda", "memory": "Per-agent\nmemory",
               "hard": "No style +\nsubtle + memory", "frontier": "Frontier\nmodels",
+              "twins_adaptive": "8 ops,\nadaptive", "large_adaptive": "32 ops,\nadaptive",
+              "twins": "8 ops,\ntwins", "twins_subtle": "8 ops,\ntwins subtle", "large": "32 ops", "large_subtle": "32 ops,\nsubtle",
+              "large_persona": "32 ops,\npersona", "large_memory": "32 ops,\nmemory",
               "frontier_persona": "Frontier +\npersona shift"}
 
 FUNCTION_WORDS = """a about above after again against all am an and any are as at be because been before

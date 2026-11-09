@@ -221,7 +221,7 @@ def contagion(fname="fig5_contagion.png"):
 
 
 
-SYBIL_CONDS = ["twins", "twins_subtle", "large", "large_subtle", "large_persona", "large_memory"]
+SYBIL_CONDS = ["twins", "twins_subtle", "twins_adaptive", "large", "large_subtle", "large_persona", "large_memory", "large_adaptive"]
 
 
 def boot_ci(vals, n=5000, seed=0):
@@ -243,7 +243,8 @@ def agg_key(metrics, key, feat, cond):
 def coordination_vs_agreement(metrics, fname="fig7_coord_vs_agree.png"):
     conds = [c for c in SYBIL_CONDS if any(k.rsplit("_s", 1)[0] == c for k in metrics)]
     labels = {"twins": "8 ops,\nobvious", "twins_subtle": "8 ops,\nsubtle", "large": "32 ops,\nobvious",
-              "large_subtle": "32 ops,\nsubtle", "large_persona": "32 ops,\npersona", "large_memory": "32 ops,\nmemory"}
+              "large_subtle": "32 ops,\nsubtle", "large_persona": "32 ops,\npersona", "large_memory": "32 ops,\nmemory",
+              "twins_adaptive": "8 ops,\nadaptive", "large_adaptive": "32 ops,\nadaptive"}
     fig, axes = plt.subplots(1, 2, figsize=(7.2, 2.8), sharey=True)
     for ax, key, title in [(axes[0], "auc_sybil_vs_honest", "Fronts vs ordinary honest pairs"),
                            (axes[1], "auc_sybil_vs_twin", "Fronts vs honest twins")]:

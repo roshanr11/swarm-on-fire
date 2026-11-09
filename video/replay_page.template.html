@@ -1,0 +1,204 @@
+<title>Swarm Replay</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a single investigation desk. Step rail on top, evidence map left, case notes right; stacks on phones. */
+:root {
+  --ink: #0E1A24; --panel: #172838; --line: #2A4157; --fg: #E8EEF2; --muted: #9DB0C1;
+  --mint: #6FDDBE; --coral: #FF8A5B; --chip: #4A5D70;
+  --display: 'Sora', 'Segoe UI', Arial, sans-serif; --body: 'Source Sans 3', 'Segoe UI', Arial, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) {
+  --ink: #F2F5F7; --panel: #FFFFFF; --line: #D3DCE3; --fg: #12202C; --muted: #4E6274;
+  --mint: #12866A; --coral: #C2501F; --chip: #B4C0CA; color-scheme: light; } }
+:root[data-theme="light"] { --ink: #F2F5F7; --panel: #FFFFFF; --line: #D3DCE3; --fg: #12202C; --muted: #4E6274;
+  --mint: #12866A; --coral: #C2501F; --chip: #B4C0CA; color-scheme: light; }
+body { background: var(--ink); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 40px; }
+.page { max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+header { display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: end; justify-content: space-between; }
+.eyebrow { font-family: var(--mono); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--coral); }
+h1 { font-family: var(--display); font-size: clamp(30px, 4.4vw, 46px); line-height: 1.05; margin: 6px 0 0; letter-spacing: -0.02em; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 62ch; margin: 8px 0 0; }
+.stats { display: flex; gap: 26px; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.stats div { display: flex; flex-direction: column; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.stats b { font-size: 28px; color: var(--fg); font-weight: 600; letter-spacing: 0; }
+nav.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) auto; gap: 8px; }
+nav.steps button { font: inherit; font-size: 15px; text-align: left; color: var(--muted); background: var(--panel); border: 1px solid var(--line);
+  border-radius: 10px; padding: 10px 12px; cursor: pointer; display: flex; gap: 10px; align-items: baseline; min-width: 0; }
+nav.steps button span.n { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+nav.steps button[aria-current="step"] { color: var(--fg); border-color: var(--mint); box-shadow: inset 0 0 0 1px var(--mint); }
+nav.steps button[aria-current="step"] span.n { color: var(--mint); }
+nav.steps button.play { color: var(--ink); background: var(--mint); border-color: var(--mint); font-weight: 600; justify-content: center; }
+button:focus-visible { outline: 2px solid var(--coral); outline-offset: 2px; }
+.desk { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.map { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; aspect-ratio: 1.25; max-width: 100%; overflow: hidden; }
+.maplabel { position: absolute; left: 14px; top: 10px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.a { position: absolute; width: 3.1%; aspect-ratio: 1; transform: translate(-50%, -50%) scale(1); border-radius: 50%; background: var(--chip);
+  transition: left 1.6s cubic-bezier(.6,0,.2,1), top 1.6s cubic-bezier(.6,0,.2,1), background .7s, box-shadow .7s, opacity .4s, transform .4s;
+  display: grid; place-items: center; font-family: var(--mono); font-size: clamp(7px, .8vw, 11px); font-weight: 600; color: transparent; }
+.a.off { opacity: 0; transform: translate(-50%, -50%) scale(.2); }
+.a.front { box-shadow: 0 0 0 2.5px var(--coral); } .a.twin { box-shadow: 0 0 0 2.5px var(--mint); }
+.a.num { color: #0E1A24; }
+svg.links { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.notes { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; min-width: 0; }
+.card h2 { font-family: var(--display); font-size: 20px; margin: 0 0 6px; text-wrap: balance; }
+.card p { margin: 0; color: var(--muted); }
+.card p b { color: var(--fg); }
+.legend { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 14px; font-size: 14px; }
+.legend div { display: flex; gap: 8px; align-items: center; min-width: 0; }
+.sw { width: 14px; height: 14px; border-radius: 50%; flex: none; }
+.feed { display: flex; flex-direction: column; gap: 10px; max-height: 330px; overflow: hidden; }
+.post { border-top: 1px solid var(--line); padding-top: 8px; }
+.post:first-child { border-top: none; padding-top: 0; }
+.who { font-family: var(--mono); font-size: 13px; font-weight: 600; display: flex; gap: 8px; align-items: center; }
+.who .sw { width: 10px; height: 10px; background: var(--chip); }
+.txt { font-size: 14px; color: var(--muted); }
+footer { color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px 20px; }
+footer a { color: var(--mint); }
+@media (max-width: 860px) { .desk { grid-template-columns: minmax(0, 1fr); } nav.steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } nav.steps button.play { grid-column: 1 / -1; } }
+@media (prefers-reduced-motion: reduce) { .a { transition: none; } }
+</style>
+
+<div class="page">
+  <header>
+    <div>
+      <div class="eyebrow">Who Is Who in a Swarm? · real logged run twins_s0</div>
+      <h1>Swarm Replay</h1>
+      <p class="lede">40 AI agents from 8 hidden operators posted for 10 rounds and kept renaming themselves. Step through what a defender sees, who was really behind each name, and what writing-style fingerprints can and cannot tell apart.</p>
+    </div>
+    <div class="stats" aria-live="polite">
+      <div>round<b id="round">10</b></div>
+      <div>posts<b id="nposts">400</b></div>
+      <div>aliases<b id="naliases">226</b></div>
+    </div>
+  </header>
+
+  <nav class="steps" aria-label="Replay steps">
+    <button id="s0" data-step="0"><span class="n">1</span>What the defender sees</button>
+    <button id="s1" data-step="1"><span class="n">2</span>Reveal the operators</button>
+    <button id="s2" data-step="2"><span class="n">3</span>Place by fingerprint</button>
+    <button id="s3" data-step="3"><span class="n">4</span>Copies and allies</button>
+    <button id="play" class="play">▶ Replay from start</button>
+  </nav>
+
+  <div class="desk">
+    <div class="map" id="map">
+      <div class="maplabel" id="maplabel">one dot per username (alias)</div>
+      <svg class="links" id="links" viewBox="0 0 100 80" preserveAspectRatio="none" aria-hidden="true"></svg>
+    </div>
+    <div class="notes">
+      <div class="card" id="explain"><h2></h2><p></p></div>
+      <div class="card" id="legendCard" hidden><div class="legend" id="legend"></div></div>
+      <div class="card"><div class="eyebrow" style="margin-bottom:8px">Forum feed</div><div class="feed" id="feed"></div></div>
+    </div>
+  </div>
+
+  <footer>
+    <span>Data: one of 62 simulated swarms; positions are a 2-D map of combined fingerprint similarity (closer = more alike).</span>
+    <span>Code and report: github.com/roshanr11/swarm-rram</span>
+  </footer>
+</div>
+
+<script>
+window.REPLAY = __DATA__;
+(function () {
+  const R = window.REPLAY;
+  const OPC = ['#5B8DEF','#C08A5B','#E87BA4','#E9C46A','#9B87F5','#3FA34D','#E35D6A','#4FB3C9'];
+  const STEPS = [
+    ['What the defender sees', 'A stream of posts from accounts that keep appearing under new names. Over 10 rounds, 40 agents produce <b>226 usernames</b>. Nothing links them.'],
+    ['Reveal the operators', 'The hidden truth: each color is the company (operator) behind the account. <b>Coral rings</b> are covert fronts run by one hidden boss. <b>Mint rings</b> are honest twins: independent operators who sincerely agree.'],
+    ['Place by fingerprint', 'Each username is placed by what it writes, so similar accounts sit close together. Accounts from the same operator <b>cluster</b>, even across renames.'],
+    ['Copies and allies', 'Numbers show which of an operator’s 5 agents wrote each post: they are <b>mixed together</b>, so text cannot tell copies apart. And the honest twins sit <b>as close</b> as the covert fronts: shared opinion looks like coordination.'],
+  ];
+  const map = document.getElementById('map'), feed = document.getElementById('feed'), $ = id => document.getElementById(id);
+  const fronts = [...new Set(R.aliases.filter(a => a.role === 'front').map(a => a.op))];
+  const twins = [...new Set(R.aliases.filter(a => a.role === 'twin').map(a => a.op))];
+  const byId = Object.fromEntries(R.aliases.map(a => [a.id, a]));
+  const order = []; const seen = new Set();
+  R.posts.forEach(p => { if (!seen.has(p.alias_id)) { seen.add(p.alias_id); order.push(p.alias_id); } });
+  const cols = 16, el = {};
+  order.forEach((id, i) => {
+    const d = document.createElement('div'); d.className = 'a off';
+    d.dataset.gx = 6 + (i % cols) * (88 / (cols - 1)); d.dataset.gy = 10 + Math.floor(i / cols) * 5.6;
+    d.style.left = d.dataset.gx + '%'; d.style.top = d.dataset.gy + '%';
+    d.textContent = (byId[id].agent % 5) + 1; map.appendChild(d); el[id] = d;
+  });
+  const lg = $('legend');
+  for (let o = 0; o < 8; o++) {
+    const r = fronts.includes(o) ? ' · front' : twins.includes(o) ? ' · twin' : '';
+    const ring = fronts.includes(o) ? 'box-shadow:0 0 0 2px var(--coral)' : twins.includes(o) ? 'box-shadow:0 0 0 2px var(--mint)' : '';
+    lg.insertAdjacentHTML('beforeend', `<div><span class="sw" style="background:${OPC[o]};${ring}"></span>Operator ${o + 1}${r}</div>`);
+  }
+  const fx = a => 6 + a.xy[0] * 88, fy = a => 8 + a.xy[1] * 84;
+  function feedPost(p, colored) {
+    const div = document.createElement('div'); div.className = 'post';
+    const c = colored ? OPC[p.op] : 'var(--chip)';
+    div.innerHTML = `<div class="who"><span class="sw" data-op="${p.op}" style="background:${c}"></span>@${p.alias}</div><div class="txt"></div>`;
+    div.querySelector('.txt').textContent = p.text.replace(/@[A-Za-z]+_[A-Za-z]+\d+:?/g, '').trim().slice(0, 140) + '…';
+    feed.prepend(div); while (feed.children.length > 6) feed.lastChild.remove();
+  }
+  let timer = null, step = 0;
+  function setStats(r, n, a) { $('round').textContent = r; $('nposts').textContent = n; $('naliases').textContent = a; }
+  function show(k) {
+    step = k;
+    document.querySelectorAll('nav.steps button[data-step]').forEach(b => { if (+b.dataset.step === k) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); });
+    $('explain').querySelector('h2').textContent = `${k + 1}. ${STEPS[k][0]}`;
+    $('explain').querySelector('p').innerHTML = STEPS[k][1];
+    $('legendCard').hidden = k === 0;
+    $('maplabel').textContent = ['one dot per username (alias)', 'color = hidden operator', 'position = fingerprint similarity', 'number = which of the operator’s 5 agents'][k];
+    order.forEach(id => {
+      const a = byId[id], d = el[id];
+      d.classList.remove('off');
+      d.style.background = k >= 1 ? OPC[a.op] : 'var(--chip)';
+      d.classList.toggle('front', k >= 1 && a.role === 'front');
+      d.classList.toggle('twin', k >= 1 && a.role === 'twin');
+      d.classList.toggle('num', k >= 3);
+      d.style.left = (k >= 2 ? fx(a) : d.dataset.gx) + '%';
+      d.style.top = (k >= 2 ? fy(a) : d.dataset.gy) + '%';
+    });
+    let svg = '';
+    if (k >= 3) {
+      const cen = o => { const xs = R.aliases.filter(a => a.op === o); return [xs.reduce((s, a) => s + fx(a), 0) / xs.length, (xs.reduce((s, a) => s + fy(a), 0) / xs.length) * 0.8]; };
+      const ln = (o1, o2, c) => { const [x1, y1] = cen(o1), [x2, y2] = cen(o2); return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="0.7" stroke-dasharray="2 1.4" stroke-linecap="round"/>`; };
+      svg = ln(fronts[0], fronts[1], 'var(--coral)') + ln(twins[0], twins[1], 'var(--mint)');
+    }
+    $('links').innerHTML = svg;
+    feed.querySelectorAll('.post .sw').forEach(s => { s.style.background = k >= 1 ? OPC[+s.dataset.op] : 'var(--chip)'; });
+  }
+  function streamThenShow(k) {
+    clearInterval(timer); feed.innerHTML = '';
+    order.forEach(id => el[id].classList.add('off'));
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let i = 0, posts = 0; const shown = new Set();
+    show(0); order.forEach(id => el[id].classList.add('off'));
+    const tick = () => {
+      for (let j = 0; j < 8 && i < R.posts.length; j++, i++) {
+        const p = R.posts[i]; posts++;
+        if (!shown.has(p.alias_id)) { shown.add(p.alias_id); el[p.alias_id].classList.remove('off'); }
+        if (i % 4 === 0) feedPost(p, false);
+        setStats(p.r + 1, posts, shown.size);
+      }
+      if (i >= R.posts.length) { clearInterval(timer); timer = null; if (k > 0) chain(k); }
+    };
+    if (reduce) { while (i < R.posts.length) tick(); } else { timer = setInterval(tick, 90); }
+  }
+  function chain(target) {
+    let k = 1; show(k);
+    if (k >= target) return;
+    timer = setInterval(() => { k++; show(k); if (k >= target) { clearInterval(timer); timer = null; } }, 4200);
+  }
+  document.querySelectorAll('nav.steps button[data-step]').forEach(b => b.addEventListener('click', () => {
+    clearInterval(timer); timer = null; const k = +b.dataset.step;
+    if (k === 0) streamThenShow(0); else { setStats(10, R.posts.length, R.aliases.length);
+      if (feed.children.length === 0) R.posts.slice(-6).forEach(p => feedPost(p, true)); show(k); }
+  }));
+  $('play').addEventListener('click', () => streamThenShow(3));
+  // Complete at rest: open on the revealing step with the full run loaded.
+  R.posts.slice(-6).forEach(p => feedPost(p, true));
+  show(3);
+})();
+</script>
