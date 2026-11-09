@@ -35,14 +35,14 @@ BODY = ParagraphStyle("body", parent=ss["BodyText"], fontName="OST", fontSize=10
                       textColor=INK, spaceAfter=6)
 SMALL = ParagraphStyle("small", parent=BODY, fontSize=8.5, leading=10.5)
 CAP = ParagraphStyle("cap", parent=BODY, fontSize=9, leading=11.5, textColor=MUTED, spaceAfter=10)
-TITLE = ParagraphStyle("title", parent=BODY, fontName="OST-Bold", fontSize=18, leading=22,
-                       alignment=TA_CENTER, spaceAfter=6)
+TITLE = ParagraphStyle("title", parent=BODY, fontName="OST-Bold", fontSize=20, leading=25,
+                       alignment=TA_CENTER, spaceAfter=10)
 SUB = ParagraphStyle("sub", parent=BODY, alignment=TA_CENTER, textColor=MUTED, fontSize=10)
 H1 = ParagraphStyle("h1", parent=BODY, fontName="OST-Bold", fontSize=14, leading=18,
                     spaceBefore=10, spaceAfter=4, textColor=colors.HexColor("#434343"), keepWithNext=1)
 H1C = ParagraphStyle("h1c", parent=H1, alignment=TA_CENTER, textColor=INK)
-AUTH = ParagraphStyle("auth", parent=BODY, alignment=TA_CENTER, spaceAfter=0, leading=13)
-AFF = ParagraphStyle("aff", parent=AUTH, fontName="OST-Italic", textColor=MUTED, spaceAfter=6)
+AUTH = ParagraphStyle("auth", parent=BODY, alignment=TA_CENTER, spaceAfter=0, leading=13.5, fontSize=11)
+AFF = ParagraphStyle("aff", parent=AUTH, fontName="OST-Italic", textColor=MUTED, spaceAfter=2)
 H2 = ParagraphStyle("h2", parent=BODY, fontName="OST-Bold", fontSize=10.5, leading=13,
                     spaceBefore=6, spaceAfter=3, keepWithNext=1)
 
@@ -99,11 +99,11 @@ def build():
         if trows:
             flush()
         if s.startswith("# "):
-            flush(); story.append(Paragraph(inline(s[2:]) + "<super>[1]</super>", TITLE))
+            flush(); story.append(Paragraph(inline(s[2:]).replace(": ", ":<br/>", 1) + '<super><font size="9">1</font></super>', TITLE))
         elif s.startswith("::author "):
             flush(); name, aff = s[9:].split("|"); story.append(Paragraph(inline(name), AUTH)); story.append(Paragraph(inline(aff), AFF))
         elif s.startswith("::with "):
-            flush(); story.append(Paragraph("With", AUTH)); story.append(Paragraph("<b>%s</b>" % inline(s[7:]), AUTH)); story.append(Spacer(1, 6))
+            flush(); story.append(Paragraph("with <b>%s</b>" % inline(s[7:]), AUTH)); story.append(Spacer(1, 4))
         elif s.startswith("## Abstract"):
             flush(); story.append(Paragraph("Abstract", H1C))
         elif s.startswith("::sub "):
@@ -137,7 +137,7 @@ def build():
         deco(c, d)
         c.saveState(); c.setFont("OST", 8.5); c.setFillColor(INK)
         c.setStrokeColor(RULE); c.line(2 * cm, 1.98 * cm, 6 * cm, 1.98 * cm)
-        c.drawString(2 * cm, 1.62 * cm, "[1] Research conducted at the Swarm Alignment Hackathon, November 2026")
+        c.drawString(2 * cm, 1.62 * cm, "1 Research conducted at the Swarm Alignment Hackathon, November 2026")
         c.restoreState()
 
     def deco(c, d):

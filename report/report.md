@@ -1,10 +1,7 @@
 # Liar, Liar, Swarm on Fire: Who Is Who in an AI Agent Swarm
 
-::sub Behavioral fingerprints identify an agent's operator, not the individual copy, and shared goals, not coordination
-
 ::author Roshan Ram|Independent
 ::with Apart Research
-::sub Track 3: Strengthening Agent Infrastructure (with Track 4: Multi-Agent Oversight and Control)
 
 ## Abstract
 
