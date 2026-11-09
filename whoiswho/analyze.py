@@ -246,7 +246,8 @@ def analyze_run(posts):
     zthr = float(norm.ppf(1 - 1 / len(iu2[0])))
     res["z_threshold"] = zthr
 
-    def union_merge(Z):
+    def union_merge(Z, thr=None):
+        thr = zthr if thr is None else thr
         parent = list(range(n_ops))
 
         def find(x):
@@ -254,7 +255,7 @@ def analyze_run(posts):
                 parent[x] = parent[parent[x]]
                 x = parent[x]
             return x
-        edges = [(a, b) for a, b in zip(*iu2) if Z[a, b] > zthr]
+        edges = [(a, b) for a, b in zip(*iu2) if Z[a, b] > thr]
         for a, b in edges:
             parent[find(a)] = find(b)
         return np.array([find(o) for o in op]), [(int(a), int(b)) for a, b in edges]
@@ -289,6 +290,9 @@ def analyze_run(posts):
     res["merge_edges_corrected"] = edge_stats(edges)
     res["twins_merged"] = any(twin_pair[a, b] for a, b in edges)
     res["fronts_merged"] = any(sybil_pair[a, b] for a, b in edges)
+    # Threshold sweep for the model-corrected merge (is "merging hurts" an artifact of the threshold?)
+    res["merge_sweep"] = {f"{t:.2f}": pr(same(union_merge(Zc, t)[0]))
+                          for t in np.round(np.arange(1.0, 6.01, 0.25), 2)}
 
     # Keyword baseline: merge operator accounts that mention the same covert product name in
     # >= 25% of their posts (only possible for the blunt agenda, which names the product).

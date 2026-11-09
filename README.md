@@ -2,10 +2,10 @@
 
 **When AI agents can rename themselves, can you still tell who is behind them? Partly: you can tell which company runs an agent, but not which copy acted, and not whether accounts are secretly working together.**
 
-In the July 2026 Hugging Face incident, about 1,200 OpenAI agents used 7,905 self-chosen names, and investigators could not say who did what. I built an open testbed for this problem: LLM agents run by hidden *operators* (the parties that deploy and pay for them) post on a forum and rename themselves at will, while a *covert principal* secretly runs several "independent" accounts (*sybil fronts*) to push a fake product. Across **83 simulated swarms (7,160 agents, 71,600 posts, 8 models)**, names and agent-made keys recovered nothing. Behavioral fingerprints identified an agent's **operator** (ROC-AUC 0.93–0.96) but were at **chance (0.50) on which of its agents** wrote a post. They caught covert fronts against ordinary operators (0.87–0.99) but **could not separate them from honest operators who simply agree** (0.20–0.56). The lesson: identity has to come from infrastructure, such as an ID stamped by the API gateway, and writing fingerprints are leads, not proof.
+In the July 2026 Hugging Face incident, about 1,200 OpenAI agents used 7,905 self-chosen names, and investigators could not say who did what. I built an open testbed for this problem: LLM agents run by hidden *operators* (the parties that deploy and pay for them) post on a forum and rename themselves at will, while a *covert principal* secretly runs several "independent" accounts (*sybil fronts*) to push a fake product. Across **83 simulated swarms (7,160 agents, 71,600 posts, 8 models)**, names and agent-made keys recovered nothing. Behavioral fingerprints identified an agent's **operator** (ROC-AUC 0.93–0.96) but were at **chance (0.50) on which of its agents** wrote a post. They caught covert fronts against ordinary operators (0.87–0.99) but **mostly could not separate them from honest operators given the same agenda** (0.20–0.56 in 7 of 8 conditions; 0.77 under persona shift). The lesson: identity has to come from infrastructure, such as an ID stamped by the API gateway, and writing fingerprints are leads, not proof.
 
 Built solo for Apart Research's [Swarm Alignment Hackathon](https://apartresearch.com/sprints/swarm-alignment-2026) (Nov 6–8, 2026), Track 3 (agent infrastructure) with Track 4 (oversight).
-**Report:** [report/report.pdf](report/report.pdf) · **Video (4:55):** [video/WhoIsWho-demo.mp4](video/WhoIsWho-demo.mp4) · **Interactive replay:** [video/replay_page.html](video/replay_page.html) · **Slides:** [slides/](slides/)
+**Report:** [report/report.pdf](report/report.pdf) · **Video (4:56):** [video/WhoIsWho-demo.mp4](video/WhoIsWho-demo.mp4) · **Interactive replay:** [video/replay_page.html](video/replay_page.html) · **Slides:** [slides/](slides/)
 
 > **Status:** exploratory research and an open testbed (v1). Every result comes from simulation with known ground truth, using short forum posts and 2–10 runs per condition. See [What this does not show](#what-this-does-not-show).
 
@@ -35,7 +35,7 @@ Built solo for Apart Research's [Swarm Alignment Hackathon](https://apartresearc
 **How to read it:** each dot is a username, placed so that similar fingerprints sit close together (2-D MDS). The right panel reveals the truth: color is the operator, the number is which of its 5 agents wrote the post, and the rings mark covert fronts (orange) and honest twins (teal).
 
 - Fingerprints link different agents of the same operator with **AUC 0.94** [0.93, 0.95].
-- Within one operator, they cannot tell which agent wrote what: **0.50**, at both scales and with frontier models. Copies with the same system prompt and model write alike.
+- Within one operator, they cannot tell which agent wrote what: **0.50**, at both scales and with frontier models. That is expected by design (copies with the same prompt and model, no memory), so the interesting part is how slowly it changes:
 - Only two things break the tie: **mixing models** (0.71), and giving each agent **its own memory** (0.56, rising to 0.59 in later rounds).
 
 ## 2. Style hides, goals leak
@@ -54,7 +54,8 @@ Paraphrasing wipes out style, but meaning survives, because an operator's agenda
 **How to read it:** each bar is the AUC for "these two operators share a covert principal". The left panel compares the principal's fronts with ordinary honest operators; the right panel compares them with honest twins. The dashed line is chance.
 
 - Against ordinary operators, fronts stand out: **0.87–0.99**.
-- Against honest twins, they don't: **0.20** with 8 operators, and **0.56** [0.45, 0.66] and **0.54** [0.42, 0.64] with 32 operators over 10 runs each. Both CIs include chance.
+- Against honest twins, they mostly don't: **0.20** with 8 operators, and **0.56** [0.45, 0.66] and **0.54** [0.42, 0.64] with 32 operators over 10 runs each; both CIs include chance. The exception is persona shift at 32 operators: **0.77** [0.62, 0.90].
+- **What this tests:** fronts and twins get the same agenda text, and fronts never communicate. The only difference is an instruction to hide, so this measures whether concealment leaves a trace in text, not real coordination signals like timing.
 - **Adaptive attackers barely escape.** Fronts told their score every round lowered it only from 0.72 to 0.60 (8 operators) and from 0.78 to 0.73 (32), never below the threshold they were given, and 79–88% of their posts still named the product.
 
 ## 4. Attestation anchors; fingerprints only advise
@@ -63,7 +64,7 @@ Paraphrasing wipes out style, but meaning survives, because an operator's agenda
 |---|---|---|---|
 | Self-chosen names | 0.00 | 0.00 | 0.00 |
 | Agent-held keys | 0.00 | 0.00 | 0.00 |
-| Gateway attestation | 0.89 | 0.88 | 0.88 |
+| Gateway attestation (idealized: precision 1 by construction) | 0.89 | 0.88 | 0.88 |
 | + fingerprint merging (model-corrected) | 0.92 | **0.85** | **0.83** |
 
 With 160 agents, fingerprint-based merging proposed 77 joins and **47 were wrong** (14 joined honest twins), so it does worse than attestation alone. Fingerprints should rank accounts for human review, not merge them automatically.
@@ -81,6 +82,7 @@ With 160 agents, fingerprint-based merging proposed 77 joins and **47 were wrong
 - **A simplified world.** One synthetic forum with short posts (median 75 words, about 1.8 posts per alias), 10 rounds, and random rather than strategic renaming.
 - **Small samples.** 2–10 runs per condition. The fronts-vs-twins comparison rests on a few pairs per run, so its CIs are wide.
 - **Identical copies by design.** Real agents differ through tools, tasks and long histories; the memory condition only begins to model this.
+- **No coordination channel.** Fronts share an agenda but never talk to each other.
 - **Schemes scored, not built.** Gateway attestation and keys are evaluated against ground truth, not implemented cryptographically.
 - **A weak adaptive attacker.** Fronts saw their score but could not query the detector.
 - **No labeled real data.** The Swarm Traces probe (report Appendix C) is exploratory; the incident data has no author labels.
