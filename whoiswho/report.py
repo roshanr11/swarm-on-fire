@@ -9,6 +9,17 @@ from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import cm
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.lib.fonts import addMapping
+
+# Apart's official template uses Old Standard TT throughout (OFL font, bundled in report/fonts/).
+_F = Path(__file__).resolve().parent.parent / "report" / "fonts"
+for name, file in [("OST", "OldStandardTT-Regular.ttf"), ("OST-Bold", "OldStandardTT-Bold.ttf"),
+                   ("OST-Italic", "OldStandardTT-Italic.ttf")]:
+    pdfmetrics.registerFont(TTFont(name, str(_F / file)))
+addMapping("OST", 0, 0, "OST"); addMapping("OST", 1, 0, "OST-Bold")
+addMapping("OST", 0, 1, "OST-Italic"); addMapping("OST", 1, 1, "OST-Bold")
 from reportlab.platypus import (Image, KeepTogether, ListFlowable, ListItem, PageBreak, Paragraph,
                                 SimpleDocTemplate, Spacer, Table, TableStyle)
 
@@ -20,16 +31,19 @@ RULE = colors.HexColor("#d9d8d3")
 ACCENT = colors.HexColor("#2a78d6")
 
 ss = getSampleStyleSheet()
-BODY = ParagraphStyle("body", parent=ss["BodyText"], fontName="Times-Roman", fontSize=10.5, leading=14,
+BODY = ParagraphStyle("body", parent=ss["BodyText"], fontName="OST", fontSize=10.5, leading=14,
                       textColor=INK, spaceAfter=6)
 SMALL = ParagraphStyle("small", parent=BODY, fontSize=8.5, leading=10.5)
 CAP = ParagraphStyle("cap", parent=BODY, fontSize=9, leading=11.5, textColor=MUTED, spaceAfter=10)
-TITLE = ParagraphStyle("title", parent=BODY, fontName="Helvetica-Bold", fontSize=17, leading=21,
+TITLE = ParagraphStyle("title", parent=BODY, fontName="OST-Bold", fontSize=18, leading=22,
                        alignment=TA_CENTER, spaceAfter=6)
 SUB = ParagraphStyle("sub", parent=BODY, alignment=TA_CENTER, textColor=MUTED, fontSize=10)
-H1 = ParagraphStyle("h1", parent=BODY, fontName="Helvetica-Bold", fontSize=12.5, leading=16,
-                    spaceBefore=10, spaceAfter=4, textColor=INK, keepWithNext=1)
-H2 = ParagraphStyle("h2", parent=BODY, fontName="Helvetica-Bold", fontSize=10.5, leading=13,
+H1 = ParagraphStyle("h1", parent=BODY, fontName="OST-Bold", fontSize=14, leading=18,
+                    spaceBefore=10, spaceAfter=4, textColor=colors.HexColor("#434343"), keepWithNext=1)
+H1C = ParagraphStyle("h1c", parent=H1, alignment=TA_CENTER, textColor=INK)
+AUTH = ParagraphStyle("auth", parent=BODY, alignment=TA_CENTER, spaceAfter=0, leading=13)
+AFF = ParagraphStyle("aff", parent=AUTH, fontName="OST-Italic", textColor=MUTED, spaceAfter=6)
+H2 = ParagraphStyle("h2", parent=BODY, fontName="OST-Bold", fontSize=10.5, leading=13,
                     spaceBefore=6, spaceAfter=3, keepWithNext=1)
 
 
@@ -85,7 +99,13 @@ def build():
         if trows:
             flush()
         if s.startswith("# "):
-            flush(); story.append(Paragraph(inline(s[2:]), TITLE))
+            flush(); story.append(Paragraph(inline(s[2:]) + "<super>[1]</super>", TITLE))
+        elif s.startswith("::author "):
+            flush(); name, aff = s[9:].split("|"); story.append(Paragraph(inline(name), AUTH)); story.append(Paragraph(inline(aff), AFF))
+        elif s.startswith("::with "):
+            flush(); story.append(Paragraph("With", AUTH)); story.append(Paragraph("<b>%s</b>" % inline(s[7:]), AUTH)); story.append(Spacer(1, 6))
+        elif s.startswith("## Abstract"):
+            flush(); story.append(Paragraph("Abstract", H1C))
         elif s.startswith("::sub "):
             flush(); story.append(Paragraph(inline(s[6:]), SUB))
         elif s.startswith("## "):
@@ -113,9 +133,16 @@ def build():
             para.append(s.strip())
     flush()
 
+    def deco_first(c, d):
+        deco(c, d)
+        c.saveState(); c.setFont("OST", 8.5); c.setFillColor(INK)
+        c.setStrokeColor(RULE); c.line(2 * cm, 1.98 * cm, 6 * cm, 1.98 * cm)
+        c.drawString(2 * cm, 1.62 * cm, "[1] Research conducted at the Swarm Alignment Hackathon, November 2026")
+        c.restoreState()
+
     def deco(c, d):
         c.saveState()
-        c.setFont("Helvetica", 8)
+        c.setFont("OST", 8)
         c.setFillColor(MUTED)
         c.drawRightString(A4[0] - 2 * cm, 1.2 * cm, str(d.page))
         c.drawString(2 * cm, 1.2 * cm, "Liar, Liar, Swarm on Fire · Apart Swarm Alignment Sprint 2026")
@@ -123,7 +150,7 @@ def build():
 
     OUT.parent.mkdir(exist_ok=True)
     SimpleDocTemplate(str(OUT), pagesize=A4, leftMargin=2 * cm, rightMargin=2 * cm, topMargin=1.8 * cm,
-                      bottomMargin=2 * cm, title="Liar, Liar, Swarm on Fire: Who Is Who in an AI Agent Swarm").build(story, onFirstPage=deco,
+                      bottomMargin=2 * cm, title="Liar, Liar, Swarm on Fire: Who Is Who in an AI Agent Swarm").build(story, onFirstPage=deco_first,
                                                                                   onLaterPages=deco)
     print(f"wrote {OUT}")
 
