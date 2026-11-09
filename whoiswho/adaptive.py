@@ -44,7 +44,7 @@ def main():
     fig, axes = plt.subplots(1, 2, figsize=(7.4, 2.6), sharey=True)
     for ax, (base, adapt, lab) in zip(axes, PAIRS):
         for k, cond in enumerate([base, adapt]):
-            runs = sorted(Path("results/runs").glob(f"{cond}_s*.jsonl"))
+            runs = sorted(Path("results/runs").glob(f"{cond}_s[0-9]*.jsonl"))
             curves = [detector_by_round([json.loads(l) for l in f.open()]) for f in runs]
             if not curves:
                 continue
@@ -60,12 +60,12 @@ def main():
                    for feat in ("Semantic embedding", "Style profile", "Combined")
                    for v in [[x[feat][key] for x in fe if key in x[feat]]] if v})
         ax.axhline(0.5, color=MUTED, lw=0.8, ls="--")
-        ax.text(10, 0.505, "flag threshold told to agents", color=MUTED, fontsize=7, ha="right", va="bottom")
+        ax.text(10, 0.507, "flag threshold told to agents", color=MUTED, fontsize=7, ha="right", va="bottom")
         ax.set_title(lab, loc="left", fontsize=9, color=INK)
-        ax.set_xlabel("Round")
+        ax.set_xlabel("Round"); ax.set_ylim(0.48, 0.8)
     axes[0].set_ylabel("Detector score of fronts\n(similarity to own team)")
-    axes[0].legend(fontsize=7.5, loc="lower left")
-    fig.suptitle("Adaptive attacker: fronts told their detector score each round", x=0.01, ha="left", fontsize=10, color=INK)
+    axes[0].legend(fontsize=7.5, loc="upper center", bbox_to_anchor=(1.05, -0.22), ncol=2, frameon=False)
+    fig.suptitle("Adaptive attacker: fronts told their detector score each round", x=0.01, y=1.06, ha="left", fontsize=10, color=INK)
     fig.savefig("results/figures/fig8_adaptive.png", dpi=200, bbox_inches="tight")
     Path("results/adaptive.json").write_text(json.dumps(res, indent=1))
     print(json.dumps(res, indent=1))

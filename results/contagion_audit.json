@@ -1,10 +1,10 @@
 {
  "total": {
-  "SCEPTICAL": 569,
-  "ENDORSE": 109,
-  "NEUTRAL": 175
+  "SCEPTICAL": 731,
+  "ENDORSE": 162,
+  "NEUTRAL": 228
  },
- "n_mentions": 853,
+ "n_mentions": 1121,
  "by_cond": {
   "baseline": {
    "SCEPTICAL": 72,
@@ -18,18 +18,25 @@
    "SCEPTICAL": 11,
    "NEUTRAL": 4
   },
+  "large_adaptive": {
+   "SCEPTICAL": 58,
+   "NEUTRAL": 6,
+   "ENDORSE": 7
+  },
   "large_memory": {
    "SCEPTICAL": 37,
    "NEUTRAL": 6,
    "ENDORSE": 8
   },
   "large_persona": {
-   "SCEPTICAL": 1
+   "SCEPTICAL": 7,
+   "NEUTRAL": 4,
+   "ENDORSE": 9
   },
   "large": {
-   "SCEPTICAL": 95,
-   "NEUTRAL": 22,
-   "ENDORSE": 15
+   "SCEPTICAL": 151,
+   "NEUTRAL": 55,
+   "ENDORSE": 29
   },
   "memory": {
    "ENDORSE": 18,
@@ -56,6 +63,11 @@
    "SCEPTICAL": 37,
    "ENDORSE": 11
   },
+  "twins_adaptive": {
+   "SCEPTICAL": 42,
+   "NEUTRAL": 10,
+   "ENDORSE": 23
+  },
   "twins": {
    "SCEPTICAL": 52,
    "NEUTRAL": 15,
@@ -67,16 +79,18 @@
   "frontier_persona": 600,
   "frontier": 600,
   "hard": 900,
+  "large_adaptive": 4050,
   "large_memory": 4050,
-  "large_persona": 4050,
-  "large": 6750,
-  "large_subtle": 6750,
+  "large_persona": 8100,
+  "large": 13500,
+  "large_subtle": 13500,
   "memory": 900,
   "mixmodel": 1500,
   "nostyle": 900,
   "paraphrase": 1500,
   "persona": 1500,
   "subtle": 900,
+  "twins_adaptive": 1500,
   "twins": 1500,
   "twins_subtle": 1500
  },

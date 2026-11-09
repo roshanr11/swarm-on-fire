@@ -1,0 +1,190 @@
+{
+ "twins": {
+  "n": 5,
+  "detector_first": 0.7234654228459514,
+  "detector_last": 0.7328005870567091,
+  "auc_sybil_vs_honest_semantic": [
+   0.9923076923076923,
+   [
+    0.976923076923077,
+    1.0
+   ]
+  ],
+  "auc_sybil_vs_honest_style": [
+   0.5,
+   [
+    0.2076923076923077,
+    0.7923076923076924
+   ]
+  ],
+  "auc_sybil_vs_honest_combined": [
+   0.9538461538461538,
+   [
+    0.9,
+    0.9923076923076923
+   ]
+  ],
+  "auc_sybil_vs_twin_semantic": [
+   0.4,
+   [
+    0.0,
+    0.8
+   ]
+  ],
+  "auc_sybil_vs_twin_style": [
+   0.2,
+   [
+    0.0,
+    0.6
+   ]
+  ],
+  "auc_sybil_vs_twin_combined": [
+   0.2,
+   [
+    0.0,
+    0.6
+   ]
+  ]
+ },
+ "twins_adaptive": {
+  "n": 5,
+  "detector_first": 0.7234654228459514,
+  "detector_last": 0.6022050935038697,
+  "auc_sybil_vs_honest_semantic": [
+   0.8615384615384615,
+   [
+    0.7615384615384615,
+    0.9615384615384615
+   ]
+  ],
+  "auc_sybil_vs_honest_style": [
+   0.4384615384615384,
+   [
+    0.07692307692307691,
+    0.8
+   ]
+  ],
+  "auc_sybil_vs_honest_combined": [
+   0.6461538461538462,
+   [
+    0.27692307692307694,
+    0.9692307692307693
+   ]
+  ],
+  "auc_sybil_vs_twin_semantic": [
+   0.2,
+   [
+    0.0,
+    0.6
+   ]
+  ],
+  "auc_sybil_vs_twin_style": [
+   0.2,
+   [
+    0.0,
+    0.6
+   ]
+  ],
+  "auc_sybil_vs_twin_combined": [
+   0.2,
+   [
+    0.0,
+    0.6
+   ]
+  ]
+ },
+ "large": {
+  "n": 10,
+  "detector_first": 0.7724787748188439,
+  "detector_last": 0.7507229542904897,
+  "auc_sybil_vs_honest_semantic": [
+   0.9982142857142857,
+   [
+    0.9965293367346938,
+    0.9995408163265307
+   ]
+  ],
+  "auc_sybil_vs_honest_style": [
+   0.7233163265306122,
+   [
+    0.6539783163265306,
+    0.7907142857142857
+   ]
+  ],
+  "auc_sybil_vs_honest_combined": [
+   0.9802551020408163,
+   [
+    0.9701517857142855,
+    0.9897959183673469
+   ]
+  ],
+  "auc_sybil_vs_twin_semantic": [
+   0.5125,
+   [
+    0.3875,
+    0.6375
+   ]
+  ],
+  "auc_sybil_vs_twin_style": [
+   0.5,
+   [
+    0.35,
+    0.65
+   ]
+  ],
+  "auc_sybil_vs_twin_combined": [
+   0.5625,
+   [
+    0.45,
+    0.6625
+   ]
+  ]
+ },
+ "large_adaptive": {
+  "n": 3,
+  "detector_first": 0.7816769737814715,
+  "detector_last": 0.7306652247836012,
+  "auc_sybil_vs_honest_semantic": [
+   0.9350340136054421,
+   [
+    0.8612244897959184,
+    1.0
+   ]
+  ],
+  "auc_sybil_vs_honest_style": [
+   0.7375850340136054,
+   [
+    0.6821428571428573,
+    0.8030612244897958
+   ]
+  ],
+  "auc_sybil_vs_honest_combined": [
+   0.9430272108843538,
+   [
+    0.9091836734693878,
+    0.9989795918367347
+   ]
+  ],
+  "auc_sybil_vs_twin_semantic": [
+   0.625,
+   [
+    0.375,
+    1.0
+   ]
+  ],
+  "auc_sybil_vs_twin_style": [
+   0.5833333333333334,
+   [
+    0.5,
+    0.625
+   ]
+  ],
+  "auc_sybil_vs_twin_combined": [
+   0.5,
+   [
+    0.375,
+    0.625
+   ]
+  ]
+ }
+}

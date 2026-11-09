@@ -20,8 +20,8 @@
  {
   "id": "method",
   "kind": "slide",
-  "text": "So I built a testbed. AI agents, deployed by hidden companies called operators, post on a forum for ten rounds, and keep changing their usernames. Some operators are secret fronts for one hidden boss, pushing a fake product. As a control, others are honest twins: independent companies that sincerely share the same view. Agents try to hide by changing persona, rewording their posts through another AI, or mixing AI models. In total: sixty-two swarms, forty-four thousand posts, and eight AI models, including four of the most advanced.",
-  "dur": 37.96
+  "text": "So I built a testbed. AI agents, deployed by hidden companies called operators, post on a forum for ten rounds, and keep changing their usernames. Some operators are secret fronts for one hidden boss, pushing a fake product. As a control, others are honest twins: independent companies that sincerely share the same view. Agents try to hide by changing persona, rewording their posts through another AI, or mixing AI models. In total: eighty-three swarms, over seventy thousand posts, and eight AI models, including four of the most advanced.",
+  "dur": 39.38
  },
  {
   "id": "terms",
@@ -74,14 +74,14 @@
  {
   "id": "agendas",
   "kind": "slide",
-  "text": "Finding four, and my key control. Fingerprints can tell a hidden boss's fronts apart from ordinary companies almost perfectly. But compared with honest companies that simply agree, they do little better than a coin flip. Text can show a shared agenda. It cannot prove a conspiracy.",
-  "dur": 19.13
+  "text": "Finding four, and my key control. Fingerprints can tell a hidden boss's fronts apart from ordinary companies almost perfectly. But compared with honest companies that simply agree, they do little better than a coin flip, even when the fronts are shown their score and try to hide. Text can show a shared agenda. It cannot prove a conspiracy.",
+  "dur": 23.31
  },
  {
   "id": "merge",
   "kind": "slide",
-  "text": "Finding five. With a hundred and sixty agents, automatically merging look-alike accounts made things worse. Twenty-three of forty merges were wrong, and overall accuracy fell below using the gateway I.D. alone.",
-  "dur": 14.32
+  "text": "Finding five. With a hundred and sixty agents, automatically merging look-alike accounts made things worse. Forty-seven of seventy-seven merges were wrong, and overall accuracy fell below using the gateway I.D. alone.",
+  "dur": 14.64
  },
  {
   "id": "crowd",
