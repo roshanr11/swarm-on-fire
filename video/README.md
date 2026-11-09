@@ -1,6 +1,6 @@
 # Demo video
 
-`WhoIsWho-demo.mp4`: 4:59, 1080p, narrated by Roshan Ram's project voice-over (ElevenLabs). Subtitles are in `WhoIsWho-demo.srt`.
+`WhoIsWho-demo.mp4`: 4:59, 1080p, narrated with an AI voice (ElevenLabs "Brian", generated from my script). Subtitles are in `WhoIsWho-demo.srt`.
 
 | Time | Scene |
 |---|---|
