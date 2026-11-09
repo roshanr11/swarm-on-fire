@@ -1,4 +1,4 @@
-# Name Tags Lie: Who Is Who in an AI Agent Swarm
+# Liar, Liar, Swarm on Fire: Who Is Who in an AI Agent Swarm
 
 **When AI agents can rename themselves, can you still tell who is behind them? Partly: you can tell which company runs an agent, but not which copy acted, and not whether accounts are secretly working together.**
 

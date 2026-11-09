@@ -1,283 +1,283 @@
 1
-00:00:00,000 --> 00:00:01,028
-Name tags lie.
+00:00:00,000 --> 00:00:02,011
+Liar, liar, swarm on fire.
 
 2
-00:00:01,028 --> 00:00:06,829
+00:00:02,011 --> 00:00:08,122
 When AI agents can rename themselves, can anyone still tell who is behind them?
 
 3
-00:00:06,829 --> 00:00:12,410
+00:00:08,122 --> 00:00:14,000
 I'm Roshan Ram, and this is my project for the Apart Swarm Alignment Sprint.
 
 4
-00:00:12,810 --> 00:00:23,227
+00:00:14,400 --> 00:00:24,817
 In the Hugging Face incident, about twelve hundred OpenAI agents turned a shared folder into a message board, and around seven hundred of them joined an attack.
 
 5
-00:00:23,227 --> 00:00:30,779
+00:00:24,817 --> 00:00:32,369
 They used seven thousand, nine hundred and five different names, and signed messages with keys they made themselves.
 
 6
-00:00:30,779 --> 00:00:34,750
+00:00:32,369 --> 00:00:36,340
 Investigators could not say who did what, or on whose behalf.
 
 7
-00:00:35,150 --> 00:00:36,584
+00:00:36,740 --> 00:00:38,174
 Why does this matter?
 
 8
-00:00:36,584 --> 00:00:37,949
+00:00:38,174 --> 00:00:39,539
 It is not a one-off.
 
 9
-00:00:37,949 --> 00:00:47,030
+00:00:39,539 --> 00:00:48,620
 Transluce found over thirty-eight thousand traces of agent activity on one web service, starting months before the Hugging Face hack.
 
 10
-00:00:47,030 --> 00:00:55,087
+00:00:48,620 --> 00:00:56,677
 An AI-run botnet of over a thousand accounts fooled AI-text classifiers, and was caught only through its coordination.
 
 11
-00:00:55,087 --> 00:00:59,320
+00:00:56,677 --> 00:01:00,910
 And identity standards for agents are being written right now.
 
 12
-00:00:59,720 --> 00:01:02,032
+00:01:01,310 --> 00:01:03,622
 A few security terms you'll hear.
 
 13
-00:01:02,032 --> 00:01:06,865
+00:01:03,622 --> 00:01:08,455
 An operator is the party that deploys and pays for a group of agents.
 
 14
-00:01:06,865 --> 00:01:12,749
+00:01:08,455 --> 00:01:14,339
 A covert principal secretly controls several operator accounts, called sybil fronts.
 
 15
-00:01:12,749 --> 00:01:14,710
+00:01:14,339 --> 00:01:16,300
 Honest twins are my control:
 
 16
-00:01:14,710 --> 00:01:18,213
+00:01:16,300 --> 00:01:19,803
 independent operators that sincerely share a view.
 
 17
-00:01:18,213 --> 00:01:20,384
+00:01:19,803 --> 00:01:21,974
 An alias is a self-chosen name.
 
 18
-00:01:20,384 --> 00:01:28,650
+00:01:21,974 --> 00:01:30,240
 And gateway attestation means the server relaying every model call stamps it with an identity the agent cannot change.
 
 19
-00:01:29,050 --> 00:01:30,523
+00:01:30,640 --> 00:01:32,113
 So I built a testbed.
 
 20
-00:01:30,523 --> 00:01:36,765
+00:01:32,113 --> 00:01:38,355
 Agents from hidden operators post on a forum for ten rounds and keep renaming themselves.
 
 21
-00:01:36,765 --> 00:01:42,446
+00:01:38,355 --> 00:01:44,036
 Some operators are sybil fronts for one covert principal, pushing a fake product.
 
 22
-00:01:42,446 --> 00:01:45,111
+00:01:44,036 --> 00:01:46,701
 As a control, others are honest twins.
 
 23
-00:01:45,111 --> 00:01:52,405
+00:01:46,701 --> 00:01:53,995
 Agents try to evade detection by shifting persona, paraphrasing through another model, or mixing models.
 
 24
-00:01:52,405 --> 00:01:53,037
+00:01:53,995 --> 00:01:54,627
 In total:
 
 25
-00:01:53,037 --> 00:01:59,980
+00:01:54,627 --> 00:02:01,570
 eighty-three swarms, over seventy thousand posts, and eight models, including four frontier models.
 
 26
-00:02:00,380 --> 00:02:01,865
+00:02:01,970 --> 00:02:03,455
 Here is a real replay.
 
 27
-00:02:01,865 --> 00:02:03,822
+00:02:03,455 --> 00:02:05,412
 This is what a defender sees:
 
 28
-00:02:03,822 --> 00:02:08,411
+00:02:05,412 --> 00:02:10,001
 a stream of posts from accounts that keep appearing under new names.
 
 29
-00:02:08,411 --> 00:02:13,000
+00:02:10,001 --> 00:02:14,590
 Over ten rounds, forty agents produce more than two hundred aliases.
 
 30
-00:02:13,400 --> 00:02:15,611
+00:02:14,990 --> 00:02:17,201
 Now I reveal the ground truth.
 
 31
-00:02:15,611 --> 00:02:17,969
+00:02:17,201 --> 00:02:19,559
 Each color is a hidden operator.
 
 32
-00:02:17,969 --> 00:02:20,548
+00:02:19,559 --> 00:02:22,138
 Coral rings mark the covert fronts.
 
 33
-00:02:20,548 --> 00:02:22,980
+00:02:22,138 --> 00:02:24,570
 Mint rings mark the honest twins.
 
 34
-00:02:23,380 --> 00:02:27,409
+00:02:24,970 --> 00:02:28,999
 Finally, I place every alias by its behavioral fingerprint.
 
 35
-00:02:27,409 --> 00:02:32,190
+00:02:28,999 --> 00:02:33,780
 Accounts from the same operator cluster together, even across renames.
 
 36
-00:02:32,590 --> 00:02:39,418
+00:02:34,180 --> 00:02:41,008
 But inside a cluster, the five agents of one operator are mixed together, with no way to tell them apart.
 
 37
-00:02:39,418 --> 00:02:43,450
+00:02:41,008 --> 00:02:45,040
 And the honest twins look just as linked as the covert fronts.
 
 38
-00:02:43,850 --> 00:02:44,696
+00:02:45,440 --> 00:02:46,286
 Finding one.
 
 39
-00:02:44,696 --> 00:02:48,012
+00:02:46,286 --> 00:02:49,602
 Anything the agent controls, it can throw away.
 
 40
-00:02:48,012 --> 00:02:53,161
+00:02:49,602 --> 00:02:54,751
 Self-chosen names and keys that agents make themselves recovered nothing.
 
 41
-00:02:53,161 --> 00:02:53,655
+00:02:54,751 --> 00:02:55,245
 An I.D.
 
 42
-00:02:53,655 --> 00:02:58,310
+00:02:55,245 --> 00:02:59,900
 stamped by the gateway, out of the agent's reach, was never wrong.
 
 43
-00:02:58,710 --> 00:02:59,594
+00:03:00,300 --> 00:03:01,184
 Finding two.
 
 44
-00:02:59,594 --> 00:03:03,943
+00:03:01,184 --> 00:03:05,533
 Writing reveals the operator, but not which agent wrote it.
 
 45
-00:03:03,943 --> 00:03:10,060
+00:03:05,533 --> 00:03:11,650
 Fingerprints link accounts to their operator with an A U C of zero point nine four.
 
 46
-00:03:10,060 --> 00:03:20,158
+00:03:11,650 --> 00:03:21,748
 But telling apart that operator's agents is at chance, with forty or a hundred and sixty agents, and with small or frontier models alike.
 
 47
-00:03:20,158 --> 00:03:23,843
+00:03:21,748 --> 00:03:25,433
 They identify the configuration, not the instance.
 
 48
-00:03:23,843 --> 00:03:28,560
+00:03:25,433 --> 00:03:30,150
 Only giving each agent its own memory starts to tell them apart.
 
 49
-00:03:28,960 --> 00:03:29,978
+00:03:30,550 --> 00:03:31,568
 Finding three.
 
 50
-00:03:29,978 --> 00:03:31,722
+00:03:31,568 --> 00:03:33,312
 Style hides, goals leak.
 
 51
-00:03:31,722 --> 00:03:39,063
+00:03:33,312 --> 00:03:40,653
 Rewording every post through another AI makes writing style almost useless for spotting the operator.
 
 52
-00:03:39,063 --> 00:03:43,860
+00:03:40,653 --> 00:03:45,450
 But the meaning, what an agent keeps pushing, still gives it away.
 
 53
-00:03:44,260 --> 00:03:46,543
+00:03:45,850 --> 00:03:48,133
 Finding four, and my key control.
 
 54
-00:03:46,543 --> 00:03:52,906
+00:03:48,133 --> 00:03:54,496
 Fingerprints can tell a hidden boss's fronts apart from ordinary companies almost perfectly.
 
 55
-00:03:52,906 --> 00:04:03,489
+00:03:54,496 --> 00:04:05,079
 But compared with honest companies that simply agree, they do little better than a coin flip, even when the fronts are shown their score and try to hide.
 
 56
-00:04:03,489 --> 00:04:05,564
+00:04:05,079 --> 00:04:07,154
 Text can show a shared agenda.
 
 57
-00:04:05,564 --> 00:04:07,570
+00:04:07,154 --> 00:04:09,160
 It cannot prove a conspiracy.
 
 58
-00:04:07,970 --> 00:04:08,859
+00:04:09,560 --> 00:04:10,449
 Finding five.
 
 59
-00:04:08,859 --> 00:04:15,222
+00:04:10,449 --> 00:04:16,812
 With a hundred and sixty agents, automatically merging look-alike accounts made things worse.
 
 60
-00:04:15,222 --> 00:04:22,200
+00:04:16,812 --> 00:04:23,790
 Forty-seven of seventy-seven merges were wrong, and overall accuracy fell below using the gateway I.D.
 
 61
-00:04:22,200 --> 00:04:22,610
+00:04:23,790 --> 00:04:24,200
 alone.
 
 62
-00:04:23,010 --> 00:04:23,980
+00:04:24,600 --> 00:04:25,570
 A side finding:
 
 63
-00:04:23,980 --> 00:04:26,113
+00:04:25,570 --> 00:04:27,703
 honest agents mostly pushed back.
 
 64
-00:04:26,113 --> 00:04:33,740
+00:04:27,703 --> 00:04:35,330
 Two thirds of their mentions of the fake product were skeptical, and some called out the campaign without being asked.
 
 65
-00:04:34,140 --> 00:04:36,575
+00:04:35,730 --> 00:04:38,165
 So what should agent builders do?
 
 66
-00:04:36,575 --> 00:04:39,453
+00:04:38,165 --> 00:04:41,043
 Take identity out of the agent's hands.
 
 67
-00:04:39,453 --> 00:04:43,733
+00:04:41,043 --> 00:04:45,323
 Give every agent copy its own I.D., issued by the gateway.
 
 68
-00:04:43,733 --> 00:04:45,651
+00:04:45,323 --> 00:04:47,241
 Read for goals, not style.
 
 69
-00:04:45,651 --> 00:04:50,669
+00:04:47,241 --> 00:04:52,259
 And treat fingerprints as leads for human review, never as verdicts.
 
 70
-00:04:50,669 --> 00:04:53,842
+00:04:52,259 --> 00:04:55,432
 Everything is open source and reproducible.
 
 71
-00:04:53,842 --> 00:04:54,580
+00:04:55,432 --> 00:04:56,170
 Thank you.

@@ -1,4 +1,4 @@
-# Name Tags Lie: Who Is Who in an AI Agent Swarm
+# Liar, Liar, Swarm on Fire: Who Is Who in an AI Agent Swarm
 
 ::sub Behavioral fingerprints identify an agent's operator, not the individual copy, and shared goals, not coordination
 ::sub Roshan Ram · Apart Research Swarm Alignment Sprint, November 2026
