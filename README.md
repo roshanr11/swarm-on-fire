@@ -67,7 +67,7 @@ Paraphrasing wipes out style, but meaning survives, because an operator's agenda
 | Gateway attestation (idealized: precision 1 by construction) | 0.89 | 0.88 | 0.88 |
 | + fingerprint merging (model-corrected) | 0.92 | **0.85** | **0.83** |
 
-With 160 agents, fingerprint-based merging proposed 77 joins and **47 were wrong** (14 joined honest twins), so it does worse than attestation alone. Fingerprints should rank accounts for human review, not merge them automatically.
+Attestation here is idealized: it is scored from ground truth, so it never mislinks by construction. With 160 agents, fingerprint merging at the preset threshold proposed 77 joins and **47 were wrong** (14 joined honest twins), so it does worse than attestation alone (−0.03 [−0.08, 0.00]). A [threshold sweep](results/figures/fig11_merge_sweep.png) shows stricter thresholds gain +0.03 to +0.09 F1 at 160 agents, but the best threshold differs by setting and was found with ground truth a defender lacks; with honest twins in the small swarm, no threshold helps. Fingerprints should rank accounts for human review, not merge them automatically.
 
 **Side finding: the honest crowd pushes back.** Of 1,121 honest mentions of a fake product, 65% were skeptical and only 14% endorsed it. Some honest agents spotted the campaign on their own: *"Several replies here recommend it without showing numbers, so I'd treat those claims as unverified until we see them."*
 

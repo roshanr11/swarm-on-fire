@@ -2,7 +2,7 @@
 <p style="position:absolute;right:128px;top:80px;width:700px;font-family:'Space Grotesk', Arial, sans-serif;font-size:360px;font-weight:700;line-height:1;text-align:right;color:transparent;-webkit-text-stroke:3px #2A4157">05</p>
 <div style="display:flex;flex-direction:column;gap:20px">
 <p style="font-family:'Space Mono', 'Courier New', monospace;font-size:26px;color:#FF8A5B">FINDING 05 · AT 160 AGENTS</p>
-<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.08;letter-spacing:-1px;width:1250px">Fingerprint-based account merging backfires at scale</h2>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.08;letter-spacing:-1px;width:1250px">Automatic merging needs a threshold you can't calibrate</h2>
 </div>
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#A3B3C2">77 MERGES PROPOSED ACROSS TEN 160-AGENT SWARMS</p>
@@ -19,9 +19,9 @@
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#182B3B;border-radius:20px;padding:32px 36px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:80px;font-weight:700;line-height:1;color:#FF8A5B">0.85</p>
-<p style="font-size:28px;color:#A3B3C2">+ fingerprint merging: worse (subtle agenda: 0.83)</p>
+<p style="font-size:28px;color:#A3B3C2">+ merging at the preset threshold: worse. Stricter, hindsight-tuned thresholds: 0.91–0.93</p>
 </div>
 </div>
-<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#6B7F92">ATTRIBUTION F1 · MERGE RULE FIXED BEFORE SEEING RESULTS · 10/12</p>
-<aside>With a single front pair in a small swarm, fingerprint merging helps once corrected for shared base models. At scale, sincere allies and look-alike missions produce too many false matches. Fingerprints should rank accounts for human review, not merge them automatically.</aside>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#6B7F92">ATTRIBUTION F1 · PRESET THRESHOLD FIXED BEFORE SEEING RESULTS · IDEALIZED ATTESTATION · 10/12</p>
+<aside>At the preset threshold, sincere allies and look-alike missions produce too many false merges: 47 of 77. A stricter threshold gains a few points of F1 at 160 agents, but the best one differs by setting and I found it using ground truth a defender would not have. With honest twins in the small swarm, no threshold helps. Fingerprints should rank accounts for human review.</aside>
 </section>
