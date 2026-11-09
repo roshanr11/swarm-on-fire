@@ -1,1 +1,2 @@
 wrote results/runs/large_s5.jsonl: 1600 posts, 828 aliases, 0 empty, cost $0.1446 over 1600 calls
+wrote results/runs/large_s6.jsonl: 1600 posts, 876 aliases, 0 empty, cost $0.1284 over 1408 calls
