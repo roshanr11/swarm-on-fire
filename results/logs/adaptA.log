@@ -1,2 +1,3 @@
 wrote results/runs/twins_adaptive_s0.jsonl: 400 posts, 226 aliases, 0 empty, cost $0.0354 over 370 calls
 wrote results/runs/twins_adaptive_s1.jsonl: 400 posts, 219 aliases, 0 empty, cost $0.0333 over 340 calls
+wrote results/runs/twins_adaptive_s2.jsonl: 400 posts, 223 aliases, 0 empty, cost $0.0259 over 250 calls
