@@ -66,9 +66,9 @@ footer a { color: var(--mint); }
 <div class="page">
   <header>
     <div>
-      <div class="eyebrow">Who Is Who in a Swarm? · real logged run twins_s0</div>
+      <div class="eyebrow">Who Is Who in a Swarm? · a real recorded run</div>
       <h1>Swarm Replay</h1>
-      <p class="lede">40 AI agents from 8 hidden operators posted for 10 rounds and kept renaming themselves. Step through what a defender sees, who was really behind each name, and what writing-style fingerprints can and cannot tell apart.</p>
+      <p class="lede">40 AI agents (programs that act on their own), run by 8 hidden companies (operators), posted on a forum for 10 rounds and kept renaming themselves. Step through what an investigator sees, who was really behind each name, and what writing fingerprints (profiles built only from what each account writes) can and cannot tell apart.</p>
     </div>
     <div class="stats" aria-live="polite">
       <div>round<b id="round">10</b></div>
@@ -78,7 +78,7 @@ footer a { color: var(--mint); }
   </header>
 
   <nav class="steps" aria-label="Replay steps">
-    <button id="s0" data-step="0"><span class="n">1</span>What the defender sees</button>
+    <button id="s0" data-step="0"><span class="n">1</span>What an investigator sees</button>
     <button id="s1" data-step="1"><span class="n">2</span>Reveal the operators</button>
     <button id="s2" data-step="2"><span class="n">3</span>Place by fingerprint</button>
     <button id="s3" data-step="3"><span class="n">4</span>Copies and allies</button>
@@ -98,7 +98,7 @@ footer a { color: var(--mint); }
   </div>
 
   <footer>
-    <span>Data: one of 83 simulated swarms; positions are a 2-D map of combined fingerprint similarity (closer = more alike).</span>
+    <span>Data: one of 83 simulated swarms. In steps 3 and 4, accounts with more similar writing sit closer together.</span>
     <span>Code and report: github.com/roshanr11/swarm-rram</span>
   </footer>
 </div>
@@ -109,10 +109,10 @@ window.REPLAY = {"run": "twins_s0", "posts": [{"r": 0, "alias": "atlas_wren37", 
   const R = window.REPLAY;
   const OPC = ['#5B8DEF','#C08A5B','#E87BA4','#E9C46A','#9B87F5','#3FA34D','#E35D6A','#4FB3C9'];
   const STEPS = [
-    ['What the defender sees', 'A stream of posts from accounts that keep appearing under new names. Over 10 rounds, 40 agents produce <b>226 usernames</b>. Nothing links them.'],
-    ['Reveal the operators', 'The hidden truth: each color is the company (operator) behind the account. <b>Coral rings</b> are covert fronts run by one hidden boss. <b>Mint rings</b> are honest twins: independent operators who sincerely agree.'],
+    ['What an investigator sees', 'A stream of posts from accounts that keep appearing under new names. Over 10 rounds, 40 agents produce <b>226 usernames</b>. Nothing links them.'],
+    ['Reveal the operators', 'The hidden truth: each color is the company (operator) behind the account. <b>Coral rings</b> are fronts: fake “independent” accounts secretly run by one hidden boss. <b>Mint rings</b> are honest twins: truly independent companies that happen to agree.'],
     ['Place by fingerprint', 'Each username is placed by what it writes, so similar accounts sit close together. Accounts from the same operator <b>cluster</b>, even across renames.'],
-    ['Copies and allies', 'Numbers show which of an operator’s 5 agents wrote each post: they are <b>mixed together</b>, so text cannot tell copies apart. And the honest twins sit <b>as close</b> as the covert fronts: shared opinion looks like coordination.'],
+    ['Copies and allies', 'Numbers show which of an operator’s 5 agents wrote each post: they are <b>mixed together</b>, so writing cannot tell copies apart. And the honest twins sit <b>as close</b> as the hidden boss’s fronts: honest agreement looks just like secret teamwork.'],
   ];
   const map = document.getElementById('map'), feed = document.getElementById('feed'), $ = id => document.getElementById(id);
   const fronts = [...new Set(R.aliases.filter(a => a.role === 'front').map(a => a.op))];
@@ -149,7 +149,7 @@ window.REPLAY = {"run": "twins_s0", "posts": [{"r": 0, "alias": "atlas_wren37", 
     $('explain').querySelector('h2').textContent = `${k + 1}. ${STEPS[k][0]}`;
     $('explain').querySelector('p').innerHTML = STEPS[k][1];
     $('legendCard').hidden = k === 0;
-    $('maplabel').textContent = ['one dot per username (alias)', 'color = hidden operator', 'position = fingerprint similarity', 'number = which of the operator’s 5 agents'][k];
+    $('maplabel').textContent = ['one dot per username (alias)', 'color = the company really behind it', 'closer = more similar writing', 'number = which of the operator’s 5 agents'][k];
     order.forEach(id => {
       const a = byId[id], d = el[id];
       d.classList.remove('off');

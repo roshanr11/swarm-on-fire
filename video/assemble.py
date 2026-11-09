@@ -5,7 +5,7 @@ import subprocess
 from pathlib import Path
 
 B = Path("video/build")
-GAP = 0.5
+GAP = 0.4
 FPS = 30
 sc = json.load(open("video/script.json"))
 enc = ["-c:v", "libx264", "-pix_fmt", "yuv420p", "-r", str(FPS), "-preset", "medium", "-crf", "20",

@@ -14,20 +14,20 @@
  {
   "id": "why",
   "kind": "slide",
-  "text": "Why does this matter? It is not a one-off. Transluce found over thirty-eight thousand traces of agent activity on one web service, starting months before the Hugging Face hack. An AI botnet of over a thousand accounts fooled text detectors. And the identity rules for AI agents are being written right now.",
-  "dur": 20.34
- },
- {
-  "id": "method",
-  "kind": "slide",
-  "text": "So I built a testbed. AI agents, deployed by hidden companies called operators, post on a forum for ten rounds, and keep changing their usernames. Some operators are secret fronts for one hidden boss, pushing a fake product. As a control, others are honest twins: independent companies that sincerely share the same view. Agents try to hide by changing persona, rewording their posts through another AI, or mixing AI models. In total: eighty-three swarms, over seventy thousand posts, and eight AI models, including four of the most advanced.",
-  "dur": 39.38
+  "text": "Why does this matter? It is not a one-off. The research group Transluce found over thirty-eight thousand traces of AI-agent activity on one website, starting months before the Hugging Face hack. A network of over a thousand fake AI-run accounts fooled AI-text detectors. And the rules for identifying AI agents are being written right now.",
+  "dur": 24.14
  },
  {
   "id": "terms",
   "kind": "slide",
-  "text": "A few words you will hear. An operator is the company that deploys the agents. A front is a fake independent account run by a hidden boss. An alias is just a username. The gateway is the server every AI request passes through, so it can stamp an I.D. the agent cannot change. A fingerprint is a profile built only from what an account writes. And for scores: point five is a coin flip, and one is perfect.",
-  "dur": 28.54
+  "text": "First, a few words you will hear. An agent is an AI program that acts on its own, and a swarm is a big group of them. An operator is the company that runs the agents. A front is a fake independent account run by a hidden boss. An alias is just a username. The gateway is the server every AI request passes through, so it can stamp an I.D. the agent cannot change. A fingerprint is a profile built only from what an account writes. And for scores: point five is a coin flip, and one is perfect.",
+  "dur": 34.16
+ },
+ {
+  "id": "method",
+  "kind": "slide",
+  "text": "So I built a test setup. Agents from hidden companies post on a forum for ten rounds and keep changing their usernames. Some companies are secret fronts for one hidden boss, pushing a fake product. As a control, others are honest twins: independent companies that sincerely agree. Agents try to hide by changing their writing voice, rewording posts through another AI, or mixing AI models. In total: eighty-three swarms, over seventy thousand posts, and eight AI models.",
+  "dur": 32.8
  },
  {
   "id": "demoA",
@@ -62,8 +62,8 @@
  {
   "id": "operator",
   "kind": "slide",
-  "text": "Finding two. Writing reveals the operator, but not which agent wrote it. Fingerprints spot that two accounts share an operator with a score of zero point nine four, close to perfect. But telling apart that operator's agents is a coin flip, with forty or a hundred and sixty agents, and with small or frontier models alike. Only giving each agent its own memory starts to tell them apart.",
-  "dur": 26.77
+  "text": "Finding two. Writing reveals the operator, but not which agent wrote it. Fingerprints spot that two accounts share an operator with a score of zero point nine four, close to perfect. But telling apart that operator's agents is a coin flip, with forty or a hundred and sixty agents, and with everyday or the most advanced AI models alike. Only giving each agent its own memory starts to tell them apart.",
+  "dur": 27.22
  },
  {
   "id": "goals",

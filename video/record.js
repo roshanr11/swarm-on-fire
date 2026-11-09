@@ -4,7 +4,7 @@ const fs = require('fs'), path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const OUT = path.join(ROOT, 'video', 'build'); fs.mkdirSync(OUT, { recursive: true });
 const script = JSON.parse(fs.readFileSync(path.join(ROOT, 'video', 'script.json')));
-const GAP = 0.5;
+const GAP = 0.4;
 const BLOBS = {
   '/_blob/df432f8d4717ac826d3d3b8fba080b60': 'results/figures/fig1_reid_auc.png',
   '/_blob/2e4d58fc7a22889c05f42977cd30dede': 'results/figures/fig7_coord_vs_agree.png',

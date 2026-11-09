@@ -4,14 +4,14 @@
 <div class="cols" style="grid-template-columns: 1fr 30px 0.9fr 30px 1.5fr 30px 0.9fr;">
  <div class="col" style="background:#fff;padding:0">
   <div class="card" style="flex:1"><div class="t mono" style="font-size:17px">sim.py · large.py</div>
-   <div class="s"><b>design()</b>: operators, fronts, honest twins, model pairing per seed<br><b>run()</b>: 10 rounds, renames, evasion conditions</div></div>
+   <div class="s"><b>design()</b>: sets up operators, the hidden boss's fronts, honest twins and AI models<br><b>run()</b>: 10 rounds of posting and renaming, plus hiding tactics</div></div>
   <div class="card" style="border-color:#2a63c9;flex:1"><div class="t mono" style="font-size:17px;color:#2a63c9">llm.py</div>
-   <div class="s">OpenRouter chat + embeddings. On-disk cache: every response replays exactly, $0 to rerun.</div></div>
+   <div class="s">Calls the AI models (via OpenRouter) and saves every answer, so every run replays exactly, for free.</div></div>
  </div>
  <div class="arrow">→</div>
  <div class="col" style="background:#fff;padding:0">
   <div class="card gold" style="background:#FFF7E0;flex:1"><div class="t mono" style="font-size:16px">results/runs/*.jsonl</div>
-   <div class="s">every post + hidden labels: agent, operator, principal, model, role (front / twin)</div></div>
+   <div class="s">every post, saved with the true answer: which agent, operator, boss and AI model wrote it</div></div>
   <div class="card" style="flex:1"><div class="t mono" style="font-size:16px">data/ (real)</div>
    <div class="s">Swarm Traces payloads → <b>realdata.py</b> (exploratory probe)</div></div>
  </div>
@@ -20,18 +20,18 @@
   <div class="t mono" style="font-size:18px">analyze.py</div>
   <div class="s"><b>aliases_of()</b>: group each alias's posts · <b>feature_sims()</b>: four fingerprints</div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-   <div class="card"><div class="t" style="font-size:16px">Keyword</div><div class="s">word TF-IDF</div></div>
-   <div class="card"><div class="t" style="font-size:16px">Char n-grams</div><div class="s">2–4-character TF-IDF</div></div>
-   <div class="card"><div class="t" style="font-size:16px">Style profile</div><div class="s">150 function words, punctuation, length</div></div>
-   <div class="card"><div class="t" style="font-size:16px">Semantic</div><div class="s">AI embedding, round topic removed</div></div>
+   <div class="card"><div class="t" style="font-size:16px">Keyword</div><div class="s">which unusual words an account uses</div></div>
+   <div class="card"><div class="t" style="font-size:16px">Char n-grams</div><div class="s">short runs of letters and symbols</div></div>
+   <div class="card"><div class="t" style="font-size:16px">Style profile</div><div class="s">common little words, punctuation, length</div></div>
+   <div class="card"><div class="t" style="font-size:16px">Semantic</div><div class="s">AI summary of what posts are about</div></div>
   </div>
-  <div class="s" style="color:#17202B">→ <b>Combined</b> = mean of z-scored similarities</div>
-  <div class="s"><b>analyze_run()</b>: pairwise AUC on disjoint-round alias pairs · fronts vs honest / vs twins · gateway + fingerprint merge (union-find, threshold fixed in advance)</div>
+  <div class="s" style="color:#17202B">→ <b>Combined</b> = average of the three, on one scale</div>
+  <div class="s"><b>analyze_run()</b>: scores every comparison (same agent? same operator? hidden boss vs. honest twins?) and every ID approach, including automatic merging with a cut-off fixed in advance</div>
  </div>
  <div class="arrow">→</div>
  <div class="col" style="background:#fff;padding:0">
   <div class="card aqua" style="background:#EAF7F2;flex:1"><div class="t mono" style="font-size:16px;color:#17202B">metrics.json</div><div class="s">per run · per fingerprint · per scheme</div></div>
-  <div class="card" style="flex:1"><div class="t mono" style="font-size:16px">plots.py · report.py</div><div class="s">figures, tables with bootstrap CIs, this PDF</div></div>
+  <div class="card" style="flex:1"><div class="t mono" style="font-size:16px">plots.py · report.py</div><div class="s">figures, tables with confidence ranges, this PDF</div></div>
   <div class="card" style="flex:1"><div class="t mono" style="font-size:16px">video/</div><div class="s">replay of a logged swarm, narrated demo</div></div>
  </div>
 </div></div></body></html>

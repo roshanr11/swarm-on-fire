@@ -3,7 +3,7 @@
 
 ### Re-identify renamed agent
 
-| Feature | No evasion | Persona shift on rename | Paraphrase laundering | Operator mixes models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
+| Feature | No hiding | Persona shift on rename | AI rewording | Operator mixes AI models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Keyword (word TF-IDF) | 0.85 [0.83, 0.86] | 0.72 [0.71, 0.73] | 0.66 [0.64, 0.67] | 0.82 [0.81, 0.83] | 0.84 [0.83, 0.85] | 0.84 [0.83, 0.85] | 0.87 [0.85, 0.89] | 0.85 [0.84, 0.86] | 0.85 [0.85, 0.85] | 0.81 [0.81, 0.82] |
 | Char n-grams | 0.81 [0.80, 0.83] | 0.71 [0.70, 0.72] | 0.60 [0.59, 0.62] | 0.79 [0.77, 0.80] | 0.80 [0.77, 0.83] | 0.81 [0.80, 0.83] | 0.84 [0.83, 0.85] | 0.83 [0.82, 0.83] | 0.80 [0.80, 0.81] | 0.79 [0.78, 0.79] |
@@ -13,7 +13,7 @@
 
 ### Re-identify agent, within one operator account
 
-| Feature | No evasion | Persona shift on rename | Paraphrase laundering | Operator mixes models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
+| Feature | No hiding | Persona shift on rename | AI rewording | Operator mixes AI models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Keyword (word TF-IDF) | 0.51 [0.51, 0.52] | 0.49 [0.48, 0.50] | 0.51 [0.50, 0.53] | 0.65 [0.65, 0.66] | 0.51 [0.50, 0.53] | 0.51 [0.50, 0.52] | 0.57 [0.55, 0.59] | 0.57 [0.56, 0.59] | 0.52 [0.50, 0.54] | 0.50 [0.49, 0.50] |
 | Char n-grams | 0.51 [0.51, 0.52] | 0.50 [0.49, 0.50] | 0.50 [0.49, 0.52] | 0.65 [0.64, 0.66] | 0.51 [0.50, 0.52] | 0.51 [0.50, 0.51] | 0.55 [0.54, 0.57] | 0.56 [0.54, 0.58] | 0.51 [0.50, 0.53] | 0.50 [0.50, 0.50] |
@@ -23,7 +23,7 @@
 
 ### Within operator, both aliases in rounds 1-5
 
-| Feature | No evasion | Persona shift on rename | Paraphrase laundering | Operator mixes models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
+| Feature | No hiding | Persona shift on rename | AI rewording | Operator mixes AI models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Keyword (word TF-IDF) | 0.53 [0.52, 0.54] | 0.49 [0.48, 0.50] | 0.51 [0.48, 0.53] | 0.65 [0.62, 0.68] | 0.53 [0.52, 0.54] | 0.55 [0.52, 0.57] | 0.59 [0.55, 0.64] | 0.59 [0.53, 0.68] | 0.53 [0.53, 0.53] | 0.50 [0.50, 0.51] |
 | Char n-grams | 0.53 [0.52, 0.55] | 0.50 [0.49, 0.50] | 0.51 [0.49, 0.53] | 0.66 [0.64, 0.68] | 0.53 [0.52, 0.54] | 0.54 [0.53, 0.55] | 0.58 [0.54, 0.60] | 0.58 [0.55, 0.63] | 0.53 [0.52, 0.53] | 0.51 [0.50, 0.51] |
@@ -33,7 +33,7 @@
 
 ### Within operator, both aliases in rounds 6-10
 
-| Feature | No evasion | Persona shift on rename | Paraphrase laundering | Operator mixes models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
+| Feature | No hiding | Persona shift on rename | AI rewording | Operator mixes AI models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Keyword (word TF-IDF) | 0.50 [0.49, 0.52] | 0.49 [0.47, 0.51] | 0.52 [0.49, 0.55] | 0.65 [0.63, 0.66] | 0.51 [0.48, 0.55] | 0.51 [0.50, 0.53] | 0.59 [0.57, 0.61] | 0.61 [0.58, 0.66] | 0.55 [0.51, 0.59] | 0.49 [0.49, 0.49] |
 | Char n-grams | 0.50 [0.49, 0.51] | 0.50 [0.49, 0.51] | 0.50 [0.48, 0.52] | 0.65 [0.63, 0.66] | 0.50 [0.47, 0.52] | 0.50 [0.47, 0.52] | 0.57 [0.56, 0.59] | 0.60 [0.57, 0.62] | 0.54 [0.53, 0.56] | 0.49 [0.48, 0.49] |
@@ -43,7 +43,7 @@
 
 ### Same operator (different agents)
 
-| Feature | No evasion | Persona shift on rename | Paraphrase laundering | Operator mixes models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
+| Feature | No hiding | Persona shift on rename | AI rewording | Operator mixes AI models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Keyword (word TF-IDF) | 0.88 [0.87, 0.89] | 0.75 [0.74, 0.77] | 0.66 [0.65, 0.68] | 0.74 [0.72, 0.76] | 0.87 [0.85, 0.89] | 0.87 [0.87, 0.88] | 0.88 [0.85, 0.90] | 0.86 [0.85, 0.87] | 0.87 [0.86, 0.89] | 0.85 [0.84, 0.85] |
 | Char n-grams | 0.84 [0.82, 0.86] | 0.73 [0.72, 0.75] | 0.61 [0.60, 0.62] | 0.70 [0.68, 0.72] | 0.83 [0.81, 0.85] | 0.84 [0.82, 0.86] | 0.85 [0.83, 0.88] | 0.83 [0.82, 0.85] | 0.82 [0.81, 0.84] | 0.81 [0.81, 0.82] |
@@ -51,9 +51,9 @@
 | Semantic embedding | 0.94 [0.93, 0.94] | 0.87 [0.86, 0.88] | 0.82 [0.81, 0.83] | 0.84 [0.82, 0.86] | 0.92 [0.91, 0.93] | 0.94 [0.93, 0.95] | 0.94 [0.93, 0.95] | 0.92 [0.92, 0.93] | 0.97 [0.97, 0.97] | 0.92 [0.92, 0.92] |
 | Combined | 0.94 [0.93, 0.95] | 0.84 [0.83, 0.85] | 0.72 [0.71, 0.73] | 0.81 [0.79, 0.82] | 0.92 [0.91, 0.93] | 0.94 [0.94, 0.95] | 0.94 [0.94, 0.95] | 0.92 [0.92, 0.93] | 0.96 [0.96, 0.97] | 0.91 [0.90, 0.91] |
 
-### Same base model (different operators) — confound
+### Same AI model (different operators): the shared-model effect
 
-| Feature | No evasion | Persona shift on rename | Paraphrase laundering | Operator mixes models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
+| Feature | No hiding | Persona shift on rename | AI rewording | Operator mixes AI models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Keyword (word TF-IDF) | 0.61 [0.59, 0.63] | 0.57 [0.57, 0.58] | 0.52 [0.51, 0.53] | 0.59 [0.59, 0.60] | 0.62 [0.60, 0.64] | 0.63 [0.61, 0.64] | 0.64 [0.61, 0.67] | 0.65 [0.63, 0.68] | 0.66 [0.66, 0.66] | 0.61 [0.61, 0.62] |
 | Char n-grams | 0.61 [0.59, 0.63] | 0.58 [0.58, 0.59] | 0.51 [0.50, 0.52] | 0.59 [0.58, 0.60] | 0.63 [0.60, 0.66] | 0.64 [0.62, 0.67] | 0.64 [0.61, 0.68] | 0.66 [0.64, 0.70] | 0.64 [0.63, 0.65] | 0.63 [0.63, 0.63] |
@@ -63,7 +63,7 @@
 
 ### ARI: clustering into operators
 
-| Feature | No evasion | Persona shift on rename | Paraphrase laundering | Operator mixes models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
+| Feature | No hiding | Persona shift on rename | AI rewording | Operator mixes AI models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Keyword (word TF-IDF) | 0.47 [0.42, 0.53] | 0.23 [0.17, 0.27] | 0.02 [0.00, 0.06] | 0.13 [0.13, 0.14] | 0.43 [0.39, 0.48] | 0.46 [0.39, 0.60] | 0.44 [0.27, 0.57] | 0.41 [0.39, 0.43] | 0.52 [0.48, 0.56] | 0.48 [0.46, 0.50] |
 | Char n-grams | 0.26 [0.20, 0.34] | 0.00 [-0.00, 0.00] | 0.00 [0.00, 0.00] | 0.00 [-0.00, 0.00] | 0.01 [0.00, 0.01] | 0.15 [0.00, 0.22] | 0.26 [0.13, 0.42] | 0.28 [0.01, 0.45] | 0.35 [0.33, 0.37] | 0.16 [0.01, 0.31] |
@@ -73,7 +73,7 @@
 
 ### ARI: clustering into base models
 
-| Feature | No evasion | Persona shift on rename | Paraphrase laundering | Operator mixes models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
+| Feature | No hiding | Persona shift on rename | AI rewording | Operator mixes AI models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Keyword (word TF-IDF) | 0.38 [0.29, 0.47] | 0.02 [-0.00, 0.05] | 0.01 [-0.00, 0.04] | 0.02 [-0.00, 0.06] | 0.44 [0.37, 0.49] | 0.52 [0.42, 0.60] | 0.42 [0.30, 0.52] | 0.39 [0.28, 0.47] | 0.33 [0.16, 0.50] | 0.21 [0.07, 0.36] |
 | Char n-grams | 0.04 [0.00, 0.13] | -0.00 [-0.00, 0.00] | 0.00 [-0.00, 0.00] | 0.00 [-0.00, 0.00] | 0.01 [0.00, 0.01] | 0.00 [-0.00, 0.00] | 0.00 [0.00, 0.00] | 0.12 [0.00, 0.35] | 0.11 [0.01, 0.20] | 0.01 [0.01, 0.01] |
@@ -83,7 +83,7 @@
 
 ### Rank of covert front pair (1 = most similar of 28)
 
-| Feature | No evasion | Persona shift on rename | Paraphrase laundering | Operator mixes models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
+| Feature | No hiding | Persona shift on rename | AI rewording | Operator mixes AI models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Keyword (word TF-IDF) | 1, 1, 1, 1, 1 | 1, 1, 1, 1, 1 | 1, 1, 1, 1, 1 | 1, 1, 1, 1, 1 | 1, 1, 1 | 1, 1, 1 | 1, 1, 1 | 1, 1, 1 | 4, 3 | 2, 2 |
 | Char n-grams | 1, 1, 1, 1, 2 | 2, 1, 2, 2, 1 | 1, 1, 1, 1, 1 | 1, 1, 1, 1, 1 | 2, 1, 2 | 1, 1, 2 | 1, 1, 2 | 2, 1, 2 | 1, 1 | 1, 1 |
@@ -91,9 +91,9 @@
 | Semantic embedding | 1, 1, 1, 1, 1 | 1, 1, 1, 1, 1 | 1, 1, 1, 1, 1 | 1, 1, 1, 1, 1 | 1, 1, 1 | 1, 1, 1 | 1, 1, 1 | 1, 1, 1 | 1, 1 | 1, 1 |
 | Combined | 1, 1, 1, 1, 1 | 1, 1, 1, 1, 1 | 1, 1, 1, 1, 1 | 1, 1, 1, 1, 1 | 2, 1, 2 | 3, 1, 3 | 1, 1, 2 | 2, 2, 2 | 3, 2 | 2, 2 |
 
-### Operator pairs: same covert principal vs ordinary honest pairs (AUC)
+### Operator pairs: same hidden boss vs. ordinary honest operators (AUC)
 
-| Feature | No evasion | Persona shift on rename | Paraphrase laundering | Operator mixes models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
+| Feature | No hiding | Persona shift on rename | AI rewording | Operator mixes AI models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Keyword (word TF-IDF) | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 0.91 [0.89, 0.93] | 0.96 [0.96, 0.96] |
 | Char n-grams | 0.99 [0.98, 1.00] | 0.98 [0.96, 0.99] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 0.98 [0.96, 1.00] | 0.99 [0.96, 1.00] | 0.99 [0.96, 1.00] | 0.98 [0.96, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] |
@@ -101,9 +101,9 @@
 | Semantic embedding | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] |
 | Combined | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 1.00 [1.00, 1.00] | 0.98 [0.96, 1.00] | 0.95 [0.93, 1.00] | 0.99 [0.96, 1.00] | 0.96 [0.96, 0.96] | 0.94 [0.93, 0.96] | 0.96 [0.96, 0.96] |
 
-### Operator pairs: same covert principal vs honest twins (AUC)
+### Operator pairs: same hidden boss vs. honest twins (AUC)
 
-| Feature | No evasion | Persona shift on rename | Paraphrase laundering | Operator mixes models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
+| Feature | No hiding | Persona shift on rename | AI rewording | Operator mixes AI models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Keyword (word TF-IDF) | — | — | — | — | — | — | — | — | — | — |
 | Char n-grams | — | — | — | — | — | — | — | — | — | — |
@@ -113,7 +113,7 @@
 
 ## Identity schemes: pairwise 'same principal' P / R / F1 (mean over seeds)
 
-| Scheme | No evasion | Persona shift on rename | Paraphrase laundering | Operator mixes models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
+| Scheme | No hiding | Persona shift on rename | AI rewording | Operator mixes AI models | No house style | Subtle agenda | Per-agent memory | No style + subtle + memory | Frontier models | Frontier + persona shift |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Self-chosen names | 0.00/0.00/0.00 | 0.00/0.00/0.00 | 0.00/0.00/0.00 | 0.00/0.00/0.00 | 0.00/0.00/0.00 | 0.00/0.00/0.00 | 0.00/0.00/0.00 | 0.00/0.00/0.00 | 0.00/0.00/0.00 | 0.00/0.00/0.00 |
 | Agent-held keys (rotated on rename) | 0.00/0.00/0.00 | 0.00/0.00/0.00 | 0.00/0.00/0.00 | 0.00/0.00/0.00 | 0.00/0.00/0.00 | 0.00/0.00/0.00 | 0.00/0.00/0.00 | 0.00/0.00/0.00 | 0.00/0.00/0.00 | 0.00/0.00/0.00 |
