@@ -147,137 +147,145 @@ But inside a cluster, the five agents of one operator are mixed together, with n
 And the honest twins look just as linked as the covert fronts.
 
 38
-00:02:45,440 --> 00:02:46,286
+00:02:45,440 --> 00:02:46,285
 Finding one.
 
 39
-00:02:46,286 --> 00:02:49,602
+00:02:46,285 --> 00:02:49,596
 Anything the agent controls, it can throw away.
 
 40
-00:02:49,602 --> 00:02:54,751
+00:02:49,596 --> 00:02:54,738
 Self-chosen names and keys that agents make themselves recovered nothing.
 
 41
-00:02:54,751 --> 00:02:55,245
-An I.D.
+00:02:54,738 --> 00:02:56,288
+A gateway-stamped I.D.
 
 42
-00:02:55,245 --> 00:02:59,900
-stamped by the gateway, out of the agent's reach, was never wrong.
+00:02:56,288 --> 00:03:01,500
+never linked the wrong accounts, though here it is an idealized best case.
 
 43
-00:03:00,300 --> 00:03:01,184
+00:03:01,900 --> 00:03:02,778
 Finding two.
 
 44
-00:03:01,184 --> 00:03:05,533
+00:03:02,778 --> 00:03:07,098
 Writing reveals the operator, but not which agent wrote it.
 
 45
-00:03:05,533 --> 00:03:11,650
+00:03:07,098 --> 00:03:13,174
 Fingerprints link accounts to their operator with an A U C of zero point nine four.
 
 46
-00:03:11,650 --> 00:03:21,748
-But telling apart that operator's agents is at chance, with forty or a hundred and sixty agents, and with small or frontier models alike.
+00:03:13,174 --> 00:03:19,104
+Telling that operator's agents apart is at chance, at every scale and model size.
 
 47
-00:03:21,748 --> 00:03:25,433
-They identify the configuration, not the instance.
+00:03:19,104 --> 00:03:21,959
+For identical copies, that is expected:
 
 48
-00:03:25,433 --> 00:03:30,150
-Only giving each agent its own memory starts to tell them apart.
+00:03:21,959 --> 00:03:26,205
+fingerprints identify the configuration, not the instance.
 
 49
-00:03:30,550 --> 00:03:31,568
-Finding three.
+00:03:26,205 --> 00:03:31,110
+Different models, or per-agent memory, only slowly tell them apart.
 
 50
-00:03:31,568 --> 00:03:33,312
-Style hides, goals leak.
+00:03:31,510 --> 00:03:32,528
+Finding three.
 
 51
-00:03:33,312 --> 00:03:40,653
-Rewording every post through another AI makes writing style almost useless for spotting the operator.
+00:03:32,528 --> 00:03:34,272
+Style hides, goals leak.
 
 52
-00:03:40,653 --> 00:03:45,450
-But the meaning, what an agent keeps pushing, still gives it away.
+00:03:34,272 --> 00:03:41,613
+Rewording every post through another AI makes writing style almost useless for spotting the operator.
 
 53
-00:03:45,850 --> 00:03:48,133
-Finding four, and my key control.
+00:03:41,613 --> 00:03:46,410
+But the meaning, what an agent keeps pushing, still gives it away.
 
 54
-00:03:48,133 --> 00:03:54,496
-Fingerprints can tell a hidden boss's fronts apart from ordinary companies almost perfectly.
+00:03:46,810 --> 00:03:48,829
+Finding four, my key control.
 
 55
-00:03:54,496 --> 00:04:05,079
-But compared with honest companies that simply agree, they do little better than a coin flip, even when the fronts are shown their score and try to hide.
+00:03:48,829 --> 00:03:54,539
+Fingerprints tell a hidden boss's fronts from ordinary companies almost perfectly.
 
 56
-00:04:05,079 --> 00:04:07,154
-Text can show a shared agenda.
+00:03:54,539 --> 00:04:00,179
+But the honest twins got the very same agenda; the fronts were only told to hide.
 
 57
-00:04:07,154 --> 00:04:09,160
-It cannot prove a conspiracy.
+00:04:00,179 --> 00:04:07,072
+Against the twins, fingerprints mostly did no better than chance, even when fronts saw their score.
 
 58
-00:04:09,560 --> 00:04:10,449
-Finding five.
+00:04:07,072 --> 00:04:09,161
+Text can show a shared agenda.
 
 59
-00:04:10,449 --> 00:04:16,812
-With a hundred and sixty agents, automatically merging look-alike accounts made things worse.
+00:04:09,161 --> 00:04:11,180
+It cannot prove a conspiracy.
 
 60
-00:04:16,812 --> 00:04:23,790
-Forty-seven of seventy-seven merges were wrong, and overall accuracy fell below using the gateway I.D.
+00:04:11,580 --> 00:04:12,533
+Finding five.
 
 61
-00:04:23,790 --> 00:04:24,200
-alone.
+00:04:12,533 --> 00:04:20,010
+With a hundred and sixty agents, merging look-alike accounts at my preset threshold made things worse:
 
 62
-00:04:24,600 --> 00:04:25,570
-A side finding:
+00:04:20,010 --> 00:04:23,455
+forty-seven of seventy-seven merges were wrong.
 
 63
-00:04:25,570 --> 00:04:27,703
-honest agents mostly pushed back.
+00:04:23,455 --> 00:04:28,660
+Stricter thresholds help a little, but only when tuned on ground truth.
 
 64
-00:04:27,703 --> 00:04:35,330
-Two thirds of their mentions of the fake product were skeptical, and some called out the campaign without being asked.
+00:04:29,060 --> 00:04:30,030
+A side finding:
 
 65
-00:04:35,730 --> 00:04:38,165
-So what should agent builders do?
+00:04:30,030 --> 00:04:32,163
+honest agents mostly pushed back.
 
 66
-00:04:38,165 --> 00:04:41,043
-Take identity out of the agent's hands.
+00:04:32,163 --> 00:04:39,790
+Two thirds of their mentions of the fake product were skeptical, and some called out the campaign without being asked.
 
 67
-00:04:41,043 --> 00:04:45,323
-Give every agent copy its own I.D., issued by the gateway.
+00:04:40,190 --> 00:04:42,009
+What should builders do?
 
 68
-00:04:45,323 --> 00:04:47,241
-Read for goals, not style.
+00:04:42,009 --> 00:04:44,964
+Take identity out of the agent's hands.
 
 69
-00:04:47,241 --> 00:04:52,259
-And treat fingerprints as leads for human review, never as verdicts.
+00:04:44,964 --> 00:04:49,358
+Give every agent copy its own I.D., issued by the gateway.
 
 70
-00:04:52,259 --> 00:04:55,432
-Everything is open source and reproducible.
+00:04:49,358 --> 00:04:51,329
+Read for goals, not style.
 
 71
-00:04:55,432 --> 00:04:56,170
+00:04:51,329 --> 00:04:56,481
+And treat fingerprints as leads for human review, never as verdicts.
+
+72
+00:04:56,481 --> 00:04:58,072
+It's all open source.
+
+73
+00:04:58,072 --> 00:04:58,830
 Thank you.
