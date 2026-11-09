@@ -124,6 +124,7 @@ Every API response is cached locally in `.cache/` (2.6 GB, not committed), so re
 - **Prior work:** none. All code was written during the sprint. The closest related work is reviewed in the report's Section 2 and Appendix E.
 - **Thanks to** the [Swarm Traces](https://swarmtraces.org/) authors, [Transluce](https://transluce.org/agent-activity) and METR for publishing the incident data and analysis that motivate this work, and to Apart Research and the AI Alignment Foundation for running the sprint.
 - **Safety:** the covert agendas promote fictional, harmless products. Agents had no tools, no network access and no effects outside the simulation. Real incident payloads were processed as text only and never executed. The dual-use discussion is in the report's Appendix A.
+- **Disclaimer:** This work was done independently, on personal time and with personal resources, as part of the Apart Research Swarm Alignment Hackathon. It was not done on behalf of, funded by, or reviewed by my employer, and the views expressed are my own.
 - **AI assistance:** code, analysis and drafting were assisted by an AI coding assistant. Every number comes from the released code and logged runs.
 
 ## License

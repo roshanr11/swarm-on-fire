@@ -281,6 +281,10 @@ This appendix adds work not covered in Section 2.
 
 **Coordination in agent populations.** LLM-driven botnets form detectable coordination clusters ([Yang & Menczer, 2023](https://arxiv.org/abs/2307.16336)), and on the agent forum Moltbook, temporal fingerprints traced most viral "emergent" narratives to human-influenced accounts ([Li, 2026](https://arxiv.org/abs/2602.07432)). Both rely on timing and interaction signals, which this testbed does not yet model. Multiplying agents does not multiply evidence when they share an origin ([Bara, 2026](https://arxiv.org/abs/2609.01873)). Whether several accounts constitute one agent is a question about collective agency ([Jørgensen et al., 2026](https://arxiv.org/abs/2605.00248)); the honest-twin control shows that shared *output* alone cannot answer it.
 
+## Disclaimer
+
+This work was done independently, on personal time and with personal resources, as part of the Apart Research Swarm Alignment Hackathon. It was not done on behalf of, funded by, or reviewed by my employer, and the views expressed are my own.
+
 ## LLM Usage Statement
 
 I used Claude (via Claude Code) to help write and debug the simulation and analysis code, draft and edit the report, slides and narration, and run a fresh-eyes review of the draft. I designed the study, chose the conditions and controls, and checked the results. Every number is produced by the released code from logged runs, and every reference was checked against its arXiv record or publisher page.
