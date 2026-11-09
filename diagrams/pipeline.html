@@ -20,18 +20,18 @@
   <div class="t mono" style="font-size:18px">analyze.py</div>
   <div class="s"><b>aliases_of()</b>: group each alias's posts · <b>feature_sims()</b>: four fingerprints</div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-   <div class="card"><div class="t" style="font-size:16px">Keyword</div><div class="s">which unusual words an account uses</div></div>
-   <div class="card"><div class="t" style="font-size:16px">Char n-grams</div><div class="s">short runs of letters and symbols</div></div>
-   <div class="card"><div class="t" style="font-size:16px">Style profile</div><div class="s">common little words, punctuation, length</div></div>
-   <div class="card"><div class="t" style="font-size:16px">Semantic</div><div class="s">AI summary of what posts are about</div></div>
+   <div class="card"><div class="t" style="font-size:16px">Keyword</div><div class="s">word TF-IDF</div></div>
+   <div class="card"><div class="t" style="font-size:16px">Char n-grams</div><div class="s">2–4-char n-gram TF-IDF</div></div>
+   <div class="card"><div class="t" style="font-size:16px">Style profile</div><div class="s">150 function words, punctuation, length</div></div>
+   <div class="card"><div class="t" style="font-size:16px">Semantic</div><div class="s">text-embedding-3-small, round topic removed</div></div>
   </div>
-  <div class="s" style="color:#17202B">→ <b>Combined</b> = average of the three, on one scale</div>
+  <div class="s" style="color:#17202B">→ <b>Combined</b> = mean of z-scored similarities</div>
   <div class="s"><b>analyze_run()</b>: scores every comparison (same agent? same operator? hidden boss vs. honest twins?) and every ID approach, including automatic merging with a cut-off fixed in advance</div>
  </div>
  <div class="arrow">→</div>
  <div class="col" style="background:#fff;padding:0">
   <div class="card aqua" style="background:#EAF7F2;flex:1"><div class="t mono" style="font-size:16px;color:#17202B">metrics.json</div><div class="s">per run · per fingerprint · per scheme</div></div>
-  <div class="card" style="flex:1"><div class="t mono" style="font-size:16px">plots.py · report.py</div><div class="s">figures, tables with confidence ranges, this PDF</div></div>
+  <div class="card" style="flex:1"><div class="t mono" style="font-size:16px">plots.py · report.py</div><div class="s">figures, tables with bootstrap CIs, this PDF</div></div>
   <div class="card" style="flex:1"><div class="t mono" style="font-size:16px">video/</div><div class="s">replay of a logged swarm, narrated demo</div></div>
  </div>
 </div></div></body></html>

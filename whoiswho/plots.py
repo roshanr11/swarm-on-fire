@@ -15,9 +15,9 @@ FIG = OUT / "figures"
 FEATS = ["Char n-grams", "Style profile", "Semantic embedding", "Combined"]
 ALL_FEATS = ["Keyword (word TF-IDF)"] + FEATS
 # Plain-language display names for chart legends (metric keys stay unchanged)
-NICE = {"Keyword (word TF-IDF)": "Keywords", "Char n-grams": "Character patterns", "Style profile": "Style profile",
-        "Semantic embedding": "Meaning", "Combined": "Combined"}
-SCORE = "Score (AUC: 0.5 = coin flip, 1 = perfect)"
+NICE = {"Keyword (word TF-IDF)": "Keyword (TF-IDF)", "Char n-grams": "Char n-grams", "Style profile": "Style profile",
+        "Semantic embedding": "Semantic embedding", "Combined": "Combined"}
+SCORE = "Pairwise ROC-AUC (0.5 = chance)"
 # Reference categorical palette (light), slots 1-4, fixed order.
 COLORS = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100"]
 INK, MUTED, GRID = "#0b0b0b", "#52514e", "#e4e3df"
@@ -117,7 +117,7 @@ def robustness(metrics, fname="fig6_robustness.png", feat="Combined"):
     ax.set_xticks(x, [COND_LABEL[c] for c in conds], fontsize=7.5)
     ax.set_ylim(0.3, 1.0)
     ax.set_ylabel(SCORE)
-    ax.set_title("Extra tests (combined fingerprint)", loc="left", fontsize=10, color=INK)
+    ax.set_title("Robustness checks (combined fingerprint)", loc="left", fontsize=10, color=INK)
     ax.legend(ncol=3, loc="upper center", bbox_to_anchor=(0.5, -0.25), fontsize=7.5)
     fig.savefig(FIG / fname)
     plt.close(fig)

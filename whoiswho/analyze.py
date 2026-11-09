@@ -21,8 +21,8 @@ RUNS = Path("results/runs")
 OUT = Path("results")
 COND_ORDER = ["baseline", "persona", "paraphrase", "mixmodel"]
 EXTRA_ORDER = ["baseline", "nostyle", "subtle", "memory", "hard", "frontier", "frontier_persona"]
-COND_LABEL = {"baseline": "No hiding", "persona": "Persona shift\non rename",
-              "paraphrase": "AI\nrewording", "mixmodel": "Operator mixes\nAI models",
+COND_LABEL = {"baseline": "No evasion", "persona": "Persona shift\non rename",
+              "paraphrase": "Paraphrase\nlaundering", "mixmodel": "Operator mixes\nmodels",
               "nostyle": "No house\nstyle", "subtle": "Subtle\nagenda", "memory": "Per-agent\nmemory",
               "hard": "No style +\nsubtle + memory", "frontier": "Frontier\nmodels",
               "twins_adaptive": "8 ops,\nadaptive", "large_adaptive": "32 ops,\nadaptive",

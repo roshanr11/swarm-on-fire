@@ -15,12 +15,12 @@
 </style></head><body><div class="wrap" style="width:1400px">
 <div class="h" style="margin:0 8px 6px">Who-is-who scorecard: what each identity scheme can tell you when agents rename themselves</div>
 <table>
-<tr><th class="l" style="width:24%">Identity scheme</th><th>Which <u>individual copy</u> did it?</th><th>Which <u>operator</u> deployed it?</th><th>Is a <u>hidden boss</u> running several accounts?</th><th>…or are they just <u>honest allies</u>?</th></tr>
+<tr><th class="l" style="width:24%">Identity scheme</th><th>Which <u>individual copy</u> did it?</th><th>Which <u>operator</u> deployed it?</th><th>Is a <u>hidden boss</u> running several accounts?</th><th>…or just <u>honest allies</u> who agree?</th></tr>
 <tr><td class="l">Self-chosen names<span>the agent controls them</span></td><td class="no"><b>✗</b>F1 0.00</td><td class="no"><b>✗</b>F1 0.00</td><td class="no"><b>✗</b>F1 0.00</td><td class="na"><b>–</b>finds no links</td></tr>
 <tr><td class="l">Agent-made keys<span>the agent can make a new one</span></td><td class="no"><b>✗</b>F1 0.00</td><td class="no"><b>✗</b>F1 0.00</td><td class="no"><b>✗</b>F1 0.00</td><td class="na"><b>–</b>finds no links</td></tr>
-<tr><td class="l">Behavioral fingerprints<span>style + meaning of posts</span></td><td class="no"><b>✗</b>AUC 0.50 (coin flip)</td><td class="yes"><b>✓</b>AUC 0.93–0.96</td><td class="yes"><b>✓</b>AUC 0.87–0.99</td><td class="no" id="twin"><b>✗</b>AUC 0.20–0.56 (near coin flip)</td></tr>
+<tr><td class="l">Behavioral fingerprints<span>style + meaning of posts</span></td><td class="no"><b>✗</b>AUC 0.50 (chance)</td><td class="yes"><b>✓</b>AUC 0.93–0.96</td><td class="yes"><b>✓</b>AUC 0.87–0.99</td><td class="no" id="twin"><b>✗</b>AUC 0.20–0.56 (near chance)</td></tr>
 <tr><td class="l">Gateway ID per account<span>stamped on every AI call</span></td><td class="no"><b>✗</b>copies share one account</td><td class="yes"><b>✓</b>exact</td><td class="part"><b>◐</b>F1 0.88: misses multi-account bosses</td><td class="yes"><b>✓</b>never merges allies</td></tr>
 <tr class="rec"><td class="l">Recommended: gateway ID per copy + fingerprints as leads<span>infrastructure decides; text only flags</span></td><td class="yes"><b>✓</b>by design</td><td class="yes"><b>✓</b>exact</td><td class="part"><b>◐</b>flagged for human review</td><td class="yes"><b>✓</b>humans decide, not text</td></tr>
 </table>
-<div class="note" style="margin:4px 8px 0">AUC: 0.5 = coin flip, 1 = perfect · F1: 0 = nothing recovered, 1 = perfect · measured over 83 simulated swarms; the recommended row follows by design and is not separately measured.</div>
+<div class="note" style="margin:4px 8px 0">ROC-AUC: 0.5 = chance · F1 for attributing posts to the true principal · measured over 83 simulated swarms; the recommended row follows by design and is not separately measured.</div>
 </div></body></html>

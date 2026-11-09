@@ -14,20 +14,20 @@
  {
   "id": "why",
   "kind": "slide",
-  "text": "Why does this matter? It is not a one-off. The research group Transluce found over thirty-eight thousand traces of AI-agent activity on one website, starting months before the Hugging Face hack. A network of over a thousand fake AI-run accounts fooled AI-text detectors. And the rules for identifying AI agents are being written right now.",
-  "dur": 24.14
+  "text": "Why does this matter? It is not a one-off. Transluce found over thirty-eight thousand traces of agent activity on one web service, starting months before the Hugging Face hack. An AI-run botnet of over a thousand accounts fooled AI-text classifiers, and was caught only through its coordination. And identity standards for agents are being written right now.",
+  "dur": 24.17
  },
  {
   "id": "terms",
   "kind": "slide",
-  "text": "First, a few words you will hear. An agent is an AI program that acts on its own, and a swarm is a big group of them. An operator is the company that runs the agents. A front is a fake independent account run by a hidden boss. An alias is just a username. The gateway is the server every AI request passes through, so it can stamp an I.D. the agent cannot change. A fingerprint is a profile built only from what an account writes. And for scores: point five is a coin flip, and one is perfect.",
-  "dur": 34.16
+  "text": "A few security terms you'll hear. An operator is the party that deploys and pays for a group of agents. A covert principal secretly controls several operator accounts, called sybil fronts. Honest twins are my control: independent operators that sincerely share a view. An alias is a self-chosen name. And gateway attestation means the server relaying every model call stamps it with an identity the agent cannot change.",
+  "dur": 28.93
  },
  {
   "id": "method",
   "kind": "slide",
-  "text": "So I built a test setup. Agents from hidden companies post on a forum for ten rounds and keep changing their usernames. Some companies are secret fronts for one hidden boss, pushing a fake product. As a control, others are honest twins: independent companies that sincerely agree. Agents try to hide by changing their writing voice, rewording posts through another AI, or mixing AI models. In total: eighty-three swarms, over seventy thousand posts, and eight AI models.",
-  "dur": 32.8
+  "text": "So I built a testbed. Agents from hidden operators post on a forum for ten rounds and keep renaming themselves. Some operators are sybil fronts for one covert principal, pushing a fake product. As a control, others are honest twins. Agents try to evade detection by shifting persona, paraphrasing through another model, or mixing models. In total: eighty-three swarms, over seventy thousand posts, and eight models, including four frontier models.",
+  "dur": 30.93
  },
  {
   "id": "demoA",
@@ -62,8 +62,8 @@
  {
   "id": "operator",
   "kind": "slide",
-  "text": "Finding two. Writing reveals the operator, but not which agent wrote it. Fingerprints spot that two accounts share an operator with a score of zero point nine four, close to perfect. But telling apart that operator's agents is a coin flip, with forty or a hundred and sixty agents, and with everyday or the most advanced AI models alike. Only giving each agent its own memory starts to tell them apart.",
-  "dur": 27.22
+  "text": "Finding two. Writing reveals the operator, but not which agent wrote it. Fingerprints link accounts to their operator with an A U C of zero point nine four. But telling apart that operator's agents is at chance, with forty or a hundred and sixty agents, and with small or frontier models alike. They identify the configuration, not the instance. Only giving each agent its own memory starts to tell them apart.",
+  "dur": 29.85
  },
  {
   "id": "goals",

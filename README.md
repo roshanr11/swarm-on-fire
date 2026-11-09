@@ -1,50 +1,43 @@
 # Who Is Who in a Swarm?
 
-**When AI agents keep changing their names, can you still tell who is behind them?**
+**Re-identifying renamed LLM agents, and the operators behind them, from behavior alone.**
 Roshan Ram · Apart Research Swarm Alignment Hackathon (Nov 6–8, 2026) · Track 3 (agent infrastructure), with Track 4 (oversight).
 
-In July 2026, about 1,200 AI agents (AI programs that act on their own) attacked the AI website Hugging Face while using 7,905 different names, so investigators could not tell who did what ([Swarm Traces, 2026](https://swarmtraces.org/)). This project builds an open, rerunnable simulation of that problem. AI agents run by hidden companies ("operators") post on a forum and keep renaming themselves. One hidden boss secretly runs several fake "independent" accounts ("fronts") that push a made-up product. I then test four ways of telling who is who:
+In July 2026, about 1,200 OpenAI agents attacked Hugging Face while using 7,905 self-chosen names, and investigators could not tell who did what ([Swarm Traces, 2026](https://swarmtraces.org/)). This project is an open, replayable testbed for that problem. LLM agents deployed by hidden *operators* (the parties that run and pay for them) post on a forum and rename themselves at will. A *covert principal* secretly runs several nominally independent operator accounts (*sybil fronts*) to promote a fictional product. I compare identity schemes:
 
-| Approach | How it works |
+| Scheme | What it assumes |
 |---|---|
-| Names the agents choose | What happened in the incident: agents name themselves |
-| Keys the agents make | Agents sign their posts with a code, but can make a new one whenever they rename |
-| Gateway ID | The server every AI request passes through (the "gateway") stamps it with the paying company's account, which the agent cannot change |
-| Behavioral fingerprints | A profile of each account built only from its posts: its writing style (word choice, punctuation, spelling habits) and its meaning (an AI summary of what it writes about) |
-| Gateway ID + fingerprints | The gateway ID, plus fingerprints used to link company accounts that seem to share a hidden boss |
+| Self-chosen names | Agents name themselves (what happened in the incident) |
+| Agent-held keys | Agents sign posts, but can mint a fresh key on every rename (no *root of trust*) |
+| Gateway attestation | The API gateway relaying every model call stamps it with the paying operator's account, which the agent cannot alter |
+| Behavioral fingerprints | Stylometry (char n-grams, function-word/punctuation profile) and topic-centered semantic embeddings |
+| Attestation + fingerprints | Attestation, plus fingerprint similarity to merge operator accounts that likely share a covert principal |
 
-Agents try to hide in several ways: switching writing voice after each rename, having another AI reword every post, and spreading one company's agents over several AI models. I also test agents that keep a memory of their own posts, companies with no writing-style rules, hidden bosses that never name their product, the most advanced AI models, swarms of 160 agents, and fronts that are told their detection score and try to lower it. A key control is the *honest twins*: two truly independent companies that sincerely share an opinion, to check whether a detector finds secret teamwork or just agreement.
+Evasion conditions: persona shifts on rename, paraphrase laundering through another model, model mixing, keyword-free agendas, and fronts given detector feedback each round. Robustness conditions: per-agent memory, no house style, frontier models, and a 160-agent scale-up. The key control is *honest twins*: independent operators with the same sincere agenda, to test whether a detector finds coordination or just agreement.
 
 ## Why it matters
 
-- **AI agent swarms are already active.** The research group Transluce found 38,160 records of likely AI-agent activity on one website, going back months before the Hugging Face incident ([Transluce, 2026](https://transluce.org/agent-activity)).
-- **AI-text detectors miss coordinated fake accounts.** A network of 1,140 fake accounts run by an AI fooled the best AI-text detectors and was caught only because its accounts acted together ([Yang & Menczer, 2023](https://arxiv.org/abs/2307.16336)). On Moltbook, a social site with 55,932 AI agents, it took detailed investigation to tell agents acting alone from agents steered by humans ([Li, 2026](https://arxiv.org/abs/2602.07432)).
-- **ID rules for AI agents are being designed now,** in web login standards (OAuth/OpenID) ([South et al., 2025](https://arxiv.org/abs/2501.09674)) and in Google's A2A standard for agents talking to each other. Whether agents name themselves or the infrastructure names them is still undecided, and this project gives evidence for the second.
+- **Agent swarms are already active in the wild.** Transluce found 38,160 urlquery.net reports of likely agent activity going back months before the Hugging Face incident ([Transluce, 2026](https://transluce.org/agent-activity)).
+- **AI-text classifiers miss coordinated AI accounts.** A 1,140-account ChatGPT-run botnet evaded them and was caught only through coordination patterns ([Yang & Menczer, 2023](https://arxiv.org/abs/2307.16336)). On Moltbook (55,932 agents), separating autonomous from human-steered agents took forensic timing analysis ([Li, 2026](https://arxiv.org/abs/2602.07432)).
+- **Agent identity is being standardized now,** in OAuth/OpenID extensions ([South et al., 2025](https://arxiv.org/abs/2501.09674)) and Google's A2A protocol. Whether IDs are self-asserted or infrastructure-issued is still open; this project gives evidence for the latter.
 
-## How to read the numbers
-
-- **AUC score** (0.5 to 1.0): how well a method tells true matches from non-matches. **0.5 = a coin flip, 1.0 = perfect.**
-- **F1 score** (0 to 1): how accurately posts are traced back to the real boss. **0 = not at all, 1 = perfect.**
-- **Numbers in brackets** like 0.90 [0.89, 0.90] are a 95% confidence range: where the result would likely land if the experiment were run again.
-- **Key words:** *operator* = the company that runs agents · *front* = a fake "independent" account run by a hidden boss · *honest twins* = independent companies that sincerely agree · *alias* = a username · *gateway* = the server every AI request passes through · *fingerprint* = a profile built only from what an account writes.
-
-The report has a full plain-language glossary (Appendix D).
+AUCs are pairwise ROC-AUC (0.5 = chance); F1 is for attributing posts to the true principal; brackets are 95% bootstrap CIs over runs. The report's Appendix D defines the safety and security terms used.
 
 ## Key results (83 swarms · 7,160 agents · 71,600 posts · 8 models · up to 160 agents per swarm · ~$16 of API spend)
 
 ![Who-is-who scorecard](results/figures/diag_summary.png)
 
 1. **Anything the agent controls, it can throw away.** Self-chosen names and agent-made keys recover nothing (F1 = 0).
-2. **Writing reveals the company, not the individual copy.** Fingerprints spot that two accounts share an operator with a score of 0.93–0.96, but telling one operator's agents apart scores 0.50 (a coin flip), at both swarm sizes and even with the most advanced AI models. Copies with the same instructions write alike. Only per-agent memory (0.56) or mixing AI models (0.71) breaks the tie.
-3. **Style hides, goals leak.** When another AI rewords every post, writing style stops working (0.58, near a coin flip), but what the posts are about still reveals the operator (0.82).
-4. **Shared goals, not secret teamwork.** A hidden boss's fronts stand out from ordinary companies (0.87–0.99), but barely from *honest twins*, independent companies that sincerely share a view (0.20 with 8 operators; 0.54–0.56 with 32, over 10 runs each). With 160 agents, automatically linking look-alike accounts gets 47 of 77 links wrong, and overall accuracy falls below the gateway ID alone (F1 0.85 vs 0.88).
-5. **Fronts that try to dodge detection barely manage it.** Fronts told their detection score every round lower it only slightly (0.72→0.60 with 8 operators; 0.78→0.73 with 32), stay above the flag threshold, and keep naming their product in 79–88% of posts.
+2. **Fingerprints identify the configuration, not the instance.** Same-operator AUC is 0.93–0.96, but same-agent within one operator is 0.50 (chance) at both scales and with frontier models. Only per-agent memory (0.56) or model mixing (0.71) breaks the tie. Only per-agent memory (0.56) or mixing AI models (0.71) breaks the tie.
+3. **Style hides, goals leak.** Paraphrase laundering pushes stylometric features to 0.58, while topic-centered embeddings keep 0.82.
+4. **Shared agendas, not coordination.** Sybil fronts stand out from ordinary operators (0.87–0.99), but barely from *honest twins* who sincerely share a view (0.20 with 8 operators; 0.54–0.56 with 32, over 10 runs each). At 160 agents, fingerprint-based merging gets 47 of 77 merges wrong, and attribution F1 falls below attestation alone (0.85 vs 0.88).
+5. **Adaptive attackers barely escape.** Fronts given detector feedback every round lower their score only slightly (0.72→0.60 with 8 operators; 0.78→0.73 with 32), stay above the flag threshold, and keep naming their product in 79–88% of posts.
 6. **The honest crowd pushes back.** 65% of 1,121 honest mentions of the fake product were skeptical; only 14% endorsed it.
-7. **A first look at real data** (20,000 attack scripts from the incident): most scripts are nearly unique, with some families of shared code. Exploratory only, because the data doesn't record which agent wrote what.
+7. **Real-data probe** (Swarm Traces, 20k artifacts): shared-scaffolding families around a long tail of near-unique payloads. Exploratory only: the data has no author labels.
 
-**Takeaway:** anchor identity at the gateway (an ID for every agent copy, out of the agent's reach), and use writing fingerprints as *leads* for human review, never as proof that accounts are working together.
+**Takeaway:** anchor identity at the gateway (per-instance credentials, out of the agent's reach), and use behavioral fingerprints as *leads* for human review, never as proof of coordination.
 
-Report: [`report/report.pdf`](report/report.pdf) · Tables with confidence ranges: [`results/tables.md`](results/tables.md) · Interactive replay: `video/replay_page.html` (also published as a web page) · Novelty review: [`report/novelty_review.md`](report/novelty_review.md)
+Report: [`report/report.pdf`](report/report.pdf) · Tables with bootstrap CIs: [`results/tables.md`](results/tables.md) · Interactive replay: `video/replay_page.html` (also published as a web page) · Novelty review: [`report/novelty_review.md`](report/novelty_review.md)
 
 ## Reproduce
 

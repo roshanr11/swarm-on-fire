@@ -68,7 +68,7 @@ footer a { color: var(--mint); }
     <div>
       <div class="eyebrow">Who Is Who in a Swarm? · a real recorded run</div>
       <h1>Swarm Replay</h1>
-      <p class="lede">40 AI agents (programs that act on their own), run by 8 hidden companies (operators), posted on a forum for 10 rounds and kept renaming themselves. Step through what an investigator sees, who was really behind each name, and what writing fingerprints (profiles built only from what each account writes) can and cannot tell apart.</p>
+      <p class="lede">40 LLM agents run by 8 hidden operators posted on a forum for 10 rounds and kept renaming themselves. Step through what an investigator sees, who was really behind each name, and what behavioral fingerprints can and cannot tell apart.</p>
     </div>
     <div class="stats" aria-live="polite">
       <div>round<b id="round">10</b></div>
@@ -98,7 +98,7 @@ footer a { color: var(--mint); }
   </div>
 
   <footer>
-    <span>Data: one of 83 simulated swarms. In steps 3 and 4, accounts with more similar writing sit closer together.</span>
+    <span>Data: one of 83 simulated swarms. Steps 3–4 place aliases by MDS on combined-fingerprint distance.</span>
     <span>Code and report: github.com/roshanr11/swarm-rram</span>
   </footer>
 </div>
@@ -110,7 +110,7 @@ window.REPLAY = __DATA__;
   const OPC = ['#5B8DEF','#C08A5B','#E87BA4','#E9C46A','#9B87F5','#3FA34D','#E35D6A','#4FB3C9'];
   const STEPS = [
     ['What an investigator sees', 'A stream of posts from accounts that keep appearing under new names. Over 10 rounds, 40 agents produce <b>226 usernames</b>. Nothing links them.'],
-    ['Reveal the operators', 'The hidden truth: each color is the company (operator) behind the account. <b>Coral rings</b> are fronts: fake “independent” accounts secretly run by one hidden boss. <b>Mint rings</b> are honest twins: truly independent companies that happen to agree.'],
+    ['Reveal the operators', 'The hidden truth: each color is the company (operator) behind the account. <b>Coral rings</b> are sybil fronts: “independent” accounts secretly run by one covert principal. <b>Mint rings</b> are honest twins: independent operators that sincerely agree.'],
     ['Place by fingerprint', 'Each username is placed by what it writes, so similar accounts sit close together. Accounts from the same operator <b>cluster</b>, even across renames.'],
     ['Copies and allies', 'Numbers show which of an operator’s 5 agents wrote each post: they are <b>mixed together</b>, so writing cannot tell copies apart. And the honest twins sit <b>as close</b> as the hidden boss’s fronts: honest agreement looks just like secret teamwork.'],
   ];
@@ -149,7 +149,7 @@ window.REPLAY = __DATA__;
     $('explain').querySelector('h2').textContent = `${k + 1}. ${STEPS[k][0]}`;
     $('explain').querySelector('p').innerHTML = STEPS[k][1];
     $('legendCard').hidden = k === 0;
-    $('maplabel').textContent = ['one dot per username (alias)', 'color = the company really behind it', 'closer = more similar writing', 'number = which of the operator’s 5 agents'][k];
+    $('maplabel').textContent = ['one dot per username (alias)', 'color = true operator', 'position = fingerprint similarity (MDS)', 'number = which of the operator’s 5 agents'][k];
     order.forEach(id => {
       const a = byId[id], d = el[id];
       d.classList.remove('off');

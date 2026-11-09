@@ -1,12 +1,12 @@
 # Demo video
 
-`WhoIsWho-demo.mp4`: 4:59, 1080p, narrated by Roshan Ram's project voice-over (ElevenLabs). Subtitles are in `WhoIsWho-demo.srt`.
+`WhoIsWho-demo.mp4`: 4:54, 1080p, narrated by Roshan Ram's project voice-over (ElevenLabs). Subtitles are in `WhoIsWho-demo.srt`.
 
 | Time | Scene |
 |---|---|
-| 0:00 | Title, the Hugging Face incident, why it matters, key terms in plain words, the test setup |
-| 2:07 | **Replay of a real logged swarm** (`twins_s0`): the defender's view → hidden operators revealed → aliases placed by fingerprint |
-| 2:50 | Five findings, side finding, what to build |
+| 0:00 | Title, the Hugging Face incident, why it matters, key safety terms, the test setup |
+| 2:00 | **Replay of a real logged swarm** (`twins_s0`): the defender's view → hidden operators revealed → aliases placed by fingerprint |
+| 2:43 | Five findings, side finding, what to build |
 
 How it was made (all reproducible):
 
