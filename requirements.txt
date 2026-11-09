@@ -1,0 +1,9 @@
+requests
+numpy
+scipy
+scikit-learn
+matplotlib
+reportlab
+pypdf
+piper-tts
+pytest

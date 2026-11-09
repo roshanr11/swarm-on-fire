@@ -2,8 +2,8 @@
  {
   "id": "cover",
   "kind": "slide",
-  "text": "Who is who in a swarm? When AI agents can rename themselves, can anyone still tell who is behind them? I'm Roshan Ram, and this is my project for the Apart Swarm Alignment Sprint.",
-  "dur": 12.19
+  "text": "Name tags lie. When AI agents can rename themselves, can anyone still tell who is behind them? I'm Roshan Ram, and this is my project for the Apart Swarm Alignment Sprint.",
+  "dur": 12.41
  },
  {
   "id": "problem",

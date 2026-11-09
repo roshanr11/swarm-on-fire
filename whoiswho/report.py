@@ -118,12 +118,12 @@ def build():
         c.setFont("Helvetica", 8)
         c.setFillColor(MUTED)
         c.drawRightString(A4[0] - 2 * cm, 1.2 * cm, str(d.page))
-        c.drawString(2 * cm, 1.2 * cm, "Who Is Who in a Swarm? · Apart Swarm Alignment Sprint 2026")
+        c.drawString(2 * cm, 1.2 * cm, "Name Tags Lie · Apart Swarm Alignment Sprint 2026")
         c.restoreState()
 
     OUT.parent.mkdir(exist_ok=True)
     SimpleDocTemplate(str(OUT), pagesize=A4, leftMargin=2 * cm, rightMargin=2 * cm, topMargin=1.8 * cm,
-                      bottomMargin=2 * cm, title="Who Is Who in a Swarm?").build(story, onFirstPage=deco,
+                      bottomMargin=2 * cm, title="Name Tags Lie: Who Is Who in an AI Agent Swarm").build(story, onFirstPage=deco,
                                                                                   onLaterPages=deco)
     print(f"wrote {OUT}")
 

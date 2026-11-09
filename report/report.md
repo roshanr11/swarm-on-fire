@@ -1,5 +1,6 @@
-# Who Is Who in a Swarm? Writing Style Reveals Which Company Runs an AI Agent, but Not Which Copy, and Shared Goals, but Not Secret Coordination
+# Name Tags Lie: Who Is Who in an AI Agent Swarm
 
+::sub Behavioral fingerprints identify an agent's operator, not the individual copy, and shared goals, not coordination
 ::sub Roshan Ram · Apart Research Swarm Alignment Sprint, November 2026
 ::sub Track 3: Strengthening Agent Infrastructure (with Track 4: Multi-Agent Oversight and Control)
 
@@ -216,7 +217,7 @@ Yang, K.-C., Menczer, F. (2023). *Anatomy of an AI-powered malicious social botn
 
 ![**Figure 5.** How the code base produces every number in this report. `sim.py` and `large.py` generate the swarms through `llm.py` (cached OpenRouter calls, so every run replays exactly); every post is logged with ground-truth labels; `analyze.py` builds four fingerprints per alias and scores every identity scheme; `plots.py` and `report.py` turn `metrics.json` into the figures, tables and this PDF.](results/figures/diag_pipeline.png){w=16}
 
-Code, prompts, every post with ground-truth labels, all metrics and the API response cache are in the repository (`whoiswho/`, `results/`). All 83 swarms, embeddings, audits and the video narration cost about $16 via OpenRouter. Settings: temperature 0.9; reasoning disabled, or effort "low" where a provider requires it; embeddings `openai/text-embedding-3-small`; paraphraser `meta-llama/llama-3.3-70b-instruct`.
+Code, prompts, every post with ground-truth labels and all metrics are in the repository (`whoiswho/`, `results/`); `pytest` checks the design invariants. API responses are cached locally (2.6 GB, not committed), so reruns on one machine reproduce exactly; re-analyzing the logged runs elsewhere needs only the semantic embeddings (about $0.15). All 83 swarms, embeddings, audits and the video narration cost about $16 via OpenRouter. Settings: temperature 0.9; reasoning disabled, or effort "low" where a provider requires it; embeddings `openai/text-embedding-3-small`; paraphraser `meta-llama/llama-3.3-70b-instruct`.
 
 | Design | Conditions (runs) | Agents per swarm |
 |---|---|---|
